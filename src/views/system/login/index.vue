@@ -188,6 +188,7 @@ export default {
     this.timeInterval = setInterval(() => {
       this.refreshTime()
     }, 1000)
+    // this.submit()
   },
   beforeDestroy () {
     clearInterval(this.timeInterval)

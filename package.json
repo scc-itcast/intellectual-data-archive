@@ -2,7 +2,7 @@
   "name": "d2-admin",
   "version": "1.24.2",
   "scripts": {
-    "serve": "vue-cli-service serve --open",
+    "serve": "vue-cli-service serve",
     "start": "npm run serve",
     "dev": "npm run serve",
     "build": "vue-cli-service build --report",
@@ -13,6 +13,7 @@
   "dependencies": {
     "@d2-projects/vue-table-export": "^1.1.2",
     "@d2-projects/vue-table-import": "^1.0.1",
+    "@vue/composition-api": "^1.1.4",
     "axios": "^0.21.1",
     "axios-mock-adapter": "^1.18.1",
     "better-scroll": "^1.15.2",
@@ -71,6 +72,8 @@
     "eslint-plugin-vue": "^6.2.2",
     "less": "^3.12.2",
     "less-loader": "^7.1.0",
+    "postcss-plugin-px2rem": "^0.8.1",
+    "px2rem-loader": "^0.1.9",
     "sass": "^1.35.2",
     "sass-loader": "^10.1.1",
     "svg-sprite-loader": "^4.1.6",

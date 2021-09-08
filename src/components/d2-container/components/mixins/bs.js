@@ -8,37 +8,50 @@ export default {
       type: Object,
       required: false,
       default: () => ({})
+    },
+    breadcrumb: {
+      type: Array,
+      required: false,
+      default: () => []
     }
   },
-  data () {
+  data() {
     return {
       BS: null
     }
   },
-  mounted () {
+  mounted() {
     this.scrollInit()
   },
-  beforeDestroy () {
+  beforeDestroy() {
     this.scrollDestroy()
   },
   methods: {
-    scrollInit () {
+    scrollInit() {
       // 初始化 bs
-      this.BS = new BScroll(this.$refs.wrapper, merge({
-        mouseWheel: true,
-        click: true,
-        scrollbar: {
-          fade: true,
-          interactive: false
-        }
-      }, this.betterScrollOptions))
+      this.BS = new BScroll(
+        this.$refs.wrapper,
+        merge(
+          {
+            mouseWheel: true,
+            click: true,
+            scrollbar: {
+              fade: true,
+              interactive: false
+            }
+          },
+          this.betterScrollOptions
+        )
+      )
       // 滚动时发出事件 并且统一返回的数据格式
-      this.BS.on('scroll', ({ x, y }) => this.$emit('scroll', {
-        x: -x,
-        y: -y
-      }))
+      this.BS.on('scroll', ({ x, y }) =>
+        this.$emit('scroll', {
+          x: -x,
+          y: -y
+        })
+      )
     },
-    scrollDestroy () {
+    scrollDestroy() {
       // https://github.com/d2-projects/d2-admin/issues/75
       try {
         this.BS.destroy()
@@ -48,11 +61,11 @@ export default {
       }
     },
     // 外部调用的方法 返回顶部
-    scrollToTop () {
+    scrollToTop() {
       if (this.BS) this.BS.scrollTo(0, 0, 300)
     },
     // 手动发出滚动事件
-    scroll () {
+    scroll() {
       if (this.BS) {
         this.$emit('scroll', {
           x: -this.BS.x,

@@ -11,7 +11,10 @@ export default {
     // 侧边栏收缩
     asideCollapse: setting.menu.asideCollapse,
     // 侧边栏折叠动画
-    asideTransition: setting.menu.asideTransition
+    asideTransition: setting.menu.asideTransition,
+    asideShow: setting.menu.asideShow,
+    tabsShow: setting.menu.tabsShow,
+    toggleAside: setting.menu.toggleAside,
   },
   actions: {
     /**
@@ -42,6 +45,21 @@ export default {
         dbName: 'sys',
         path: 'menu.asideCollapse',
         value: state.asideCollapse,
+        user: true
+      }, { root: true })
+    },
+    /**
+     * 切换侧边栏显示和隐藏
+     * @param {Object} context
+     */
+    async asideShowSet ({ state, dispatch }, collapse) {
+      // store 赋值
+      state.asideShow = collapse
+      // 持久化
+      await dispatch('d2admin/db/set', {
+        dbName: 'sys',
+        path: 'menu.asideShow',
+        value: state.asideShow,
         user: true
       }, { root: true })
     },
@@ -90,6 +108,9 @@ export default {
       }, { root: true })
       state.asideCollapse = menu.asideCollapse !== undefined ? menu.asideCollapse : setting.menu.asideCollapse
       state.asideTransition = menu.asideTransition !== undefined ? menu.asideTransition : setting.menu.asideTransition
+      state.asideShow = menu.asideShow !== undefined ? menu.asideShow : setting.menu.asideShow
+      state.tabsShow = menu.tabsShow !== undefined ? menu.tabsShow : setting.menu.tabsShow
+      state.toggleAside = menu.toggleAside !== undefined ? menu.toggleAside : setting.menu.toggleAside
     }
   },
   mutations: {

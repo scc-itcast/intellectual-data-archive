@@ -9,6 +9,15 @@ $prefix: d2;
   cursor: pointer;
 }
 
+%height {
+  height: 84px;
+}
+
+%line-height {
+  line-height: 84px;
+  height: 84px;
+}
+
 // 填满父元素
 // 组要父元素 position: relative | absolute;
 %full {

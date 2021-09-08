@@ -1,7 +1,7 @@
 # intellectual-data-archive
 
 #### Description
- 智数档案馆
+ 数智档案管理系统
 
 #### Software Architecture
 Software architecture description

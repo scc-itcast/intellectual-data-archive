@@ -1,7 +1,7 @@
 import { throttle } from 'lodash'
 import { mapState } from 'vuex'
 import menuMixin from '../mixin/menu'
-import { createMenu } from '../libs/util.menu'
+import { createMenu } from '../libs/util.menu-header'
 
 export default {
   name: 'd2-layout-header-aside-menu-header',
@@ -71,7 +71,8 @@ export default {
   watch: {
     '$route.matched': {
       handler (val) {
-        this.active = val[val.length - 1].path
+        let path = '/' + val[val.length - 1].path.split('/')[1]
+        this.active = path || val[val.length - 1].path
       },
       immediate: true
     }

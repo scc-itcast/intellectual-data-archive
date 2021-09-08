@@ -12,6 +12,15 @@ import router from './router'
 import { menuHeader, menuAside } from '@/menu'
 import { frameInRoutes } from '@/router/routes'
 
+import VueCompositionAPI from '@vue/composition-api'
+Vue.use(VueCompositionAPI)
+
+import { CommonFun, CommonFunEmpty } from '@/api'
+
+Vue.prototype.$bus = new Vue()
+Vue.prototype.CommonFun = CommonFun
+Vue.prototype.CommonFunEmpty = CommonFunEmpty
+
 // 核心插件
 Vue.use(d2Admin)
 

@@ -8,10 +8,10 @@ export default {
      * @param {Object} state state
      */
     versionShow () {
-      util.log.capsule('D2Admin', `v${process.env.VUE_APP_VERSION}`)
-      console.log('D2 Admin  https://github.com/d2-projects/d2-admin')
-      console.log('Document  https://d2.pub/zh/doc/d2-admin')
-      console.log('请不要吝啬您的 star，谢谢 ~')
+      util.log.capsule('数智档案管理系统', `v${process.env.VUE_APP_VERSION}`)
+      // console.log('D2 Admin  https://github.com/d2-projects/d2-admin')
+      // console.log('Document  https://d2.pub/zh/doc/d2-admin')
+      // console.log('请不要吝啬您的 star，谢谢 ~')
     }
   }
 }

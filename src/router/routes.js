@@ -10,7 +10,7 @@ const _import = require('@/libs/util.import.' + process.env.NODE_ENV)
 /**
  * 在主框架内显示
  */
-const frameIn = [
+ let frameIn = [
   {
     path: '/',
     redirect: { name: 'index' },
@@ -24,7 +24,8 @@ const frameIn = [
           title: '首页',
           auth: true
         },
-        component: _import('system/index')
+        // component: _import('system/index')
+        component: _import('menu/index-menu')
       },
       // 系统 前端日志
       {
@@ -52,10 +53,14 @@ const frameIn = [
       }
     ]
   },
-  playground,
-  plugins,
-  components
 ]
+
+const requireFiles = require.context('./modules', false, /\.js$/)
+requireFiles.keys().forEach(fileName => { 
+  const subRoutes = requireFiles(fileName)
+  let tmpRoute = subRoutes.default || subRoutes
+  frameIn.push(tmpRoute)
+})
 
 /**
  * 在主框架之外显示
@@ -65,7 +70,8 @@ const frameOut = [
   {
     path: '/login',
     name: 'login',
-    component: _import('system/login')
+    // component: _import('system/login')
+    component: _import('intellectual-login')
   }
 ]
 
