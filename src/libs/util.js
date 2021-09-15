@@ -1,11 +1,13 @@
 import cookies from './util.cookies'
 import db from './util.db'
 import log from './util.log'
+import tool from './util.tool'
 
 const util = {
   cookies,
   db,
-  log
+  log,
+  tool
 }
 
 /**

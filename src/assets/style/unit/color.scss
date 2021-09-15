@@ -3,16 +3,20 @@ $color-primary: #1C9399;
 
 // 辅助色
 $color-info: #909399;
-$color-success: #67C23A;
-$color-warning: #e6a23c;
-$color-danger: #F56C6C;
+$color-success: #42c3af;
+$color-warning: #ffc15e;
+$color-danger: #fa675c;
+$color-link: #31a4ff;
 
 //按钮
-$color-warning-btn: #FFC041;
-$color-primary-click: #007980;
+$color-default-btn: rgba(255,255,255,0);
 $color-primary-hover: #42B7BD;
-$color-warning-click: #E09600;
+$color-primary-click: #007980;
+$color-primary-disabled: rgba(28,147,153,.4);
+$color-warning-btn: #FAAD14;
 $color-warning-hover: #FFC041;
+$color-warning-click: #E09600;
+$color-warning-disabled: rgba(250,173,20,.4);
 
 // 文字
 $color-text-main: #303133;
@@ -23,12 +27,19 @@ $color-text-1: #303133;
 $color-text-2: #606266;
 $color-text-3: #909399;
 $color-text-4: #c0c4cc;
+$color-text-5: #ffffff;
+$color-text-6: rgba(255,255,255,.4);
+$color-text-7: rgba(96,98,102,.4);
+$color-text-8: #5A5E66;
+$color-text-9: rgba(0,0,0,0);
+$color-text-10: rgba(0,0,0,1);
 
 // 边框
 $color-border-1: #DCDFE6;
 $color-border-2: #E4E7ED;
 $color-border-3: #EBEEF5;
 $color-border-4: #F2F6FC;
+$color-border-5: rgba(220,223,230,.4);
 
 // 边框线
 $color-line-1: #dcdfe6;

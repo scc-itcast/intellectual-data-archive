@@ -18,6 +18,19 @@ $prefix: d2;
   height: 84px;
 }
 
+%line-height-aside {
+  line-height: 46px;
+  height: 46px;
+}
+
+%d2-theme-container-aside-menu-hover-focus {
+  background-color: $color-default-btn !important;
+  color: $color-primary !important;
+  i {
+    color: $color-primary !important;
+  }
+}
+
 // 填满父元素
 // 组要父元素 position: relative | absolute;
 %full {

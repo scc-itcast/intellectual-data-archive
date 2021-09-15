@@ -19,6 +19,30 @@ export default {
       meta: { ...meta, title: '项目登记' }
     },
     {
+      path: 'project-regist/increase-project',
+      name: 'business-manage-project-regist-increase-project',
+      component: _import('menu/business-manage-menu/project-regist/increase-project/index.vue'),
+      meta: { ...meta, title: '添加项目信息' }
+    },
+    {
+      path: 'project-regist/modify-project',
+      name: 'business-manage-project-regist-modify-project',
+      component: _import('menu/business-manage-menu/project-regist/modify-project/index.vue'),
+      meta: { ...meta, title: '修改项目信息' }
+    },
+    {
+      path: 'project-regist/increase-engine',
+      name: 'business-manage-project-regist-increase-engine',
+      component: _import('menu/business-manage-menu/project-regist/increase-engine/index.vue'),
+      meta: { ...meta, title: '添加工程信息' }
+    },
+    {
+      path: 'project-regist/modify-engine',
+      name: 'business-manage-project-regist-modify-engine',
+      component: _import('menu/business-manage-menu/project-regist/modify-engine/index.vue'),
+      meta: { ...meta, title: '修改工程信息' }
+    },
+    {
       path: 'report-respons-regist',
       name: 'business-manage-report-respons-regist',
       component: _import('menu/business-manage-menu/report-respons-regist/index.vue'),

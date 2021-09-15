@@ -354,9 +354,9 @@
           // d2-container-ghost-bs 隐形布局组件 滚动优化
           .d2-container-ghost-bs {
             .d2-container-ghost-bs__header {
-              border-bottom: $theme-container-border-outer;
-              border-left: $theme-container-border-outer;
-              border-right: $theme-container-border-outer;
+              // border-bottom: $theme-container-border-outer;
+              // border-left: $theme-container-border-outer;
+              // border-right: $theme-container-border-outer;
               background: $theme-container-header-footer-background-color;
             }
             .d2-container-ghost-bs__footer {
@@ -394,17 +394,17 @@
           // d2-container-card-bs 卡片型 滚动优化
           .d2-container-card-bs {
             .d2-container-card-bs__header {
-              border-bottom: $theme-container-border-inner;
-              border-left: $theme-container-border-outer;
-              border-right: $theme-container-border-outer;
+              // border-bottom: $theme-container-border-inner;
+              // border-left: $theme-container-border-outer;
+              // border-right: $theme-container-border-outer;
               background: $theme-container-header-footer-background-color;
             }
             .d2-container-card-bs__body {
               .d2-container-card-bs__body-card {
                 background: $theme-container-background-color;
-                border-left: $theme-container-border-outer;
-                border-right: $theme-container-border-outer;
-                border-bottom: $theme-container-border-outer;
+                // border-left: $theme-container-border-outer;
+                // border-right: $theme-container-border-outer;
+                // border-bottom: $theme-container-border-outer;
               }
             }
             .d2-container-card-bs__footer {
