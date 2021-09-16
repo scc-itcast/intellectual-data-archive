@@ -76,25 +76,25 @@ export default {
       path: 'certificate-issued/handover-book',
       name: 'business-manage-certificate-issued-handover-book',
       component: _import('menu/business-manage-menu/certificate-issued/handover-book/index.vue'),
-      meta: { ...meta, title: '证件发放移交书' }
+      meta: { ...meta, title: '证件发放-移交书' }
     },
     {
       path: 'certificate-issued/handover-certificate',
       name: 'business-manage-certificate-issued-handover-certificate',
       component: _import('menu/business-manage-menu/certificate-issued/handover-certificate/index.vue'),
-      meta: { ...meta, title: '证件发放移交证明书' }
+      meta: { ...meta, title: '证件发放-移交证明书' }
     },
     {
       path: 'business-queries/handover-book',
       name: 'business-manage-business-queries-handover-book',
       component: _import('menu/business-manage-menu/business-queries/handover-book/index.vue'),
-      meta: { ...meta, title: '业务查询移交书' }
+      meta: { ...meta, title: '业务查询-移交书' }
     },
     {
       path: 'business-queries/handover-certificate',
       name: 'business-manage-business-queries-handover-certificate',
       component: _import('menu/business-manage-menu/business-queries/handover-certificate/index.vue'),
-      meta: { ...meta, title: '业务查询移交证明书' }
+      meta: { ...meta, title: '业务查询-移交证明书' }
     }
   ]
 }

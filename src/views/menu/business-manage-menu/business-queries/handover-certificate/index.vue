@@ -15,7 +15,7 @@ export default {
       name: '移交证明书',
       breadcrumb: [
         { path: '/business-manage', title: '业务管理' },
-        { path: '/business-manage/business-queries/handover-certificate', title: '证件发放' },
+        { path: '/business-manage/business-queries/handover-certificate', title: '业务查询' },
         { path: '/business-manage/business-queries/handover-certificate', title: '移交证明书' }
       ]
     })

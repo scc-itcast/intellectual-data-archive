@@ -22,6 +22,9 @@
             :data="child_table_data"
             @row-dblclick="fun_child_db_click"
           >
+          <el-table-column v-if="table_config.checkbox" type="selection" width="20"> </el-table-column>
+          <el-table-column v-if="table_config.number" label="序号" type="index" width="80">
+          </el-table-column>
             <template v-for="item in contextData.table_config.children_thead">
               <el-table-column
                 v-if="item.type === 'operation'"

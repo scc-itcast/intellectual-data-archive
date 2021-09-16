@@ -15,7 +15,7 @@ import {
   watchEffect,
   toRefs
 } from '@vue/composition-api'
-import Project from '@/views/menu/business-manage-menu/project-regist/components/project.vue'
+import Project from '@/views/menu/business-manage-menu/project-regist/components/project/index.vue'
 export default {
   name: 'increase-project',
   components: {

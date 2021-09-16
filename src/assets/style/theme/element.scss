@@ -219,9 +219,13 @@
   padding: 0 !important;
 }
 
+#sz-table .el-table__expanded-cell .el-table {
+  // padding-left: 110px !important; 
+}
+
 #sz-table .el-table__expanded-cell .el-table th:first-child > .cell,
 #sz-table .el-table__expanded-cell .el-table td:first-child > .cell {
-  padding-left: 110px !important;
+  padding-left: 30px !important;
 }
 
 #sz-table th.el-table__cell {
