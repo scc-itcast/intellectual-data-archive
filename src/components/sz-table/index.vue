@@ -215,7 +215,7 @@ export default {
   setup(prop, context) {
     let contextData = reactive({
       // 加载提示
-      table_height: document.body.clientHeight - 278 - 102,
+      table_height: document.body.clientHeight - 278 - 102 - 30,
       loading_table: false,
       child_loading_table: false,
       //设置row-key只展示一行
@@ -370,7 +370,7 @@ export default {
     })
 
     const onResize = () => {
-      contextData.table_height = document.body.clientHeight - 278 - 102
+      contextData.table_height = document.body.clientHeight - 278 - 102 - 30
     }
 
     const search = data => {
