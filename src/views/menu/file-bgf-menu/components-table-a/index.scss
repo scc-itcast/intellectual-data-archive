@@ -1,0 +1,57 @@
+.query--box {
+  .query-list--box {
+    >div {
+      margin-left: 30px;
+    }
+  }
+}
+
+.table-conditions--box {
+  padding: 0 30px;
+}
+
+.table-list--box {
+  margin-top: 22px;
+}
+
+.increase--box {
+  padding: 10px 20px;
+  font-size: 16px;
+  background: white;
+  width: 100%;
+  border-radius: 6px;
+  .increase--title {
+    .increase-title--text {
+      text-align: center;
+      line-height: 46px;
+    }
+  }
+
+  .increase-content--box {
+    margin-top: 27px;
+
+    .increase-content--item {
+      .content-title-btn {
+        margin-bottom: 27px;
+        cursor: pointer;
+      }
+
+      .content-width-percent {
+        width: 88.7%;
+      }
+
+      .content--form {
+        transition: all 1s;
+        margin-bottom: 27px;
+
+        .global-content-form-item-box {
+
+          .position_left,
+          .position_right {
+            height: 274px;
+          }
+        }
+      }
+    }
+  }
+}
