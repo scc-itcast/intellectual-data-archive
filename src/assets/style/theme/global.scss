@@ -27,6 +27,10 @@
   margin-left: 20px;
 }
 
+.global--mr20 {
+  margin-right: 20px;
+}
+
 .global--ml10 {
   margin-left: 10px;
 }
@@ -120,6 +124,13 @@
   align-items: center;
 }
 
+.global-column-center--flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .global-column-start--flex {
   display: flex;
   flex-direction: column;
@@ -155,14 +166,13 @@
 /**
 * 自动封装表单
 **/
-
+.global-content-form-item-look,
 .global-content-form-item {
   border-left: 1px solid $color-border-1;
   border-top: 1px solid $color-border-1;
   box-sizing: border-box;
   width: 100%;
   .content-form-wrapper {
-    border-bottom: 1px solid $color-border-1;
     box-sizing: border-box;
     width: 100%;
     display: flex;
@@ -176,8 +186,8 @@
       align-items: center;
       border-right: 1px solid $color-border-1;
       box-sizing: border-box;
+      border-bottom: 1px solid $color-border-1;
       > div {
-        min-height: 54px;
         padding: 0 20px;
         display: flex;
         justify-content: center;
@@ -193,6 +203,9 @@
       .ceil-value {
         flex: 1;
       }
+    }
+    .content-form-wrapper-column-emty {
+      width: 60%;
     }
   }
   .content-from-column-height {
@@ -219,6 +232,27 @@
     }
     .position_right {
       left: 50%;
+    }
+  }
+}
+
+.global-content-form-item {
+  .content-form-wrapper {
+    .content-form-wrapper-column {
+      > div {
+        min-height: 54px;
+      }
+    }
+  }
+}
+
+
+.global-content-form-item-look {
+  .content-form-wrapper {
+    .content-form-wrapper-column {
+      > div {
+        min-height: 40px;
+      }
     }
   }
 }

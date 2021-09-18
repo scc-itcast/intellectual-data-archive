@@ -239,7 +239,7 @@ export default {
           id: 2,
           project_name: '上海奕坤公司兰城城投项目',
           project_adress: '上海市闵行区新龙路38号',
-          project_type: '房屋建筑工程',
+          project_type: '城市管线工程',
           enter_pepole: '邓为',
           enter_time: '2019.11.20  14:20:18'
         },
@@ -247,7 +247,7 @@ export default {
           id: 3,
           project_name: '上海奕坤公司兰城城投项目',
           project_adress: '上海市闵行区新龙路38号',
-          project_type: '房屋建筑工程',
+          project_type: '其他通用类',
           enter_pepole: '邓为',
           enter_time: '2019.11.20  14:20:18'
         },
@@ -255,7 +255,7 @@ export default {
           id: 4,
           project_name: '上海奕坤公司兰城城投项目',
           project_adress: '上海市闵行区新龙路38号',
-          project_type: '房屋建筑工程',
+          project_type: '市政基础设施',
           enter_pepole: '邓为',
           enter_time: '2019.11.20  14:20:18'
         },
@@ -263,7 +263,7 @@ export default {
           id: 5,
           project_name: '上海奕坤公司兰城城投项目',
           project_adress: '上海市闵行区新龙路38号',
-          project_type: '房屋建筑工程',
+          project_type: '道路工程',
           enter_pepole: '邓为',
           enter_time: '2019.11.20  14:20:18'
         },
@@ -271,7 +271,7 @@ export default {
           id: 6,
           project_name: '上海奕坤公司兰城城投项目',
           project_adress: '上海市闵行区新龙路38号',
-          project_type: '房屋建筑工程',
+          project_type: '桥梁工程',
           enter_pepole: '邓为',
           enter_time: '2019.11.20  14:20:18'
         },
@@ -279,7 +279,7 @@ export default {
           id: 7,
           project_name: '上海奕坤公司兰城城投项目',
           project_adress: '上海市闵行区新龙路38号',
-          project_type: '房屋建筑工程',
+          project_type: '园林绿化工程',
           enter_pepole: '邓为',
           enter_time: '2019.11.20  14:20:18'
         },
@@ -434,6 +434,7 @@ export default {
       } else {
         contextData.expands = [] // 默认不展开
       }
+      context.emit('fun_expand_change', row)
       // console.log('contextData.expands', contextData.expands)
     }
 

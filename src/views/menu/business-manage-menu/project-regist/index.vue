@@ -73,6 +73,7 @@
           :config="tableList"
           @fun_db_click="fun_db_click"
           @fun_child_db_click="fun_child_db_click"
+          @fun_expand_change="fun_expand_change"
         ></sz-table>
       </div>
       <div v-if="advanced_query_obj_show">
@@ -230,7 +231,8 @@ export default {
         query_field_list: []
       },
       advanced_query_obj_show: false,
-      delete_current_row: null
+      delete_current_row: null,
+      expand_current_row: null
     })
     onMounted(async () => {
       // 调用方法, 方法里调用接口
@@ -262,6 +264,10 @@ export default {
       tableList.thead.map(item => {
         item.checked = list.indexOf(item.label) != -1 ? true : false
       })
+    }
+
+    const fun_expand_change = row => {
+      contextData.expand_current_row = row
     }
 
     const fun_create_project = () => {
@@ -300,17 +306,21 @@ export default {
       context.root.$router.push({
         path: '/business-manage/project-regist/increase-engine',
         query: {
-          id: row.id
+          id: row.id,
+          type: row.project_type
         }
       })
     }
 
     const fun_modify_engine = row => {
+      const pid = contextData.expand_current_row.id
+      const type = contextData.expand_current_row.type
       context.root.$router.push({
         path: '/business-manage/project-regist/modify-engine',
         query: {
+          pid,
           id: row.id,
-          type: row.engin_type
+          type
         }
       })
     }
@@ -372,7 +382,8 @@ export default {
       fun_checkbox_change,
       fun_advanced_query_close,
       fun_db_click,
-      fun_child_db_click
+      fun_child_db_click,
+      fun_expand_change
     }
   }
 }

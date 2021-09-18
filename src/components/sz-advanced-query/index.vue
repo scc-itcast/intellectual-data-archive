@@ -4,6 +4,7 @@
       :title="advanced_query_title"
       :visible.sync="advanced_query_dialog"
       width="45%"
+      :lock-scroll="true"
       custom-class="advanced-query--dialog"
       :close-on-click-modal="false"
       :close-on-press-escape="false"

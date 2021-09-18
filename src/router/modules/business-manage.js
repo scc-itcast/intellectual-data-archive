@@ -49,6 +49,18 @@ export default {
       meta: { ...meta, title: '报送责任书登记' }
     },
     {
+      path: 'report-respons-regist/increase-report',
+      name: 'business-manage-report-respons-regist-increase-report',
+      component: _import('menu/business-manage-menu/report-respons-regist/increase-report/index.vue'),
+      meta: { ...meta, title: '添加档案报送责任书' }
+    },
+    {
+      path: 'report-respons-regist/modify-report',
+      name: 'business-manage-report-respons-regist-modify-report',
+      component: _import('menu/business-manage-menu/report-respons-regist/modify-report/index.vue'),
+      meta: { ...meta, title: '编辑档案报送责任书' }
+    },
+    {
       path: 'business-guid-regist',
       name: 'business-manage-business-guid-regist',
       component: _import('menu/business-manage-menu/business-guid-regist/index.vue'),

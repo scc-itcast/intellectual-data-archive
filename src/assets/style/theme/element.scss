@@ -86,7 +86,6 @@
   margin-bottom: 30px;
 }
 
-
 /**
 * el-form
 **/
@@ -95,11 +94,15 @@
   color: $color-text-main;
 }
 
-.increase--box .el-select ,
+.increase--box .el-select,
 .increase--box .el-date-editor {
-  width: 100%;
+  width: 100% !important;
 }
 
+.el-select,
+.el-date-editor {
+  width: 100% !important;
+}
 /**
 * el-input
 **/
@@ -113,8 +116,7 @@
 .el-input__inner:hover,
 .el-input__inner:focus,
 .el-textarea__inner:hover,
-.el-textarea__inner:focus
- {
+.el-textarea__inner:focus {
   border-color: $color-primary !important;
 }
 
@@ -220,7 +222,7 @@
 }
 
 #sz-table .el-table__expanded-cell .el-table {
-  // padding-left: 110px !important; 
+  // padding-left: 110px !important;
 }
 
 #sz-table .el-table__expanded-cell .el-table th:first-child > .cell,
@@ -285,6 +287,10 @@
   align-items: center;
 }
 
+.el-dialog__header {
+  position: relative;
+}
+
 #sz-advanced-query .el-dialog__headerbtn {
   top: 15px;
   right: 15px;
@@ -293,7 +299,10 @@
 
 #sz-advanced-query .el-dialog__body {
   padding: 18px 20px;
-  min-height: 376px;
+}
+
+#sz-advanced-query .el-dialog__body .advanced-query--body {
+  min-height: 340px;
 }
 
 #sz-advanced-query .el-dialog__footer {

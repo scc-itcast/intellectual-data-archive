@@ -206,15 +206,6 @@
                 </div>
               </div>
             </div>
-            <div class="" v-if="false">
-              <el-form-item label="备注" prop="remark">
-                <el-input
-                  type="textarea"
-                  v-model="increase_from.remark"
-                  placeholder="请输入"
-                ></el-input>
-              </el-form-item>
-            </div>
           </div>
         </div>
         <div class="content-file-status increase-content--item">
@@ -245,7 +236,14 @@
                   <div class="content-form-wrapper-column">
                     <div class="ceil-text">进馆日期</div>
                     <div class="ceil-value">
-                      <el-input v-model="increase_from.hen_date" placeholder="请输入"></el-input>
+                      <el-date-picker
+                        v-model="increase_from.hen_date"
+                        type="datetime"
+                        format="yyyy-MM-dd HH:mm:ss"
+                        value-format="yyyy-MM-dd HH:mm:ss"
+                        :clearable="false"
+                      >
+                      </el-date-picker>
                     </div>
                   </div>
                 </div>
@@ -334,13 +332,8 @@ export default {
     let contextData = reactive({
       name: '添加项目信息',
       title: '项目级著录单',
-      breadcrumb: [
-        { path: '/business-manage', title: '业务管理' },
-        { path: '/business-manage/project-regist', title: '项目登记' },
-        { path: '/business-manage/project-regist/increase-project', title: '添加项目信息' }
-      ],
       increase_style: {
-        height: document.body.clientHeight - 160 + 'px',
+        height: document.body.clientHeight - 200 + 'px',
         overflowY: 'scroll'
       },
       increase_from: {
@@ -410,7 +403,7 @@ export default {
 
     const onResize = () => {
       contextData.increase_style = {
-        height: document.body.clientHeight - 160 + 'px',
+        height: document.body.clientHeight - 200 + 'px',
         overflowY: 'scroll'
       }
     }

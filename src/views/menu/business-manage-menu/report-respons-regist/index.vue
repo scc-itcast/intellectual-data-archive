@@ -81,6 +81,12 @@
           @fun_advanced_query_close="fun_advanced_query_close"
         />
       </div>
+      <div v-if="modifi_num_obj_show">
+        <modifi-num :modifi_num_obj="modifi_num_obj" @fun_modifi_num_close="fun_modifi_num_close" />
+      </div>
+      <div v-if="look_project_obj_show">
+        <look-project :look_project_obj="look_project_obj" @fun_look_project_close="fun_look_project_close" />
+      </div>
     </template>
   </d2-container>
 </template>
@@ -88,8 +94,14 @@
 <script>
 import mixinAsideShowTrue from '@/views/menu/mixins/aside-show-true'
 import { onMounted, computed, reactive, watchEffect, toRefs } from '@vue/composition-api'
+import ModifiNum from '@/views/menu/business-manage-menu/report-respons-regist/components/modifi_num.vue'
+import LookProject from '@/views/menu/business-manage-menu/report-respons-regist/components/look_project.vue'
 export default {
   name: 'report-respons-regist',
+  components: {
+    ModifiNum,
+    LookProject
+  },
   mixins: [mixinAsideShowTrue],
   setup(prop, context) {
     let tableList = reactive({
@@ -188,11 +200,21 @@ export default {
         custom: { title: '自定义表头', icon: 'iconfont guilian-icon' }
       },
       advanced_query_obj: {
+        advanced_query_dialog: false,
         project_query_disabled: false,
         type_query_value: 2,
         query_field_list: []
       },
       advanced_query_obj_show: false,
+      modifi_num_obj: {
+        modifi_num_dialog: false
+      },
+      modifi_num_obj_show: false,
+      look_project_obj: {
+        look_project_dialog: false,
+        row: null
+      },
+      look_project_obj_show: false,
       delete_current_row: null
     })
     onMounted(async () => {
@@ -228,12 +250,12 @@ export default {
     }
 
     const fun_create_project = () => {
-      context.root.$router.push({ path: '/business-manage/project-regist/increase-project' })
+      context.root.$router.push({ path: '/business-manage/report-respons-regist/increase-report' })
     }
 
     const fun_modify_project = row => {
       context.root.$router.push({
-        path: '/business-manage/project-regist/modify-project',
+        path: '/business-manage/report-respons-regist/increase-report',
         query: {
           id: row.id
         }
@@ -259,9 +281,27 @@ export default {
 
     const fun_print_project = () => {}
 
-    const fun_serial_project = () => {}
+    const fun_serial_project = () => {
+      contextData.modifi_num_obj.modifi_num_dialog = true
+      contextData.modifi_num_obj_show = true
+    }
 
-    const fun_look_project = row => {}
+    const fun_modifi_num_close = obj => {
+      contextData.modifi_num_obj.modifi_num_dialog = false
+      contextData.modifi_num_obj_show = false
+    }
+
+    const fun_look_project = row => {
+      contextData.look_project_obj.look_project_dialog = true
+      contextData.look_project_obj.row = JSON.parse(JSON.stringify(row))
+      contextData.look_project_obj_show = true
+    }
+
+    
+    const fun_look_project_close = () => {
+      contextData.look_project_obj.look_project_dialog = false
+      contextData.look_project_obj_show = false
+    }
 
     const fun_delete_callback = (action, instance) => {
       // console.log(action, contextData.delete_current_row)
@@ -293,16 +333,18 @@ export default {
       fun_value_change,
       fun_general_query,
       fun_advanced_query,
+      fun_advanced_query_close,
       fun_export_project,
       fun_create_project,
       fun_look_project,
+      fun_look_project_close,
       fun_modify_project,
       fun_delete_project,
       fun_print_project,
       fun_serial_project,
+      fun_modifi_num_close,
       fun_table_handle,
       fun_checkbox_change,
-      fun_advanced_query_close,
       fun_db_click
     }
   }
