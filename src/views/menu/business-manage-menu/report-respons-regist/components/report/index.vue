@@ -148,15 +148,6 @@ export default {
           // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
         ]
       },
-      project_type_list: [
-        { label: '房屋建筑工程', prop: 'build_engin' },
-        { label: '市政基础设施', prop: 'munici_infrast' },
-        { label: '城市管线工程', prop: 'ur_pipe_engin' },
-        { label: '其他通用类', prop: 'other_gene_class' },
-        { label: '道路工程', prop: 'road_engin' },
-        { label: '桥梁工程', prop: 'bridge_engin' },
-        { label: '园林绿化工程', prop: 'landscap_work' }
-      ],
       show_shrink: {
         basic_info: false,
         file_status: true,
