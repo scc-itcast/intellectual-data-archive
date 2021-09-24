@@ -81,9 +81,6 @@
           @fun_advanced_query_close="fun_advanced_query_close"
         />
       </div>
-      <div v-if="modifi_num_obj_show">
-        <modifi-num :modifi_num_obj="modifi_num_obj" @fun_modifi_num_close="fun_modifi_num_close" />
-      </div>
       <div v-if="look_project_obj_show">
         <look-project
           :look_project_obj="look_project_obj"
@@ -97,12 +94,10 @@
 <script>
 import mixinAsideShowTrue from '@/views/menu/mixins/aside-show-true'
 import { onMounted, computed, reactive, watchEffect, toRefs } from '@vue/composition-api'
-import ModifiNum from '@/views/menu/business-manage-menu/report-respons-regist/components/modifi_num.vue'
-import LookProject from '@/views/menu/business-manage-menu/report-respons-regist/components/look_project.vue'
+import LookProject from '@/views/menu/business-manage-menu/business-guid-regist/components/look_project.vue'
 export default {
   name: 'business-guid-regist',
   components: {
-    ModifiNum,
     LookProject
   },
   mixins: [mixinAsideShowTrue],
@@ -123,24 +118,32 @@ export default {
       thead: [
         { label: '唯一标识', prop: 'unique_ident', checked: true, width: '200' },
         {
-          label: '报送责任书编号',
-          prop: 'report_respons_num',
+          label: '业务指导编号',
+          prop: 'busi_guide_num',
           checked: true,
           disabled: true,
           width: '200'
         },
         { label: '工程名称', prop: 'project_name', checked: true, disabled: true, width: '200' },
-        { label: '建设单位', prop: 'construct_unit', checked: false, width: '200' },
-        { label: '开工日期', prop: 'starts_date', checked: true, width: '200' },
-        { label: '竣工日期', prop: 'completed_date', checked: true, width: '200' },
+        {
+          label: '业务指导类型',
+          prop: 'busi_guide_type',
+          checked: true,
+          width: '200'
+        },
         { label: '录入人', prop: 'enter_pepole', checked: false, width: '100' },
         { label: '录入时间', prop: 'enter_time', checked: false, width: '150' },
-        { label: '面积', prop: 'construct_area', checked: false, width: '200' },
-        { label: '报送人', prop: 'submit_people', checked: false, width: '200' },
-        { label: '报送人电话', prop: 'submit_phone', checked: false, width: '200' },
+        { label: '建设单位', prop: 'construct_unit', checked: false, width: '200' },
         { label: '本馆责任人', prop: 'library_respons_people', checked: false, width: '200' },
         { label: '本馆责任人电话', prop: 'library_respons_phone', checked: false, width: '200' },
         { label: '发证日期', prop: 'certificate_date', checked: false, width: '200' },
+        { label: '联系人', prop: 'contact_people', checked: false, width: '200' },
+        { label: '联系人电话', prop: 'contact_phone', checked: false, width: '200' },
+        { label: '指导内容', prop: 'guide_content', checked: true, width: '200' },
+        { label: '指导日期', prop: 'guide_date', checked: true, width: '200' },
+        { label: '工程地址', prop: 'eng_address', checked: false, width: '200' },
+        { label: '指导意见', prop: 'guide_opinion', checked: false, width: '200' },
+        { label: '报送责任书编号', prop: 'report_res_num', checked: false, width: '200' },
         { label: '备注', prop: 'remark', checked: false, width: '200' },
         {
           label: '操作',
@@ -173,12 +176,6 @@ export default {
               type: 'text',
               event: 'button',
               handler: data => fun_print_project(data)
-            },
-            {
-              label: '编号',
-              type: 'text',
-              event: 'button',
-              handler: data => fun_serial_project(data)
             }
           ]
         }
@@ -194,7 +191,7 @@ export default {
       queryList: {
         project_name: { title: '工程名称', value: '' },
         certificate_date: { title: '发证日期', value: '', type: 'datetime' },
-        busi_type_guid: { title: '业务指导类型', value: '', type: 'select', list: [] }
+        busi_type_guide: { title: '业务指导类型', value: '', type: 'select', list: [] }
       },
       conditionsList: {
         // remove: { title: '删除项目信息', icon: 'iconfont guilian-icon' },
@@ -202,7 +199,7 @@ export default {
         // export: { title: '导出项目信息', icon: 'iconfont guilian-icon' },
         custom: { title: '自定义表头', icon: 'iconfont guilian-icon' }
       },
-      busi_type_guid_list: [
+      busi_type_guide_list: [
         { label: '全部类型', prop: 1 },
         { label: '电话指导', prop: 2 },
         { label: '现场指导', prop: 3 },
@@ -215,10 +212,6 @@ export default {
         query_field_list: []
       },
       advanced_query_obj_show: false,
-      modifi_num_obj: {
-        modifi_num_dialog: false
-      },
-      modifi_num_obj_show: false,
       look_project_obj: {
         look_project_dialog: false,
         row: null
@@ -228,7 +221,7 @@ export default {
     })
     onMounted(async () => {
       // 调用方法, 方法里调用接口
-      contextData.queryList.busi_type_guid.list = contextData.busi_type_guid_list
+      contextData.queryList.busi_type_guide.list = contextData.busi_type_guide_list
     })
 
     const fun_value_change = obj => {
@@ -260,12 +253,12 @@ export default {
     }
 
     const fun_create_project = () => {
-      context.root.$router.push({ path: '/business-manage/report-respons-regist/increase-report' })
+      context.root.$router.push({ path: '/business-manage/business-guid-regist/increase-guid' })
     }
 
     const fun_modify_project = row => {
       context.root.$router.push({
-        path: '/business-manage/report-respons-regist/increase-report',
+        path: '/business-manage/business-guid-regist/modify-guid',
         query: {
           id: row.id
         }
@@ -290,16 +283,6 @@ export default {
     const fun_export_project = () => {}
 
     const fun_print_project = () => {}
-
-    const fun_serial_project = () => {
-      contextData.modifi_num_obj.modifi_num_dialog = true
-      contextData.modifi_num_obj_show = true
-    }
-
-    const fun_modifi_num_close = obj => {
-      contextData.modifi_num_obj.modifi_num_dialog = false
-      contextData.modifi_num_obj_show = false
-    }
 
     const fun_look_project = row => {
       contextData.look_project_obj.look_project_dialog = true
@@ -350,8 +333,6 @@ export default {
       fun_modify_project,
       fun_delete_project,
       fun_print_project,
-      fun_serial_project,
-      fun_modifi_num_close,
       fun_table_handle,
       fun_checkbox_change,
       fun_db_click

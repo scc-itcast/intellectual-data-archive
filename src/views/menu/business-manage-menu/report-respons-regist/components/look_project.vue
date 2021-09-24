@@ -128,7 +128,7 @@
         </div>
       </div>
       <template slot="footer">
-        <div class="advanced-query--box">
+        <!-- <div class="advanced-query--box">
           <sz-button title="取消" @click="fun_look_project_close"></sz-button>
           <sz-button
             class="global--ml20"
@@ -136,7 +136,7 @@
             type="primary"
             @click="fun_look_project_submit"
           ></sz-button>
-        </div>
+        </div> -->
       </template>
     </el-dialog>
   </div>
@@ -180,7 +180,7 @@ export default {
       contextData.look_project_style = {}
       if (contextData.fullscreen) {
         contextData.look_project_style = {
-          height: document.body.clientHeight - 109 - 46 + 'px'
+          height: document.body.clientHeight - 109 - 46 + 68 + 'px'
         }
       }
     }

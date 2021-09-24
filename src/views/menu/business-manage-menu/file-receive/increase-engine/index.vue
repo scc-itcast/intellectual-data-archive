@@ -15,19 +15,19 @@ import {
   watchEffect,
   toRefs
 } from '@vue/composition-api'
-import Engine from '@/views/menu/business-manage-menu/project-regist/components/engine/index.vue'
+import Engine from '@/views/menu/business-manage-menu/file-receive/components/engine/index.vue'
 export default {
-  name: 'modify-engine',
+  name: 'increase-engine',
   components: {
-    Engine
+    Engine, 
   },
   setup(prop, context) {
     let contextData = reactive({
-      name: '修改工程信息',
+      name: '添加工程信息',
       breadcrumb: [
         { path: '/business-manage', title: '业务管理' },
-        { path: '/business-manage/project-regist', title: '项目登记' },
-        { path: '/business-manage/project-regist/modify-engine', title: '修改工程信息' }
+        { path: '/business-manage/file-receive', title: '档案接收' },
+        { path: '/business-manage/file-receive/increase-engine', title: '添加工程信息' }
       ]
     })
     onMounted(async () => {

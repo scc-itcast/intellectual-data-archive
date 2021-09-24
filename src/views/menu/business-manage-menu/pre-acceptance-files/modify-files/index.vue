@@ -1,7 +1,7 @@
 <template>
   <d2-container type="card" better-scroll :breadcrumb="breadcrumb">
     <template>
-      <engine></engine>
+      <project></project>
     </template>
   </d2-container>
 </template>
@@ -15,20 +15,20 @@ import {
   watchEffect,
   toRefs
 } from '@vue/composition-api'
-import Engine from '@/views/menu/business-manage-menu/project-regist/components/engine/index.vue'
+import Project from '@/views/menu/business-manage-menu/pre-acceptance-files/components/files/index.vue'
 export default {
-  name: 'modify-engine',
+  name: 'modify-files',
   components: {
-    Engine
+    Project
   },
   setup(prop, context) {
     let contextData = reactive({
-      name: '修改工程信息',
+      name: '修改档案预验收',
       breadcrumb: [
         { path: '/business-manage', title: '业务管理' },
-        { path: '/business-manage/project-regist', title: '项目登记' },
-        { path: '/business-manage/project-regist/modify-engine', title: '修改工程信息' }
-      ]
+        { path: '/business-manage/pre-acceptance-files', title: '档案预验收' },
+        { path: '/business-manage/pre-acceptance-files/modify-files', title: '修改档案预验收' }
+      ],
     })
     onMounted(async () => {
       // 调用方法, 方法里调用接口

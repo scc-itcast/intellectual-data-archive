@@ -14,6 +14,24 @@
       header-row-class-name="table_th_header_class"
       @row-dblclick="fun_db_click"
     >
+      <el-table-column v-if="table_config.expand_input" type="expand" width="21.6">
+        <template slot-scope="scope">
+          <template v-for="item in contextData.table_config.thead">
+            <div v-if="item.type === 'expand_input'" :key="item.prop" class="expand--input">
+              <div class="expand-input--text">整改意见:</div>
+              <div>
+                <el-input
+                  type="textarea"
+                  v-model="scope.row[item.prop]"
+                  placeholder="请输入"
+                  rows="4"
+                  resize="none"
+                ></el-input>
+              </div>
+            </div>
+          </template>
+        </template>
+      </el-table-column>
       <el-table-column v-if="table_config.expand" type="expand" width="21.6">
         <template>
           <el-table
@@ -22,9 +40,10 @@
             :data="child_table_data"
             @row-dblclick="fun_child_db_click"
           >
-          <el-table-column v-if="table_config.checkbox" type="selection" width="20"> </el-table-column>
-          <el-table-column v-if="table_config.number" label="序号" type="index" width="80">
-          </el-table-column>
+            <el-table-column v-if="table_config.checkbox" type="selection" width="20">
+            </el-table-column>
+            <el-table-column v-if="table_config.number" label="序号" type="index" width="80">
+            </el-table-column>
             <template v-for="item in contextData.table_config.children_thead">
               <el-table-column
                 v-if="item.type === 'operation'"
@@ -165,7 +184,7 @@
           </el-table-column>
           <!-- 纯文本渲染 -->
           <el-table-column
-            v-else
+            v-else-if="item.type !== 'expand_input'"
             :key="item.prop"
             :prop="item.prop"
             :label="item.label"
@@ -174,10 +193,9 @@
         </template>
       </template>
     </el-table>
-    <el-row class="padding-top-30">
+    <el-row v-if="table_config.pagination" class="padding-top-30">
       <el-col :span="24">
         <el-pagination
-          v-if="table_config.pagination"
           class="pull-right"
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
@@ -233,7 +251,8 @@ export default {
           project_adress: '上海市闵行区新龙路38号',
           project_type: '房屋建筑工程',
           enter_pepole: '邓为',
-          enter_time: '2019.11.20  14:20:18'
+          enter_time: '2019.11.20  14:20:18',
+          rectify_sug: '（三）施工文件  1、（三）施工文件：'
         },
         {
           id: 2,
@@ -323,8 +342,11 @@ export default {
         number: false,
         // 是否显示展开行功能
         expand: false,
+        expand_input: false,
         // 请求列表的接口路径 默认 '/getattr/0'
         apiType: 'CommonFun',
+        // table表格要减去的高度
+        table_height: 278 + 102 + 30,
         url: '',
         // 请求参数
         data: {},
@@ -355,6 +377,7 @@ export default {
           contextData.table_config[key] = prop.config[key]
         }
       }
+      contextData.table_height = document.body.clientHeight - contextData.table_config.table_height
       contextData.pageSize = contextData.table_config.data.PageSize
       // 配置完成后开始读取接口数据
       contextData.table_config.isRequest && loadData()
@@ -370,7 +393,7 @@ export default {
     })
 
     const onResize = () => {
-      contextData.table_height = document.body.clientHeight - 278 - 102 - 30
+      contextData.table_height = document.body.clientHeight - contextData.table_config.table_height
     }
 
     const search = data => {
@@ -438,11 +461,11 @@ export default {
       // console.log('contextData.expands', contextData.expands)
     }
 
-    const fun_db_click = (row) => {
+    const fun_db_click = row => {
       context.emit('fun_db_click', row)
     }
 
-    const fun_child_db_click = (row) => {
+    const fun_child_db_click = row => {
       context.emit('fun_child_db_click', row)
     }
 
@@ -488,5 +511,11 @@ export default {
 
 .mr-10 {
   margin-right: 10px;
+}
+.expand--input {
+  padding: 5px 40px;
+  .expand-input--text {
+    margin-bottom: 10px;
+  }
 }
 </style>

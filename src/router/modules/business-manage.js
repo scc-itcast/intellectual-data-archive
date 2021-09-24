@@ -22,25 +22,25 @@ export default {
       path: 'project-regist/increase-project',
       name: 'business-manage-project-regist-increase-project',
       component: _import('menu/business-manage-menu/project-regist/increase-project/index.vue'),
-      meta: { ...meta, title: '添加项目信息' }
+      meta: { ...meta, title: '项目登记-添加项目信息' }
     },
     {
       path: 'project-regist/modify-project',
       name: 'business-manage-project-regist-modify-project',
       component: _import('menu/business-manage-menu/project-regist/modify-project/index.vue'),
-      meta: { ...meta, title: '修改项目信息' }
+      meta: { ...meta, title: '项目登记-修改项目信息' }
     },
     {
       path: 'project-regist/increase-engine',
       name: 'business-manage-project-regist-increase-engine',
       component: _import('menu/business-manage-menu/project-regist/increase-engine/index.vue'),
-      meta: { ...meta, title: '添加工程信息' }
+      meta: { ...meta, title: '项目登记-添加工程信息' }
     },
     {
       path: 'project-regist/modify-engine',
       name: 'business-manage-project-regist-modify-engine',
       component: _import('menu/business-manage-menu/project-regist/modify-engine/index.vue'),
-      meta: { ...meta, title: '修改工程信息' }
+      meta: { ...meta, title: '项目登记-修改工程信息' }
     },
     {
       path: 'report-respons-regist',
@@ -52,13 +52,13 @@ export default {
       path: 'report-respons-regist/increase-report',
       name: 'business-manage-report-respons-regist-increase-report',
       component: _import('menu/business-manage-menu/report-respons-regist/increase-report/index.vue'),
-      meta: { ...meta, title: '添加档案报送责任书' }
+      meta: { ...meta, title: '报送责任书登记-添加档案报送责任书' }
     },
     {
       path: 'report-respons-regist/modify-report',
       name: 'business-manage-report-respons-regist-modify-report',
       component: _import('menu/business-manage-menu/report-respons-regist/modify-report/index.vue'),
-      meta: { ...meta, title: '编辑档案报送责任书' }
+      meta: { ...meta, title: '报送责任书登记-编辑档案报送责任书' }
     },
     {
       path: 'business-guid-regist',
@@ -67,16 +67,64 @@ export default {
       meta: { ...meta, title: '业务指导登记' }
     },
     {
+      path: 'business-guid-regist/increase-guid',
+      name: 'business-manage-business-guid-regist-increase-guid',
+      component: _import('menu/business-manage-menu/business-guid-regist/increase-guid/index.vue'),
+      meta: { ...meta, title: '业务指导登记-添加业务指导' }
+    },
+    {
+      path: 'business-guid-regist/modify-guid',
+      name: 'business-manage-business-guid-regist-modify-guid',
+      component: _import('menu/business-manage-menu/business-guid-regist/modify-guid/index.vue'),
+      meta: { ...meta, title: '业务指导登记-修改业务指导' }
+    },
+    {
       path: 'pre-acceptance-files',
       name: 'business-manage-pre-acceptance-files',
       component: _import('menu/business-manage-menu/pre-acceptance-files/index.vue'),
       meta: { ...meta, title: '档案预验收' }
     },
     {
+      path: 'pre-acceptance-files/increase-files',
+      name: 'business-manage-pre-acceptance-files-increase-files',
+      component: _import('menu/business-manage-menu/pre-acceptance-files/increase-files/index.vue'),
+      meta: { ...meta, title: '档案预验收-添加档案预验收' }
+    },
+    {
+      path: 'pre-acceptance-files/modify-files',
+      name: 'business-manage-pre-acceptance-files-modify-files',
+      component: _import('menu/business-manage-menu/pre-acceptance-files/modify-files/index.vue'),
+      meta: { ...meta, title: '档案预验收-修改档案预验收' }
+    },
+    {
       path: 'file-receive',
       name: 'business-manage-file-receive',
       component: _import('menu/business-manage-menu/file-receive/index.vue'),
       meta: { ...meta, title: '档案接收' }
+    },
+    {
+      path: 'file-receive/increase-engine',
+      name: 'business-manage-file-receive-increase-engine',
+      component: _import('menu/business-manage-menu/file-receive/increase-engine/index.vue'),
+      meta: { ...meta, title: '档案接收-添加工程信息' }
+    },
+    {
+      path: 'file-receive/modify-engine',
+      name: 'business-manage-file-receive-modify-engine',
+      component: _import('menu/business-manage-menu/file-receive/modify-engine/index.vue'),
+      meta: { ...meta, title: '档案接收-修改工程信息' }
+    },
+    {
+      path: 'file-receive/increase-archive',
+      name: 'business-manage-file-receive-increase-archive',
+      component: _import('menu/business-manage-menu/file-receive/increase-archive/index.vue'),
+      meta: { ...meta, title: '档案接收-新增档案接收' }
+    },
+    {
+      path: 'file-receive/modify-archive',
+      name: 'business-manage-file-receive-modify-archive',
+      component: _import('menu/business-manage-menu/file-receive/modify-archive/index.vue'),
+      meta: { ...meta, title: '档案接收-修改档案接收' }
     },
     {
       path: 'receive-review-files',

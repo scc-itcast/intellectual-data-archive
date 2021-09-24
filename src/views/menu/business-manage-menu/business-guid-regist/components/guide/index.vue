@@ -33,10 +33,10 @@
               <div class="global-content-form-item">
                 <div class="content-form-wrapper">
                   <div class="content-form-wrapper-column">
-                    <div class="ceil-text">报送责任书编号</div>
+                    <div class="ceil-text">业务指导编号</div>
                     <div class="ceil-value">
                       <el-input
-                        v-model="increase_from.project_name"
+                        v-model="increase_from.busi_guide_num"
                         placeholder="请输入"
                       ></el-input>
                     </div>
@@ -44,55 +44,23 @@
                   <div class="content-form-wrapper-column">
                     <div class="ceil-text">发证日期</div>
                     <div class="ceil-value">
-                      <el-input
-                        v-model="increase_from.project_adress"
-                        placeholder="请输入"
-                      ></el-input>
+                      <el-date-picker
+                        v-model="increase_from.certificate_date"
+                        type="datetime"
+                        format="yyyy-MM-dd HH:mm:ss"
+                        value-format="yyyy-MM-dd HH:mm:ss"
+                        :clearable="false"
+                      >
+                      </el-date-picker>
                     </div>
                   </div>
                 </div>
                 <div class="content-form-wrapper">
                   <div class="content-form-wrapper-column">
-                    <div class="ceil-text asterisk_before">项目名称</div>
+                    <div class="ceil-text">联系人</div>
                     <div class="ceil-value">
                       <el-input
-                        v-model="increase_from.project_name"
-                        placeholder="请输入"
-                      ></el-input>
-                      <sz-button
-                        class="global--ml20"
-                        title="关联项目"
-                        @click="fun_label_position"
-                      ></sz-button>
-                    </div>
-                  </div>
-                </div>
-                <div class="content-form-wrapper">
-                  <div class="content-form-wrapper-column">
-                    <div class="ceil-text">建设单位</div>
-                    <div class="ceil-value">
-                      <el-input
-                        v-model="increase_from.construct_unit"
-                        placeholder="请输入"
-                      ></el-input>
-                    </div>
-                  </div>
-                  <div class="content-form-wrapper-column">
-                    <div class="ceil-text">面积（m²）</div>
-                    <div class="ceil-value">
-                      <el-input
-                        v-model="increase_from.construct_area"
-                        placeholder="请输入"
-                      ></el-input>
-                    </div>
-                  </div>
-                </div>
-                <div class="content-form-wrapper">
-                  <div class="content-form-wrapper-column">
-                    <div class="ceil-text">报送人</div>
-                    <div class="ceil-value">
-                      <el-input
-                        v-model="increase_from.submit_people"
+                        v-model="increase_from.contact_people"
                         placeholder="请输入"
                       ></el-input>
                     </div>
@@ -101,7 +69,7 @@
                     <div class="ceil-text">联系电话</div>
                     <div class="ceil-value">
                       <el-input
-                        v-model="increase_from.submit_phone"
+                        v-model="increase_from.contact_phone"
                         placeholder="请输入"
                       ></el-input>
                     </div>
@@ -109,7 +77,7 @@
                 </div>
                 <div class="content-form-wrapper">
                   <div class="content-form-wrapper-column">
-                    <div class="ceil-text">本馆责任人</div>
+                    <div class="ceil-text asterisk_before">本馆责任人</div>
                     <div class="ceil-value">
                       <el-input
                         v-model="increase_from.library_respons_people"
@@ -129,17 +97,127 @@
                 </div>
                 <div class="content-form-wrapper">
                   <div class="content-form-wrapper-column">
-                    <div class="ceil-text">开工日期</div>
+                    <div class="ceil-text">报送责任书编号</div>
                     <div class="ceil-value">
-                      <el-input v-model="increase_from.starts_date" placeholder="请输入"></el-input>
+                      <el-input
+                        v-model="increase_from.report_res_num"
+                        placeholder="请输入"
+                      ></el-input>
                     </div>
                   </div>
                   <div class="content-form-wrapper-column">
-                    <div class="ceil-text">联系电话</div>
+                    <div class="ceil-text asterisk_before">指导日期</div>
+                    <div class="ceil-value">
+                      <el-date-picker
+                        v-model="increase_from.guide_date"
+                        type="datetime"
+                        format="yyyy-MM-dd HH:mm:ss"
+                        value-format="yyyy-MM-dd HH:mm:ss"
+                        :clearable="false"
+                      >
+                      </el-date-picker>
+                    </div>
+                  </div>
+                </div>
+                <div class="content-form-wrapper">
+                  <div class="content-form-wrapper-column">
+                    <div class="ceil-text">所属项目</div>
                     <div class="ceil-value">
                       <el-input
-                        v-model="increase_from.starts_date_phone"
+                        v-model="increase_from.sub_pro"
                         placeholder="请输入"
+                      ></el-input>
+                      <sz-button
+                        class="global--ml20"
+                        title="关联项目"
+                        @click="fun_label_position"
+                      ></sz-button>
+                      <sz-button
+                        class="global--ml20"
+                        title="取消关联"
+                        @click="fun_label_position"
+                      ></sz-button>
+                    </div>
+                  </div>
+                </div>
+                <div class="content-form-wrapper">
+                  <div class="content-form-wrapper-column">
+                    <div class="ceil-text asterisk_before">工程名称</div>
+                    <div class="ceil-value">
+                      <el-input
+                        v-model="increase_from.project_name"
+                        placeholder="请输入"
+                      ></el-input>
+                    </div>
+                  </div>
+                </div>
+                <div class="content-form-wrapper">
+                  <div class="content-form-wrapper-column">
+                    <div class="ceil-text">建设单位</div>
+                    <div class="ceil-value">
+                      <el-input
+                        v-model="increase_from.construct_unit"
+                        placeholder="请输入"
+                      ></el-input>
+                    </div>
+                  </div>
+                  <div class="content-form-wrapper-column">
+                    <div class="ceil-text asterisk_before">业务指导类型</div>
+                    <div class="ceil-value">
+                      <el-input
+                        v-model="increase_from.busi_guide_type"
+                        placeholder="请输入"
+                      ></el-input>
+                    </div>
+                  </div>
+                </div>
+                <div class="content-form-wrapper">
+                  <div class="content-form-wrapper-column">
+                    <div class="ceil-text asterisk_before">工程地址</div>
+                    <div class="ceil-value">
+                      <el-input
+                        v-model="increase_from.eng_address"
+                        placeholder="请输入"
+                      ></el-input>
+                    </div>
+                  </div>
+                </div>
+                <div class="content-form-wrapper">
+                  <div class="content-form-wrapper-column global-column-remark">
+                    <div class="ceil-text">
+                      <div class="global-column-center-end--flex">
+                        <div>指导内容</div>
+                        <div>（200字以内）</div>
+                      </div>
+                    </div>
+                    <div class="ceil-value">
+                      <el-input
+                        type="textarea"
+                        v-model="increase_from.guide_content"
+                        placeholder="请输入"
+                        rows="4"
+                        resize="none"
+                        maxlength="200"
+                      ></el-input>
+                    </div>
+                  </div>
+                </div>
+                <div class="content-form-wrapper">
+                  <div class="content-form-wrapper-column global-column-remark">
+                    <div class="ceil-text">
+                      <div class="global-column-center-end--flex">
+                        <div>指导意见</div>
+                        <div>（200字以内）</div>
+                      </div>
+                    </div>
+                    <div class="ceil-value">
+                      <el-input
+                        type="textarea"
+                        v-model="increase_from.guide_opinion"
+                        placeholder="请输入"
+                        rows="4"
+                        resize="none"
+                        maxlength="200"
                       ></el-input>
                     </div>
                   </div>
@@ -210,17 +288,21 @@ export default {
         overflowY: 'scroll'
       },
       increase_from: {
-        report_respons_num: '', // 报送责任书编号
+        busi_guide_num: '', // 业务指导编号
         certificate_date: '', // 发证日期
-        project_name: '', // 项目名称
-        construct_unit: '', // 建设单位
-        construct_area: '', // 面积（m²）
-        submit_people: '', // 报送人
-        submit_phone: '', // 报送人电话
+        contact_people: '', // 联系人
+        contact_phone: '', // 联系电话
         library_respons_people: '', // 本馆责任人
         library_respons_phone: '', // 本馆责任人电话
-        starts_date: '', // 开工日期
-        starts_date_phone: '', // 开工日期电话
+        report_res_num: '', // 报送责任书编号
+        guide_date: '', // 指导日期
+        sub_pro: '', // 所属项目
+        project_name: '', // 工程名称
+        construct_unit: '', // 建设单位
+        busi_guide_type: '', // 业务指导类型
+        eng_address: '', // 工程地址
+        guide_content: '', // 指导内容
+        guide_opinion: '', // 指导意见
         remark: '', // 备注
         enter_pepole: '', // 录入人
         enter_time: '' // 录入时间
@@ -265,7 +347,7 @@ export default {
     }
 
     const fun_go_back = () => {
-      context.root.$router.push({ path: '/business-manage/report-respons-regist' })
+      context.root.$router.push({ path: '/business-manage/business-guid-regist' })
     }
 
     const fun_save_submit = () => {
