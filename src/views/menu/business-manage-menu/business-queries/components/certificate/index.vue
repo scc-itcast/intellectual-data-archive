@@ -2,12 +2,7 @@
   <div class="increase--box" :style="increase_style">
     <div class="global-end-center--flex">
       <div class="global-between-center--flex">
-        <sz-button title="修改档案预验收意见书编号" @click="fun_modify_archives"></sz-button>
-        <sz-button
-          class="global--ml20"
-          title="打印档案预验收意见书"
-          @click="fun_print_archives"
-        ></sz-button>
+        <sz-button title="打印档案移交书" @click="fun_print_archives"></sz-button>
         <sz-button class="global--ml20" title="返回" @click="fun_go_back"></sz-button>
         <sz-button
           class="global--ml20"
@@ -41,10 +36,7 @@
                   <div class="content-form-wrapper-column">
                     <div class="ceil-text">编号</div>
                     <div class="ceil-value">
-                      <el-input
-                        v-model="increase_from.busi_guide_num"
-                        placeholder="请输入"
-                      ></el-input>
+                      <el-input v-model="increase_from.serial" placeholder="请输入"></el-input>
                     </div>
                   </div>
                   <div class="content-form-wrapper-column">
@@ -63,25 +55,9 @@
                 </div>
                 <div class="content-form-wrapper">
                   <div class="content-form-wrapper-column">
-                    <div class="ceil-text">工程名称</div>
+                    <div class="ceil-text asterisk_before">工程名称</div>
                     <div class="ceil-value">
-                      <el-input
-                        v-model="increase_from.project_name"
-                        placeholder="请输入"
-                      ></el-input>
-                      <sz-button
-                        class="global--ml20"
-                        title="关联工程"
-                        @click="fun_label_position"
-                      ></sz-button>
-                    </div>
-                  </div>
-                </div>
-                <div class="content-form-wrapper">
-                  <div class="content-form-wrapper-column">
-                    <div class="ceil-text">工程地点</div>
-                    <div class="ceil-value">
-                      <el-input v-model="increase_from.pro_site" placeholder="请输入"></el-input>
+                      <el-input v-model="increase_from.eng_name" placeholder="请输入"></el-input>
                     </div>
                   </div>
                 </div>
@@ -95,6 +71,40 @@
                       ></el-input>
                     </div>
                   </div>
+                </div>
+                <div class="content-form-wrapper">
+                  <div class="content-form-wrapper-column">
+                    <div class="ceil-text">工程地址</div>
+                    <div class="ceil-value">
+                      <el-input v-model="increase_from.eng_address" placeholder="请输入"></el-input>
+                    </div>
+                  </div>
+                </div>
+                <div class="content-form-wrapper">
+                  <div class="content-form-wrapper-column">
+                    <div class="ceil-text">勘察单位</div>
+                    <div class="ceil-value">
+                      <el-input v-model="increase_from.pros_unit" placeholder="请输入"></el-input>
+                    </div>
+                  </div>
+                </div>
+                <div class="content-form-wrapper">
+                  <div class="content-form-wrapper-column">
+                    <div class="ceil-text">勘察单位</div>
+                    <div class="ceil-value">
+                      <el-input v-model="increase_from.pros_unit" placeholder="请输入"></el-input>
+                    </div>
+                  </div>
+                </div>
+                <div class="content-form-wrapper">
+                  <div class="content-form-wrapper-column">
+                    <div class="ceil-text">设计单位</div>
+                    <div class="ceil-value">
+                      <el-input v-model="increase_from.design_unit" placeholder="请输入"></el-input>
+                    </div>
+                  </div>
+                </div>
+                <div class="content-form-wrapper">
                   <div class="content-form-wrapper-column">
                     <div class="ceil-text">施工单位</div>
                     <div class="ceil-value">
@@ -107,18 +117,20 @@
                 </div>
                 <div class="content-form-wrapper">
                   <div class="content-form-wrapper-column">
-                    <div class="ceil-text">建筑面积（m²）</div>
+                    <div class="ceil-text">施工单位</div>
                     <div class="ceil-value">
                       <el-input
-                        v-model="increase_from.construct_area"
+                        v-model="increase_from.construct_organiza"
                         placeholder="请输入"
                       ></el-input>
                     </div>
                   </div>
+                </div>
+                <div class="content-form-wrapper">
                   <div class="content-form-wrapper-column">
-                    <div class="ceil-text">工程造价（万元）</div>
+                    <div class="ceil-text">监理单位</div>
                     <div class="ceil-value">
-                      <el-input v-model="increase_from.pro_cost" placeholder="请输入"></el-input>
+                      <el-input v-model="increase_from.super_unit" placeholder="请输入"></el-input>
                     </div>
                   </div>
                 </div>
@@ -126,16 +138,97 @@
                   <div class="content-form-wrapper-column">
                     <div class="ceil-text">开工日期</div>
                     <div class="ceil-value">
-                      <el-input v-model="increase_from.starts_date" placeholder="请输入"></el-input>
+                      <el-date-picker
+                        v-model="increase_from.ment_date"
+                        type="datetime"
+                        format="yyyy-MM-dd HH:mm:ss"
+                        value-format="yyyy-MM-dd HH:mm:ss"
+                        :clearable="false"
+                      >
+                      </el-date-picker>
                     </div>
                   </div>
                   <div class="content-form-wrapper-column">
-                    <div class="ceil-text">拟竣工日期</div>
+                    <div class="ceil-text">竣工日期</div>
+                    <div class="ceil-value">
+                      <el-date-picker
+                        v-model="increase_from.ple_date"
+                        type="datetime"
+                        format="yyyy-MM-dd HH:mm:ss"
+                        value-format="yyyy-MM-dd HH:mm:ss"
+                        :clearable="false"
+                      >
+                      </el-date-picker>
+                    </div>
+                  </div>
+                </div>
+                <div class="content-form-wrapper">
+                  <div class="content-form-wrapper-column">
+                    <div class="ceil-text">总投资(万元)</div>
                     <div class="ceil-value">
                       <el-input
-                        v-model="increase_from.completed_date"
+                        v-model="increase_from.invest_total"
                         placeholder="请输入"
                       ></el-input>
+                    </div>
+                  </div>
+                  <div class="content-form-wrapper-column">
+                    <div class="ceil-text">建筑面积(m²)</div>
+                    <div class="ceil-value">
+                      <el-input v-model="increase_from.floor_area" placeholder="请输入"></el-input>
+                    </div>
+                  </div>
+                </div>
+                <div class="content-form-wrapper">
+                  <div class="content-form-wrapper-column">
+                    <div class="ceil-text">结构类型</div>
+                    <div class="ceil-value">
+                      <el-select v-model="increase_from.struct_type" placeholder="请选择">
+                        <el-option
+                          v-for="item in struct_type_list"
+                          :key="item.prop"
+                          :label="item.label"
+                          :value="item.prop"
+                        >
+                        </el-option>
+                      </el-select>
+                    </div>
+                  </div>
+                  <div class="content-form-wrapper-column">
+                    <div class="ceil-text">案卷总数</div>
+                    <div class="ceil-value">
+                      <el-input
+                        v-model="increase_from.case_file_total"
+                        placeholder="请输入"
+                      ></el-input>
+                    </div>
+                  </div>
+                </div>
+                <div class="content-form-wrapper">
+                  <div class="content-form-wrapper-column">
+                    <div class="ceil-text">文字材料(卷)</div>
+                    <div class="ceil-value">
+                      <el-input v-model="increase_from.word_v" placeholder="请输入"></el-input>
+                    </div>
+                  </div>
+                  <div class="content-form-wrapper-column">
+                    <div class="ceil-text">图纸(卷)</div>
+                    <div class="ceil-value">
+                      <el-input v-model="increase_from.draw_v" placeholder="请输入"></el-input>
+                    </div>
+                  </div>
+                </div>
+                <div class="content-form-wrapper">
+                  <div class="content-form-wrapper-column">
+                    <div class="ceil-text">照片(张)</div>
+                    <div class="ceil-value">
+                      <el-input v-model="increase_from.photo_z" placeholder="请输入"></el-input>
+                    </div>
+                  </div>
+                  <div class="content-form-wrapper-column">
+                    <div class="ceil-text">录像带(盒)</div>
+                    <div class="ceil-value">
+                      <el-input v-model="increase_from.video_b" placeholder="请输入"></el-input>
                     </div>
                   </div>
                 </div>
@@ -177,16 +270,20 @@
                   <div class="content-form-wrapper-column">
                     <div class="ceil-text">录入人</div>
                     <div class="ceil-value">
-                      <el-input
-                        v-model="increase_from.enter_pepole"
-                        placeholder="请输入"
-                      ></el-input>
+                      <el-input v-model="increase_from.hen_date" placeholder="请输入"></el-input>
                     </div>
                   </div>
                   <div class="content-form-wrapper-column">
                     <div class="ceil-text">录入时间</div>
                     <div class="ceil-value">
-                      <el-input v-model="increase_from.enter_time" placeholder="请输入"></el-input>
+                      <el-date-picker
+                        v-model="increase_from.test_field"
+                        type="datetime"
+                        format="yyyy-MM-dd HH:mm:ss"
+                        value-format="yyyy-MM-dd HH:mm:ss"
+                        :clearable="false"
+                      >
+                      </el-date-picker>
                     </div>
                   </div>
                 </div>
@@ -195,29 +292,16 @@
           </div>
         </div>
         <div class="content-file-status increase-content--item">
-          <div class="content-title-btn" @click="fun_show_shrink('advice_notice')">
+          <div class="content-title-btn" @click="fun_show_shrink('handover_pro')">
             <sz-show-shrink
-              :show_shrink="show_shrink.advice_notice"
-              title="整改意见通知单列表"
+              :show_shrink="show_shrink.handover_pro"
+              title="移交证明书工程列表"
               :increase="true"
-              @fun_increase_click="fun_increase_notice"
+              @fun_increase_click="fun_increase_handover"
             />
           </div>
-          <div class="content--form" :style="{ display: show_shrink_dispaly.advice_notice }">
-            <sz-table :config="table_notice_list" @fun_db_click="fun_db_click"></sz-table>
-          </div>
-        </div>
-        <div class="content-file-status increase-content--item">
-          <div class="content-title-btn" @click="fun_show_shrink('pre_accep_pro')">
-            <sz-show-shrink
-              :show_shrink="show_shrink.pre_accep_pro"
-              title="预验收工程列表"
-              :increase="true"
-              @fun_increase_click="fun_increase_accep"
-            />
-          </div>
-          <div class="content--form" :style="{ display: show_shrink_dispaly.pre_accep_pro }">
-            <sz-table class="table-padding-left30" :config="table_accep_list"></sz-table>
+          <div class="content--form" :style="{ display: show_shrink_dispaly.handover_pro }">
+            <sz-table class="table-padding-left30" :config="table_handover_list" @fun_db_click="fun_db_click"></sz-table>
           </div>
         </div>
       </el-form>
@@ -239,13 +323,12 @@ export default {
   name: 'increase-project',
   mixins: [mixinAsideShowTrue],
   setup(prop, context) {
-    let table_notice_list = reactive({
+    let table_handover_list = reactive({
       search_form: false,
       isRequest: false,
       pagination: false,
       // checkbox: true,
       number: true,
-      expand_input: true,
       table_height: 676,
       url: '',
       data: {
@@ -266,63 +349,10 @@ export default {
           disabled: true,
           buttonGroup: [
             {
-              label: '修改',
-              type: 'text',
-              event: 'button',
-              handler: data => fun_modify_notice(data)
-            },
-            {
-              label: '保存',
-              type: 'text',
-              event: 'button',
-              handler: data => fun_save_notice(data)
-            },
-            {
               label: '删除',
               type: 'text',
               event: 'button',
-              handler: data => fun_delete_notice(data)
-            },
-            {
-              label: '打印',
-              type: 'text',
-              event: 'button',
-              handler: data => fun_print_notice(data)
-            }
-          ]
-        }
-      ]
-    })
-
-    let table_accep_list = reactive({
-      search_form: false,
-      isRequest: false,
-      pagination: false,
-      // checkbox: true,
-      number: true,
-      table_height: 676,
-      url: '',
-      data: {
-        pageIndex: 1,
-        PageSize: 10,
-        startTime: '2021-01-01 00:00:00'
-      },
-      thead: [
-        { label: '工程名称', prop: 'project_name', checked: true, width: '200' },
-        { label: '工程地点', prop: 'project_adress', checked: true, width: '200' },
-        {
-          label: '操作',
-          prop: 'operation',
-          checked: true,
-          width: '200',
-          type: 'operation',
-          disabled: true,
-          buttonGroup: [
-            {
-              label: '删除',
-              type: 'text',
-              event: 'button',
-              handler: data => fun_delete_accep(data)
+              handler: data => fun_delete_handover(data)
             }
           ]
         }
@@ -331,22 +361,31 @@ export default {
 
     let contextData = reactive({
       name: '添加项目信息',
-      title: '档案预验收',
+      title: '项目级著录单',
       increase_style: {
         height: document.body.clientHeight - 200 + 'px',
         overflowY: 'scroll'
       },
       increase_from: {
-        busi_guide_num: '', // 编号
+        serial: '', // 编号
         certificate_date: '', // 发证日期
-        project_name: '', // 工程名称
-        pro_site: '', // 工程地点
+        eng_name: '', // 工程名称
         construct_unit: '', // 建设单位
+        eng_address: '', // 工程地址
+        pros_unit: '', // 勘察单位
+        design_unit: '', // 设计单位
         construct_organiza: '', // 施工单位
-        construct_area: '', // 建筑面积（m²）
-        pro_cost: '', // 工程造价（万元）
-        starts_date: '', // 开工日期
-        completed_date: '', // 拟竣工日期
+        super_unit: '', // 监理单位
+        ment_date: '', // 开工日期
+        ple_date: '', // 竣工日期
+        invest_total: '', // 总投资（万元）
+        floor_area: '', // 建筑面积（m²）
+        struct_type: '', // 结构类型
+        case_file_total: '', // 案卷总数
+        word_v: '', // 文字材料（卷）
+        draw_v: '', // 图纸（卷）
+        photo_z: '', // 照片（张）
+        video_b: '', // 录像带（盒）
         contact_people: '', // 联系人
         contact_phone: '', // 联系电话
         remark: '', // 备注
@@ -354,7 +393,7 @@ export default {
         enter_time: '' // 录入时间
       },
       increase_rules: {
-        project_name: [
+        eng_name: [
           { required: true, message: '请输入项目名称', trigger: 'blur' }
           // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
         ],
@@ -363,18 +402,28 @@ export default {
           // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
         ]
       },
+      project_type_more_info: false,
       show_shrink: {
-        basic_info: true,
-        advice_notice: false,
-        pre_accep_pro: false,
+        basic_info: false,
+        file_status: true,
+        handover_pro: false,
         custom_info: false
       },
       show_shrink_dispaly: {
-        basic_info: 'none',
-        advice_notice: 'block',
-        pre_accep_pro: 'block',
+        basic_info: 'block',
+        file_status: 'none',
+        handover_pro: 'block',
         custom_info: 'block'
-      }
+      },
+      struct_type_list: [
+        { label: '框架', prop: 1 },
+        { label: '框剪', prop: 2 },
+        { label: '砖混', prop: 3 },
+        { label: '排架', prop: 4 },
+        { label: '钢结构', prop: 5 },
+        { label: '剪力墙', prop: 6 },
+        { label: '其他', prop: 7 }
+      ]
     })
     onMounted(async () => {
       // 调用方法, 方法里调用接口
@@ -393,10 +442,9 @@ export default {
     }
 
     const fun_go_back = () => {
-      context.root.$router.push({ path: '/business-manage/pre-acceptance-files' })
+      // context.root.$router.push({ path: '/business-manage/project-regist' })
+      context.root.$router.go(-1)
     }
-
-    const fun_modify_archives = () => {}
 
     const fun_print_archives = () => {}
 
@@ -418,51 +466,34 @@ export default {
 
     const fun_label_position = () => {}
 
+    const fun_create_project = () => {}
+
     const fun_db_click = row => {
       console.log('双击了')
     }
 
-    const fun_modify_notice = () => {}
-
-    const fun_save_notice = row => {
-      console.log(row)
+    const fun_increase_handover = () => {
+      console.log('移交证明书工程列表')
     }
 
-    const fun_delete_notice = () => {}
-
-    const fun_print_notice = () => {}
-
-    const fun_create_project = () => {}
-
-    const fun_increase_notice = () => {
-      console.log('整改意见通知单列表')
-    }
-
-    const fun_increase_accep = () => {
-      console.log('整改意见通知单列表')
+    const fun_delete_handover = () => {
+      console.log('移交证明书工程列表')
     }
 
     return {
       contextData,
       ...toRefs(contextData),
-      table_notice_list,
-      ...toRefs(table_notice_list),
-      table_accep_list,
-      ...toRefs(table_accep_list),
+      table_handover_list,
+      ...toRefs(table_handover_list),
       fun_go_back,
-      fun_modify_archives,
       fun_print_archives,
       fun_save_submit,
       fun_show_shrink,
       fun_label_position,
-      fun_db_click,
-      fun_modify_notice,
-      fun_save_notice,
-      fun_delete_notice,
-      fun_print_notice,
       fun_create_project,
-      fun_increase_notice,
-      fun_increase_accep
+      fun_db_click,
+      fun_increase_handover,
+      fun_delete_handover
     }
   }
 }

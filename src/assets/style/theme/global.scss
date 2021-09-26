@@ -23,16 +23,20 @@
 * margin
 **/
 
+.global--ml10 {
+  margin-left: 10px;
+}
+
 .global--ml20 {
   margin-left: 20px;
 }
 
-.global--mr20 {
-  margin-right: 20px;
+.global--ml30 {
+  margin-left: 30px;
 }
 
-.global--ml10 {
-  margin-left: 10px;
+.global--mr20 {
+  margin-right: 20px;
 }
 
 .global-button--margin {
@@ -189,6 +193,13 @@
 /**
 * 自动封装表单
 **/
+
+.global-look-project-body--title {
+  text-align: center;
+  font-size: 18px;
+  margin: 8px 0 27px 0;
+  font-weight: 550;
+}
 
 .global-content-form-item-look,
 .global-content-form-item {

@@ -2,7 +2,7 @@
   <div id="sz-advanced-query" class="look_project">
     <el-dialog
       :title="advanced_query_title"
-      :visible.sync="look_project_dialog"
+      :visible.sync="look_handover_dialog"
       width="75%"
       :fullscreen="fullscreen"
       :lock-scroll="true"
@@ -16,59 +16,23 @@
           <i aria-hidden="true" class="fa fa-iconfont guilian-icon"></i>
         </div>
       </template>
-      <div class="look-project-dialog--body" :style="look_project_style">
+      <div class="look-project-dialog--body" :style="look_handover_style">
         <div class="look-project-body--box">
-          <div class="global-look-project-body--title">业务指导</div>
+          <div class="global-look-project-body--title">档案移交书</div>
           <div class="look-project-body--content">
             <div class="content-form-item-box">
               <div class="global-content-form-item-look">
                 <div class="content-form-wrapper">
                   <div class="content-form-wrapper-column">
-                    <div class="ceil-text">业务指导编号</div>
+                    <div class="ceil-text">编号</div>
                     <div class="ceil-value">
-                      {{ test_form.busi_guide_num }}
+                      {{ test_form.serial }}
                     </div>
                   </div>
                   <div class="content-form-wrapper-column">
                     <div class="ceil-text">发证日期</div>
                     <div class="ceil-value">
                       {{ test_form.certificate_date }}
-                    </div>
-                  </div>
-                </div>
-                <div class="content-form-wrapper">
-                  <div class="content-form-wrapper-column">
-                    <div class="ceil-text">联系人</div>
-                    <div class="ceil-value">
-                      {{ test_form.contact_people }}
-                    </div>
-                  </div>
-                  <div class="content-form-wrapper-column">
-                    <div class="ceil-text">联系电话</div>
-                    <div class="ceil-value">
-                      {{ test_form.contact_phone }}
-                    </div>
-                  </div>
-                </div>
-                <div class="content-form-wrapper">
-                  <div class="content-form-wrapper-column">
-                    <div class="ceil-text">报送责任书编号</div>
-                    <div class="ceil-value">
-                      {{ test_form.report_res_num }}
-                    </div>
-                  </div>
-                  <div class="content-form-wrapper-column">
-                    <div class="ceil-text">指导日期</div>
-                    <div class="ceil-value">
-                      {{ test_form.guide_date }}
-                    </div>
-                  </div>
-                </div>
-                <div class="content-form-wrapper">
-                  <div class="content-form-wrapper-column">
-                    <div class="ceil-text">所属项目</div>
-                    <div class="ceil-value">
-                      {{ test_form.sub_pro }}
                     </div>
                   </div>
                 </div>
@@ -87,34 +51,82 @@
                       {{ test_form.construct_unit }}
                     </div>
                   </div>
+                </div>
+                <div class="content-form-wrapper">
                   <div class="content-form-wrapper-column">
-                    <div class="ceil-text">业务指导类型</div>
+                    <div class="ceil-text">负责人</div>
                     <div class="ceil-value">
-                      {{ test_form.busi_guide_type }}
+                      {{ test_form.con_res_people }}
+                    </div>
+                  </div>
+                  <div class="content-form-wrapper-column">
+                    <div class="ceil-text">联系电话</div>
+                    <div class="ceil-value">
+                      {{ test_form.con_contact_phone }}
                     </div>
                   </div>
                 </div>
                 <div class="content-form-wrapper">
                   <div class="content-form-wrapper-column">
-                    <div class="ceil-text">工程地址</div>
+                    <div class="ceil-text">施工单位</div>
                     <div class="ceil-value">
-                      {{ test_form.eng_address }}
+                      {{ test_form.construct_organiza }}
                     </div>
                   </div>
                 </div>
                 <div class="content-form-wrapper">
                   <div class="content-form-wrapper-column">
-                    <div class="ceil-text">指导内容</div>
+                    <div class="ceil-text">负责人</div>
                     <div class="ceil-value">
-                      {{ test_form.guide_content }}
+                      {{ test_form.org_res_people }}
+                    </div>
+                  </div>
+                  <div class="content-form-wrapper-column">
+                    <div class="ceil-text">联系电话</div>
+                    <div class="ceil-value">
+                      {{ test_form.org_contact_phone }}
                     </div>
                   </div>
                 </div>
                 <div class="content-form-wrapper">
                   <div class="content-form-wrapper-column">
-                    <div class="ceil-text">指导意见</div>
+                    <div class="ceil-text">移交人</div>
                     <div class="ceil-value">
-                      {{ test_form.guide_opinion }}
+                      {{ test_form.handed_over_people }}
+                    </div>
+                  </div>
+                  <div class="content-form-wrapper-column">
+                    <div class="ceil-text">联系电话</div>
+                    <div class="ceil-value">
+                      {{ test_form.handed_contact_phone }}
+                    </div>
+                  </div>
+                </div>
+                <div class="content-form-wrapper">
+                  <div class="content-form-wrapper-column">
+                    <div class="ceil-text">接收人</div>
+                    <div class="ceil-value">
+                      {{ test_form.receiver_people }}
+                    </div>
+                  </div>
+                  <div class="content-form-wrapper-column">
+                    <div class="ceil-text">密级</div>
+                    <div class="ceil-value">
+                      {{ test_form.security_class }}
+                    </div>
+                  </div>
+                </div>
+                <div class="content-form-wrapper">
+                  <div class="content-form-wrapper-column">
+                    <div class="ceil-text">材料总数(张)</div>
+                    <div class="ceil-value">
+                      {{ test_form.material_num }}
+                    </div>
+                  </div>
+                  <div class="content-form-wrapper-column">
+                    <div class="ceil-text">移交日期</div>
+                    <div class="ceil-value">
+                      {{ test_form.handed_ove_date }}
                     </div>
                   </div>
                 </div>
@@ -162,55 +174,57 @@
 <script>
 import { onMounted, computed, reactive, watchEffect, toRefs } from '@vue/composition-api'
 export default {
-  props: ['look_project_obj'],
+  props: ['look_handover_obj'],
   setup(prop, context) {
     let contextData = reactive({
       advanced_query_title: '',
-      look_project_dialog: false,
+      look_handover_dialog: false,
       data_row: null,
       test_form: {
-        busi_guide_num: '', // 业务指导编号
-        certificate_date: '', // 发证日期
-        contact_people: '', // 联系人
-        contact_phone: '', // 联系电话
-        report_res_num: '', // 报送责任书编号
-        guide_date: '', // 指导日期
-        sub_pro: '', // 所属项目
-        project_name: '', // 工程名称
+        serial: '(2004)001', // 编号
+        certificate_date: '2004-09-02', // 发证日期
+        project_name: '万达广场0001（工程1）', // 工程名称
         construct_unit: '', // 建设单位
-        busi_guide_type: '', // 业务指导类型
-        eng_address: '', // 工程地址
-        guide_content: '', // 指导内容
-        guide_opinion: '', // 指导意见
+        con_res_people: '', // 负责人
+        con_contact_phone: '', // 联系电话
+        construct_organiza: '', // 施工单位
+        org_res_people: '', // 负责人
+        org_contact_phone: '', // 联系电话
+        handed_over_people: '', // 移交人
+        handed_contact_phone: '', // 联系电话
+        receiver_people: '系统管理员', // 接收人
+        security_class: '无', // 密级
+        material_num: '', // 材料总数（张）
+        handed_ove_date: '2018-02-02', // 移交日期
         remark: '', // 备注
-        enter_pepole: '', // 录入人
-        enter_time: '', // 录入时间
+        enter_pepole: '系统管理员', // 录入人
+        enter_time: '2018-02-02 19:27:46' // 录入时间
       },
       fullscreen: false,
-      look_project_style: {}
+      look_handover_style: {}
     })
 
     watchEffect(() => {
-      contextData.look_project_dialog = prop.look_project_obj.look_project_dialog
-      contextData.data_row = prop.look_project_obj.row
+      contextData.look_handover_dialog = prop.look_handover_obj.look_handover_dialog
+      contextData.data_row = prop.look_handover_obj.row
     })
 
     const fun_look_project_zoom = () => {
       contextData.fullscreen = !contextData.fullscreen
-      contextData.look_project_style = {}
+      contextData.look_handover_style = {}
       if (contextData.fullscreen) {
-        contextData.look_project_style = {
+        contextData.look_handover_style = {
           height: document.body.clientHeight - 109 - 46 + 68 + 'px'
         }
       }
     }
 
     const fun_look_project_close = () => {
-      context.emit('fun_look_project_close')
+      context.emit('fun_look_handover_close')
     }
 
     const fun_look_project_submit = () => {
-      context.emit('fun_look_project_close')
+      context.emit('fun_look_handover_close')
     }
 
     return {

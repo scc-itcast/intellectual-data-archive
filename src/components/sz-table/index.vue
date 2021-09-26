@@ -33,11 +33,11 @@
         </template>
       </el-table-column>
       <el-table-column v-if="table_config.expand" type="expand" width="21.6">
-        <template>
+        <template slot-scope="scope_p">
           <el-table
             v-loading="loading_table"
             element-loading-text="加载中"
-            :data="child_table_data"
+            :data="fun_child_table_data(scope_p.$index)"
             @row-dblclick="fun_child_db_click"
           >
             <el-table-column v-if="table_config.checkbox" type="selection" width="20">
@@ -47,7 +47,7 @@
             <template v-for="item in contextData.table_config.children_thead">
               <el-table-column
                 v-if="item.type === 'operation'"
-                :key="item.prop"
+                :key="item.label"
                 :prop="item.prop"
                 :label="item.label"
                 :width="item.width"
@@ -87,14 +87,14 @@
               <!-- 纯文本渲染 -->
               <el-table-column
                 v-else
-                :key="item.prop"
+                :key="item.label"
                 :prop="item.prop"
                 :label="item.label"
                 :width="item.width"
               />
             </template>
           </el-table>
-          <el-row class="padding-top-10">
+          <el-row class="padding-top-10" v-if="!table_config.expand_handover">
             <el-col :span="24">
               <el-pagination
                 v-if="table_config.pagination"
@@ -343,6 +343,8 @@ export default {
         // 是否显示展开行功能
         expand: false,
         expand_input: false,
+        // 移交书
+        expand_handover: false,
         // 请求列表的接口路径 默认 '/getattr/0'
         apiType: 'CommonFun',
         // table表格要减去的高度
@@ -449,6 +451,8 @@ export default {
     const fun_expand_change = (row, expandedRows) => {
       // console.log('expandedRows', expandedRows)
       // console.log('row', row)
+      let flag = contextData.table_config.expand_handover
+      if(flag) return false
       if (expandedRows.length) {
         contextData.expands = []
         if (row) {
@@ -459,6 +463,13 @@ export default {
       }
       context.emit('fun_expand_change', row)
       // console.log('contextData.expands', contextData.expands)
+    }
+
+    const fun_child_table_data = index => {
+      let list = []
+      let flag = contextData.table_config.expand_handover
+      list.push(contextData.table_data[index])
+      return flag ? list : contextData.child_table_data
     }
 
     const fun_db_click = row => {
@@ -478,7 +489,8 @@ export default {
       handleCurrentChange,
       fun_expand_change,
       fun_db_click,
-      fun_child_db_click
+      fun_child_db_click,
+      fun_child_table_data
     }
   },
   beforeMount() {

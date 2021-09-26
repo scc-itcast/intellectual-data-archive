@@ -139,10 +139,34 @@ export default {
       meta: { ...meta, title: '证件发放-移交书' }
     },
     {
+      path: 'certificate-issued/handover-book/increase-book',
+      name: 'business-manage-certificate-issued-handover-book-increase-book',
+      component: _import('menu/business-manage-menu/certificate-issued/handover-book/increase-book/index.vue'),
+      meta: { ...meta, title: '证件发放-移交书-添加移交书' }
+    },
+    {
+      path: 'certificate-issued/handover-book/modify-book',
+      name: 'business-manage-certificate-issued-handover-book-modify-book',
+      component: _import('menu/business-manage-menu/certificate-issued/handover-book/modify-book/index.vue'),
+      meta: { ...meta, title: '证件发放-移交书-修改移交书' }
+    },
+    {
       path: 'certificate-issued/handover-certificate',
       name: 'business-manage-certificate-issued-handover-certificate',
       component: _import('menu/business-manage-menu/certificate-issued/handover-certificate/index.vue'),
       meta: { ...meta, title: '证件发放-移交证明书' }
+    },
+    {
+      path: 'certificate-issued/handover-certificate/increase-certificate',
+      name: 'business-manage-certificate-issued-handover-certificate-increase-certificate',
+      component: _import('menu/business-manage-menu/certificate-issued/handover-certificate/increase-certificate/index.vue'),
+      meta: { ...meta, title: '证件发放-移交证明书-添加移交证明书' }
+    },
+    {
+      path: 'certificate-issued/handover-certificate/modify-certificate',
+      name: 'business-manage-certificate-issued-handover-certificate-modify-certificate',
+      component: _import('menu/business-manage-menu/certificate-issued/handover-certificate/modify-certificate/index.vue'),
+      meta: { ...meta, title: '证件发放-移交证明书-修改移交证明书' }
     },
     {
       path: 'business-queries/handover-book',

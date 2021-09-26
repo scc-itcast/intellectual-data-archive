@@ -302,17 +302,6 @@ export default {
       })
     }
 
-    const fun_delete_engine = row => {
-      contextData.delete_current_row = row
-      context.root.$confirm('', '', {
-        title: 'This is the title',
-        message: '记录删除后不可恢复,是否删除记录？',
-        center: true, // 是否使用圆角按钮
-        lockScroll: true, // 是否在 MessageBox 出现时将 body 滚动锁定
-        callback: fun_delete_callback // 若不使用 Promise，可以使用此参数指定 MessageBox 关闭后的回调
-      })
-    }
-
     const fun_delete_callback = (action, instance) => {
       // console.log(action, contextData.delete_current_row)
       let row = contextData.delete_current_row
@@ -352,7 +341,6 @@ export default {
       fun_table_handle,
       fun_create_engine,
       fun_modify_engine,
-      fun_delete_engine,
       fun_checkbox_change,
       fun_advanced_query_close,
       fun_db_click
