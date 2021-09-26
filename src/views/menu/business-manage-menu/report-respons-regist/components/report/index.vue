@@ -33,24 +33,35 @@
               <div class="global-content-form-item">
                 <div class="content-form-wrapper">
                   <div class="content-form-wrapper-column">
+                    <div class="ceil-text">报送责任书编号</div>
+                    <div class="ceil-value">
+                      <el-input
+                        v-model="increase_from.report_respons_num"
+                        placeholder="请输入"
+                      ></el-input>
+                    </div>
+                  </div>
+                  <div class="content-form-wrapper-column">
+                    <div class="ceil-text">发证日期</div>
+                    <div class="ceil-value">
+                      <el-input
+                        v-model="increase_from.certificate_date"
+                        placeholder="请输入"
+                      ></el-input>
+                    </div>
+                  </div>
+                </div>
+                <div class="content-form-wrapper">
+                  <div class="content-form-wrapper-column">
                     <div class="ceil-text asterisk_before">项目名称</div>
                     <div class="ceil-value">
                       <el-input
                         v-model="increase_from.project_name"
                         placeholder="请输入"
                       ></el-input>
-                    </div>
-                  </div>
-                  <div class="content-form-wrapper-column">
-                    <div class="ceil-text">项目地点</div>
-                    <div class="ceil-value">
-                      <el-input
-                        v-model="increase_from.project_adress"
-                        placeholder="请输入"
-                      ></el-input>
                       <sz-button
                         class="global--ml20"
-                        title="标注位置"
+                        title="关联项目"
                         @click="fun_label_position"
                       ></sz-button>
                     </div>
@@ -62,6 +73,72 @@
                     <div class="ceil-value">
                       <el-input
                         v-model="increase_from.construct_unit"
+                        placeholder="请输入"
+                      ></el-input>
+                    </div>
+                  </div>
+                  <div class="content-form-wrapper-column">
+                    <div class="ceil-text">面积（m²）</div>
+                    <div class="ceil-value">
+                      <el-input
+                        v-model="increase_from.construct_area"
+                        placeholder="请输入"
+                      ></el-input>
+                    </div>
+                  </div>
+                </div>
+                <div class="content-form-wrapper">
+                  <div class="content-form-wrapper-column">
+                    <div class="ceil-text">报送人</div>
+                    <div class="ceil-value">
+                      <el-input
+                        v-model="increase_from.submit_people"
+                        placeholder="请输入"
+                      ></el-input>
+                    </div>
+                  </div>
+                  <div class="content-form-wrapper-column">
+                    <div class="ceil-text">联系电话</div>
+                    <div class="ceil-value">
+                      <el-input
+                        v-model="increase_from.submit_phone"
+                        placeholder="请输入"
+                      ></el-input>
+                    </div>
+                  </div>
+                </div>
+                <div class="content-form-wrapper">
+                  <div class="content-form-wrapper-column">
+                    <div class="ceil-text">本馆责任人</div>
+                    <div class="ceil-value">
+                      <el-input
+                        v-model="increase_from.library_respons_people"
+                        placeholder="请输入"
+                      ></el-input>
+                    </div>
+                  </div>
+                  <div class="content-form-wrapper-column">
+                    <div class="ceil-text">联系电话</div>
+                    <div class="ceil-value">
+                      <el-input
+                        v-model="increase_from.library_respons_phone"
+                        placeholder="请输入"
+                      ></el-input>
+                    </div>
+                  </div>
+                </div>
+                <div class="content-form-wrapper">
+                  <div class="content-form-wrapper-column">
+                    <div class="ceil-text">开工日期</div>
+                    <div class="ceil-value">
+                      <el-input v-model="increase_from.starts_date" placeholder="请输入"></el-input>
+                    </div>
+                  </div>
+                  <div class="content-form-wrapper-column">
+                    <div class="ceil-text">联系电话</div>
+                    <div class="ceil-value">
+                      <el-input
+                        v-model="increase_from.starts_date_phone"
                         placeholder="请输入"
                       ></el-input>
                     </div>
@@ -78,6 +155,23 @@
                         rows="4"
                         resize="none"
                       ></el-input>
+                    </div>
+                  </div>
+                </div>
+                <div class="content-form-wrapper">
+                  <div class="content-form-wrapper-column">
+                    <div class="ceil-text">录入人</div>
+                    <div class="ceil-value">
+                      <el-input
+                        v-model="increase_from.enter_pepole"
+                        placeholder="请输入"
+                      ></el-input>
+                    </div>
+                  </div>
+                  <div class="content-form-wrapper-column">
+                    <div class="ceil-text">录入时间</div>
+                    <div class="ceil-value">
+                      <el-input v-model="increase_from.enter_time" placeholder="请输入"></el-input>
                     </div>
                   </div>
                 </div>
@@ -110,33 +204,26 @@ export default {
   setup(prop, context) {
     let contextData = reactive({
       name: '添加项目信息',
-      title: '项目级著录单',
+      title: '建设工程档案报送责任书( 修改 )',
       increase_style: {
         height: document.body.clientHeight - 200 + 'px',
         overflowY: 'scroll'
       },
       increase_from: {
+        report_respons_num: '', // 报送责任书编号
+        certificate_date: '', // 发证日期
         project_name: '', // 项目名称
-        project_adress: '', // 项目地点
         construct_unit: '', // 建设单位
-        project_type: '', // 项目类型
-        d_construct_unit: '', // 代建单位
-        project_appr_number: '', // 立项批准文号
-        project_appr_unit: '', // 立项批准单位
-        plan_permis_number: '', // 规划许可证号
-        design_unit: '', // 设计单位
-        plan_permit_number: '', // 用地规划许可证号
-        super_unit: '', // 监理单位
-        certificate_number: '', // 国有土地使用证号
-        pros_unit: '', // 勘察单位
-        const_permit_number: '', // 施工许可证号
+        construct_area: '', // 面积（m²）
+        submit_people: '', // 报送人
+        submit_phone: '', // 报送人电话
+        library_respons_people: '', // 本馆责任人
+        library_respons_phone: '', // 本馆责任人电话
+        starts_date: '', // 开工日期
+        starts_date_phone: '', // 开工日期电话
         remark: '', // 备注
-        project_number: '', // 项目序号
-        hen_date: '', // 进馆日期
-        handed_ove_unit: '', // 移交单位
         enter_pepole: '', // 录入人
-        enter_time: '', // 录入时间
-        test_field: '' // 测试字段显示
+        enter_time: '' // 录入时间
       },
       increase_rules: {
         project_name: [
@@ -148,15 +235,6 @@ export default {
           // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
         ]
       },
-      project_type_list: [
-        { label: '房屋建筑工程', prop: 'build_engin' },
-        { label: '市政基础设施', prop: 'munici_infrast' },
-        { label: '城市管线工程', prop: 'ur_pipe_engin' },
-        { label: '其他通用类', prop: 'other_gene_class' },
-        { label: '道路工程', prop: 'road_engin' },
-        { label: '桥梁工程', prop: 'bridge_engin' },
-        { label: '园林绿化工程', prop: 'landscap_work' }
-      ],
       show_shrink: {
         basic_info: false,
         file_status: true,

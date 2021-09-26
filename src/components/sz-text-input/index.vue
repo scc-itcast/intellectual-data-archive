@@ -4,7 +4,7 @@
       <div class="input--title">{{ queryObject.title }}</div>
       <div class="input--box">
         <el-date-picker
-          v-if="queryObject.type=='datetime'"
+          v-if="queryObject.type == 'datetime'"
           v-model="data_value"
           type="datetime"
           format="yyyy-MM-dd HH:mm:ss"
@@ -13,6 +13,20 @@
           :clearable="false"
         >
         </el-date-picker>
+        <el-select
+          v-else-if="queryObject.type == 'select'"
+          v-model="data_value"
+          placeholder="请输入关键字"
+          @change="fun_value_change"
+        >
+          <el-option
+            v-for="item in queryObject.list"
+            :key="item.prop"
+            :label="item.label"
+            :value="item.prop"
+          >
+          </el-option>
+        </el-select>
         <el-input
           v-else
           v-model="data_value"

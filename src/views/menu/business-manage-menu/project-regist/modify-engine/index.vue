@@ -17,7 +17,7 @@ import {
 } from '@vue/composition-api'
 import Engine from '@/views/menu/business-manage-menu/project-regist/components/engine/index.vue'
 export default {
-  name: 'increase-engine',
+  name: 'modify-engine',
   components: {
     Engine
   },
@@ -27,7 +27,7 @@ export default {
       breadcrumb: [
         { path: '/business-manage', title: '业务管理' },
         { path: '/business-manage/project-regist', title: '项目登记' },
-        { path: '/business-manage/project-regist/increase-engine', title: '修改工程信息' }
+        { path: '/business-manage/project-regist/modify-engine', title: '修改工程信息' }
       ]
     })
     onMounted(async () => {

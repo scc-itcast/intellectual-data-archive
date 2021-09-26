@@ -1,0 +1,47 @@
+<template>
+  <d2-container type="card" better-scroll :breadcrumb="breadcrumb">
+    <template>
+      <project></project>
+    </template>
+  </d2-container>
+</template>
+
+<script>
+import {
+  onMounted,
+  onBeforeUnmount,
+  computed,
+  reactive,
+  watchEffect,
+  toRefs
+} from '@vue/composition-api'
+import Project from '@/views/menu/business-manage-menu/pre-acceptance-files/components/files/index.vue'
+export default {
+  name: 'increase-files',
+  components: {
+    Project
+  },
+  setup(prop, context) {
+    let contextData = reactive({
+      name: '添加档案预验收',
+      breadcrumb: [
+        { path: '/business-manage', title: '业务管理' },
+        { path: '/business-manage/pre-acceptance-files', title: '档案预验收' },
+        { path: '/business-manage/pre-acceptance-files/increase-files', title: '添加档案预验收' }
+      ],
+    })
+    onMounted(async () => {
+      // 调用方法, 方法里调用接口
+    })
+
+    return {
+      contextData,
+      ...toRefs(contextData)
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+@import '~./index.scss';
+</style>

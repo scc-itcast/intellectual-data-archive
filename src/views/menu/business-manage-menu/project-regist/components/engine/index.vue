@@ -201,10 +201,15 @@
                     <div class="content-form-wrapper-column">
                       <div class="ceil-text">结构类型</div>
                       <div class="ceil-value">
-                        <el-input
-                          v-model="increase_from.struct_type"
-                          placeholder="请输入"
-                        ></el-input>
+                        <el-select v-model="increase_from.struct_type" placeholder="请选择">
+                          <el-option
+                            v-for="item in struct_type_list"
+                            :key="item.prop"
+                            :label="item.label"
+                            :value="item.prop"
+                          >
+                          </el-option>
+                        </el-select>
                       </div>
                     </div>
                     <div class="content-form-wrapper-column">
@@ -863,7 +868,8 @@ export default {
     }
 
     const fun_go_back = () => {
-      context.root.$router.push({ path: '/business-manage/project-regist' })
+      // context.root.$router.push({ path: '/business-manage/project-regist' })
+      context.root.$router.go(-1)
     }
 
     const fun_save_submit = () => {

@@ -314,7 +314,7 @@ export default {
 
     const fun_modify_engine = row => {
       const pid = contextData.expand_current_row.id
-      const type = contextData.expand_current_row.type
+      const type = contextData.expand_current_row.project_type
       context.root.$router.push({
         path: '/business-manage/project-regist/modify-engine',
         query: {

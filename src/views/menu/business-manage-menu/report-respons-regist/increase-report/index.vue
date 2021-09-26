@@ -23,7 +23,7 @@ export default {
   },
   setup(prop, context) {
     let contextData = reactive({
-      name: '添加工程信息',
+      name: '添加档案报送责任书',
       breadcrumb: [
         { path: '/business-manage', title: '业务管理' },
         { path: '/business-manage/report-respons-regist', title: '报送责任书登记' },

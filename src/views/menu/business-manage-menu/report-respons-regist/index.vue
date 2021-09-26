@@ -255,7 +255,7 @@ export default {
 
     const fun_modify_project = row => {
       context.root.$router.push({
-        path: '/business-manage/report-respons-regist/increase-report',
+        path: '/business-manage/report-respons-regist/modify-report',
         query: {
           id: row.id
         }
