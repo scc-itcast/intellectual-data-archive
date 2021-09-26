@@ -1,18 +1,37 @@
 <template>
-  <div id="sz-aside-tree">
+  <div id="sz-aside-tree" @mouseenter="fun_mouseenter" @mouseleave="fun_mouseleave">
     <div v-if="flexibletag" :style="aside_tree_obj.style">
       <div class="tree-aside" :style="increase_style_aside">
-        <div class="head">
-          <div class="list">项目列表</div>
-          <i
-            aria-hidden="true"
-            class="fa fa-iconfont guilian-icon"
-            @click="fun_aside_flexible"
-            style="height: 50px; line-height: 50px; text-align: center; margin-right: 10px"
-          ></i>
+        <div class="tree-aside--header global-between-center--flex">
+          <div class="tree-aside--text global--ml20">项目列表</div>
+          <div class="tree-aside--icon global-center-center--flex">
+            <i
+              @click="fun_aside_flexible"
+              class="fa fa-iconfont zhankaicaidan tree-aside-icon--color"
+            ></i>
+          </div>
         </div>
-        <div class="link-top"></div>
-        <el-tree :data="data" :props="defaultProps" @node-click="fun_handleNodeClick"></el-tree>
+        <div class="tree-aside--content">
+          <el-tree
+            :data="data"
+            node-key="id"
+            :default-expand-all="false"
+            :expand-on-click-node="true"
+            :props="defaultProps"
+            @node-click="fun_handleNodeClick"
+          >
+            <span class="custom-tree-node" slot-scope="{ node }">
+              <div class="global-custom-tree-node--title">
+                <div><i class="fa fa-iconfont" :class="fun_increase_icon(node)"></i></div>
+                <div class="custom-tree-node--label">
+                  <span>
+                    {{ node.label }}
+                  </span>
+                </div>
+              </div>
+            </span>
+          </el-tree>
+        </div>
       </div>
     </div>
 
@@ -21,36 +40,40 @@
       :style="increase_style_aside"
       @click="fun_aside_flexible"
       v-if="!flexibletag"
-    ></div>
+    >
+      <div class="hidden-tree-aside--icon global-center-center--flex">
+        <i
+          @click="fun_aside_flexible"
+          class="fa fa-iconfont zhankaicaidan tree-aside-icon--color"
+        ></i>
+      </div>
+    </div>
   </div>
 </template>
 <script>
-import FileStatus from '@/views/menu/file-bgf-menu/components-table-a/fileStatus.vue'
-import mixinAsideShowTrue from '@/views/menu/mixins/aside-show-true'
 import {
   onMounted,
   computed,
   reactive,
   watchEffect,
   toRefs,
-  onBeforeUnmount,
+  onBeforeUnmount
 } from '@vue/composition-api'
 import log from '@/libs/util.log'
 export default {
-  mixins: [mixinAsideShowTrue],
   props: ['aside_tree_obj'],
   setup(prop, context) {
     let contextData = reactive({
       flexibletag: true,
       increase_style_aside: {
-        height: document.body.clientHeight - 200 + 'px',
-        overflowY: 'scroll',
+        height: document.body.clientHeight - 222 + 'px',
+        overflowY: 'auto'
       },
       data: [],
       defaultProps: {
         children: 'children',
-        label: 'label',
-      },
+        label: 'label'
+      }
     })
     onMounted(async () => {
       // 调用方法, 方法里调用接口
@@ -67,14 +90,15 @@ export default {
 
     const onResize = () => {
       contextData.increase_style_aside = {
-        height: document.body.clientHeight - 200 + 'px',
-        overflowY: 'scroll',
+        height: document.body.clientHeight - 222 + 'px'
       }
     }
+
     const fun_aside_flexible = () => {
       contextData.flexibletag = !contextData.flexibletag
     }
-    const fun_handleNodeClick = (val) => {
+
+    const fun_handleNodeClick = val => {
       var regA = new RegExp('一级')
       var regB = new RegExp('二级')
       var regC = new RegExp('三级')
@@ -94,46 +118,71 @@ export default {
         console.log('四级表格')
       }
     }
+
+    const fun_increase_icon = node => {
+      const flag = node.data.children?.length > 0
+      return flag ? 'wenjianjiaweigongxiang' : 'wenjian'
+    }
+
+    const fun_mouseenter = () => {
+      // contextData.increase_style_aside.overflowY = 'scroll'
+    }
+
+    const fun_mouseleave = () => {
+      // contextData.increase_style_aside.overflowY = 'auto'
+    }
+
     return {
       contextData,
       ...toRefs(contextData),
       fun_aside_flexible,
       fun_handleNodeClick,
+      fun_increase_icon,
+      fun_mouseenter,
+      fun_mouseleave
     }
-  },
+  }
 }
 </script>
 <style lang="scss" scoped>
-// @import '~./index.scss';
 .tree-aside {
-  // width: 300px;
+  overflow-y: 'scroll';
+}
+.tree-aside {
   background: white;
   margin-right: 10px;
   border-radius: 6px;
-  .head {
-    display: flex;
-    justify-content: space-between;
-    .list {
-      height: 50px;
-      line-height: 50px;
-      text-align: center;
-      margin-left: 20px;
+  .tree-aside--header {
+    height: 59px;
+    border-bottom: 1px solid $color-border-1;
+    .tree-aside--text {
       font-size: 16px;
       font-family: SourceHanSansSC-Medium, SourceHanSansSC;
-      font-weight: 500;
-      color: #303133;
+      color: $color-text-main;
+    }
+    .tree-aside--icon {
+      width: 53px;
+      height: 100%;
+      border-left: 1px solid $color-border-1;
     }
   }
-  .link-top {
-    // width: 300px;
-    height: 2px;
-    background: #dcdfe6;
+  .tree-aside--content {
+    margin-top: 17px;
   }
 }
+.tree-aside-icon--color {
+  color: $color-primary-hover;
+}
+.tree-aside-icon--color:hover {
+  color: $color-primary;
+}
 .hidden-tree-aside {
-  width: 20px;
-  background: #1c9399;
+  width: 30px;
+  background: $color-bg-3;
   margin-right: 10px;
   border-radius: 6px;
+  .hidden-tree-aside--icon {
+    height: 30px;
+  }
 }
 </style>

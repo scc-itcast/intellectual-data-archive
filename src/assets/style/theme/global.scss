@@ -296,6 +296,15 @@
 /**
 * 自动树形table表格
 **/
+
+.global-custom-tree-node--title {
+  display: flex;
+  align-items: center;
+  .custom-tree-node--label {
+    margin-left: 13px;
+  }
+}
+
 .tree-grid--box {
   font-size: 14px;
   width: 100%;

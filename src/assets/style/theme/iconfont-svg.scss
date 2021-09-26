@@ -1,8 +1,8 @@
 @font-face {
-  font-family: 'iconfont-svg';  /* Project id 2800100 */
-  src: url('//at.alicdn.com/t/font_2800100_jnn3ao8ma9.woff2?t=1631153686631') format('woff2'),
-       url('//at.alicdn.com/t/font_2800100_jnn3ao8ma9.woff?t=1631153686631') format('woff'),
-       url('//at.alicdn.com/t/font_2800100_jnn3ao8ma9.ttf?t=1631153686631') format('truetype');
+  font-family: 'iconfont-svg'; /* Project id 2800100 */
+  src: url('//at.alicdn.com/t/font_2800100_oh9xsbtp2z.woff2?t=1632645677634') format('woff2'),
+    url('//at.alicdn.com/t/font_2800100_oh9xsbtp2z.woff?t=1632645677634') format('woff'),
+    url('//at.alicdn.com/t/font_2800100_oh9xsbtp2z.ttf?t=1632645677634') format('truetype');
 }
 
 .iconfont {
@@ -16,4 +16,10 @@
 .pluscircleyuanjiahao:before {
   font-family: 'iconfont-svg' !important;
   content: '\e6de';
+}
+
+.zhankaicaidan:before {
+  font-family: 'iconfont-svg' !important;
+  font-size: 14px;
+  content: '\e65b';
 }
