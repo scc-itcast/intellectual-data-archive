@@ -23,10 +23,10 @@
       </div>
     </template>
     <div style="display: flex">
-      <div style="width: 300px">
-        <sz-aside-tree> </sz-aside-tree>
-      </div>
-      <common title="房屋建筑工程项目级著录单" tag="1"></common>
+      <sz-aside-tree :aside_tree_obj="aside_tree_obj" @tableSelcet="fun_selectId"> </sz-aside-tree>
+      <tableA v-if="contextData.selectID === '1'" title="房屋建筑工程项目级著录单" tag="1"></tableA>
+      <tableB v-if="contextData.selectID === '2'" title="房屋建筑工程单位工程级著录单"></tableB>
+      <tableC v-if="contextData.selectID === '3'" title="工程(项目)案卷级著录单"></tableC>
     </div>
     <div v-if="advanced_query_obj_show">
       <sz-advanced-query
@@ -38,14 +38,19 @@
 </template>
 
 <script>
-import common from '@/views/menu/file-bgf-menu/components-table-a/table.vue'
+import tableA from '@/views/menu/file-bgf-menu/components-table-a/table.vue'
+import tableB from '@/views/menu/file-bgf-menu/components-table-a/table_B.vue'
+import tableC from '@/views/menu/file-bgf-menu/components-table-a/table_C.vue'
+
 import mixinAsideShowTrue from '@/views/menu/mixins/aside-show-true'
 import { onMounted, computed, reactive, watchEffect, toRefs } from '@vue/composition-api'
 export default {
   name: 'com-file-record',
   mixins: [mixinAsideShowTrue],
   components: {
-    common,
+    tableA,
+    tableB,
+    tableC,
   },
   setup(prop, context) {
     let tableList = reactive({
@@ -129,6 +134,69 @@ export default {
         type_query_value: 2,
         query_field_list: [],
       },
+      aside_tree_obj: {
+        tree_list: [
+          {
+            label: '一级 1',
+            children: [
+              {
+                label: '二级 1-1',
+                children: [
+                  {
+                    label: '三级 1-1-1',
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            label: '一级 2',
+            children: [
+              {
+                label: '二级 2-1',
+                children: [
+                  {
+                    label: '三级 2-1-1',
+                  },
+                ],
+              },
+              {
+                label: '二级 2-2',
+                children: [
+                  {
+                    label: '三级 2-2-1',
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            label: '一级 3',
+            children: [
+              {
+                label: '二级 3-1',
+                children: [
+                  {
+                    label: '三级 3-1-1',
+                  },
+                ],
+              },
+              {
+                label: '二级 3-2',
+                children: [
+                  {
+                    label: '三级 3-2-1',
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+        style: {
+          width: '300px',
+        },
+      },
+      selectID: '1',
     })
 
     onMounted(async () => {
@@ -149,7 +217,9 @@ export default {
     const fun_del = () => {}
     const fun_add = () => {}
     const fun_save = () => {}
-
+    const fun_selectId = (val) => {
+      contextData.selectID = val
+    }
     return {
       contextData,
       ...toRefs(contextData),
@@ -162,6 +232,7 @@ export default {
       fun_del,
       fun_add,
       fun_save,
+      fun_selectId,
     }
   },
 }

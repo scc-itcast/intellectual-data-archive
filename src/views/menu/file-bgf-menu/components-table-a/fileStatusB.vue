@@ -1,48 +1,33 @@
 <template>
   <div class="content-form-body global-between-center--flex">
+    <!-- 三级菜单档案状况 -->
     <div class="content-form-body-wrapper">
       <div class="content-form-body-item-column">
-        <div class="ceil-text">总卷数</div>
+        <div class="ceil-text">案卷序号</div>
         <div class="ceil-value"></div>
       </div>
       <div class="content-form-body-item-column">
-        <div class="ceil-text">录像带（盒）</div>
-        <div class="ceil-value"></div>
-      </div>
-      <div class="content-form-body-item-column">
-        <div class="ceil-text">录像带（盒）</div>
-        <div class="ceil-value"></div>
-      </div>
-      <div class="content-form-body-item-column">
-        <div class="ceil-text">声像组数</div>
+        <div class="ceil-text">录音带(盒)</div>
         <div class="ceil-value"></div>
       </div>
     </div>
     <div class="content-form-body-wrapper">
       <div class="content-form-body-item-column">
-        <div class="ceil-text">文字（张）</div>
+        <div class="ceil-text">文字(张)</div>
         <div class="ceil-value"></div>
       </div>
       <div class="content-form-body-item-column">
-        <div class="ceil-text">光盘（张）</div>
-        <div class="ceil-value"></div>
-      </div>
-      <div class="content-form-body-item-column">
-        <div class="ceil-text">声像文件数</div>
+        <div class="ceil-text">录像带(盒)</div>
         <div class="ceil-value"></div>
       </div>
     </div>
     <div class="content-form-body-wrapper">
       <div class="content-form-body-item-column">
-        <div class="ceil-text">图纸（张）</div>
+        <div class="ceil-text">图纸(张)</div>
         <div class="ceil-value"></div>
       </div>
       <div class="content-form-body-item-column">
-        <div class="ceil-text">电子文件容量 （GB）</div>
-        <div class="ceil-value"></div>
-      </div>
-      <div class="content-form-body-item-column">
-        <div class="ceil-text">照片张数</div>
+        <div class="ceil-text">光盘(盒)</div>
         <div class="ceil-value"></div>
       </div>
     </div>
@@ -61,10 +46,6 @@
         </div>
         <div class="ceil-value"></div>
       </div>
-      <div class="content-form-body-item-column">
-        <div class="ceil-text">照片张数</div>
-        <div class="ceil-value"></div>
-      </div>
     </div>
     <div class="content-form-body-wrapper">
       <div class="content-form-body-item-column">
@@ -81,10 +62,6 @@
         </div>
         <div class="ceil-value"></div>
       </div>
-      <div class="content-form-body-item-column">
-        <div class="ceil-text">音频个数</div>
-        <div class="ceil-value"></div>
-      </div>
     </div>
     <div class="content-form-body-wrapper">
       <div class="content-form-body-item-column">
@@ -95,10 +72,6 @@
         <div class="ceil-text">其它</div>
         <div class="ceil-value"></div>
       </div>
-      <div class="content-form-body-item-column">
-        <div class="ceil-text">声像文件容量 （GB）</div>
-        <div class="ceil-value"></div>
-      </div>
     </div>
   </div>
   
@@ -106,6 +79,7 @@
 <script>
 import { onMounted, computed, reactive, watchEffect, toRefs } from '@vue/composition-api'
 export default {
+  props: ['ishidden'],
   setup(prop, context) {},
 }
 </script>
@@ -114,17 +88,14 @@ export default {
 .content-form-body {
   border-left: 1px solid $color-border-1;
   box-sizing: border-box;
-  height: 162px;
   /* margin: 0 30px 27px 30px; */
   font-size: 14px;
   .content-form-body-wrapper {
     border-top: 1px solid $color-border-1;
     box-sizing: border-box;
     width: 16.667%;
-    height: 162px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
     .content-form-body-item-column {
       width: 100%;

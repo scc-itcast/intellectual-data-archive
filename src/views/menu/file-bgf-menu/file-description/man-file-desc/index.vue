@@ -29,10 +29,12 @@
       </div>
     </template>
     <div style="display: flex">
-      <div style="width: 300px">
-        <sz-aside-tree> </sz-aside-tree>
-      </div>
-      <common title="房屋建筑工程项目级著录单" tag="2"></common>
+      <sz-aside-tree :aside_tree_obj="aside_tree_obj" @tableSelcet="fun_selectId"> </sz-aside-tree>
+      <tableA v-if="contextData.selectId === '1'" title="房屋建筑工程项目级著录单" tag="2" disp="display: none"></tableA>
+      <tableB v-if="contextData.selectId === '2'" title="用地选址规划管理单位工程级著录单"></tableB>
+      <tableC v-if="contextData.selectId === '3'" title="工程(项目)文件级通用著录单"></tableC>
+      <tableD v-if="contextData.selectId === '4'" title="工程(项目)文件级通用著录单"></tableD>
+
     </div>
     <div v-if="advanced_query_obj_show">
       <sz-advanced-query
@@ -44,14 +46,22 @@
 </template>
 
 <script>
-import common from '@/views/menu/file-bgf-menu/components-table-a/table.vue'
+import tableA from '@/views/menu/file-bgf-menu/components-table-a/table.vue'
+import tableB from '@/views/menu/file-bgf-menu/components-table-a/table_A.vue'
+import tableC from '@/views/menu/file-bgf-menu/components-table-a/table_C.vue'
+import tableD from '@/views/menu/file-bgf-menu/components-table-a/table_D.vue'
+
+
 import mixinAsideShowTrue from '@/views/menu/mixins/aside-show-true'
 import { onMounted, computed, reactive, watchEffect, toRefs } from '@vue/composition-api'
 export default {
   name: 'man-file-desc',
   mixins: [mixinAsideShowTrue],
   components: {
-    common,
+    tableA,
+    tableB,
+    tableC,
+    tableD
   },
   setup(prop, context) {
     let tableList = reactive({
@@ -135,6 +145,74 @@ export default {
         query_field_list: [],
       },
       advanced_query_obj_show: false,
+      aside_tree_obj: {
+        tree_list: [
+          {
+            label: '一级 1',
+            children: [
+              {
+                label: '二级 1-1',
+                children: [
+                  {
+                    label: '三级 1-1-1',
+                    children:[
+                      {
+                        label:'四级 1-1-1-1'
+                      }
+                    ]
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            label: '一级 2',
+            children: [
+              {
+                label: '二级 2-1',
+                children: [
+                  {
+                    label: '三级 2-1-1',
+                  },
+                ],
+              },
+              {
+                label: '二级 2-2',
+                children: [
+                  {
+                    label: '三级 2-2-1',
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            label: '一级 3',
+            children: [
+              {
+                label: '二级 3-1',
+                children: [
+                  {
+                    label: '三级 3-1-1',
+                  },
+                ],
+              },
+              {
+                label: '二级 3-2',
+                children: [
+                  {
+                    label: '三级 3-2-1',
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+        style: {
+          width: '300px',
+        },
+      },
+      selectId:'1'
     })
 
     onMounted(async () => {
@@ -156,6 +234,10 @@ export default {
     const fun_save = () => {}
     const fun_chk_locked_pro = () => {}
     const fun_pro_lock = () => {}
+    const fun_selectId = (val) => {
+      contextData.selectId = val
+      console.log('接收selectId', contextData.selectId)
+    }
     return {
       contextData,
       ...toRefs(contextData),
@@ -170,6 +252,7 @@ export default {
       fun_save,
       fun_chk_locked_pro,
       fun_pro_lock,
+      fun_selectId,
     }
   },
 }

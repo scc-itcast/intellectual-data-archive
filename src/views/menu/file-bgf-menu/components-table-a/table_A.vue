@@ -1,4 +1,4 @@
-// 一级树形表格
+// 管理档案著录 二级树形表格
 <template>
   <div class="increase--box" :style="increase_style">
     <template>
@@ -25,7 +25,7 @@
                 <div class="global-content-form-item">
                   <div class="content-form-wrapper">
                     <div class="content-form-wrapper-column">
-                      <div class="ceil-text asterisk_before">项目名称</div>
+                      <div class="ceil-text asterisk_before">工程名称</div>
                       <div class="ceil-value">
                         <el-input
                           v-model="increase_from.project_name"
@@ -34,17 +34,12 @@
                       </div>
                     </div>
                     <div class="content-form-wrapper-column">
-                      <div class="ceil-text">项目地点</div>
+                      <div class="ceil-text">工程地点</div>
                       <div class="ceil-value">
                         <el-input
                           v-model="increase_from.project_adress"
                           placeholder="请输入"
                         ></el-input>
-                        <sz-button
-                          class="global--ml20"
-                          title="标注位置"
-                          @click="fun_label_position"
-                        ></sz-button>
                       </div>
                     </div>
                   </div>
@@ -58,32 +53,14 @@
                         ></el-input>
                       </div>
                     </div>
-                    <div class="content-form-wrapper-column">
-                      <div class="ceil-text asterisk_before">项目类型</div>
-                      <div class="ceil-value">
-                        <el-select
-                          v-model="increase_from.project_type"
-                          placeholder="请选择"
-                          @change="fun_project_type_change"
-                        >
-                          <el-option
-                            v-for="item in project_type_list"
-                            :key="item.prop"
-                            :label="item.label"
-                            :value="item.prop"
-                          >
-                          </el-option>
-                        </el-select>
-                      </div>
-                    </div>
                   </div>
-                  <div v-show="project_type_more_info" class="content-from-column-height">
+                  <div class="content-from-column-height">
                     <div class="content-form-wrapper">
                       <div class="content-form-wrapper-column">
-                        <div class="ceil-text">代建单位</div>
+                        <div class="ceil-text">用地单位</div>
                         <div class="ceil-value">
                           <el-input
-                            v-model="increase_from.d_construct_unit"
+                            v-model="increase_from.unitsusing_land"
                             placeholder="请输入"
                           ></el-input>
                         </div>
@@ -120,10 +97,10 @@
                     </div>
                     <div class="content-form-wrapper">
                       <div class="content-form-wrapper-column">
-                        <div class="ceil-text">设计单位</div>
+                        <div class="ceil-text">被征单位</div>
                         <div class="ceil-value">
                           <el-input
-                            v-model="increase_from.design_unit"
+                            v-model="increase_from.expropriation_unit"
                             placeholder="请输入"
                           ></el-input>
                         </div>
@@ -140,19 +117,19 @@
                     </div>
                     <div class="content-form-wrapper">
                       <div class="content-form-wrapper-column">
-                        <div class="ceil-text">监理单位</div>
+                        <div class="ceil-text">规划批准单位</div>
                         <div class="ceil-value">
                           <el-input
-                            v-model="increase_from.super_unit"
+                            v-model="increase_from.approval_unit"
                             placeholder="请输入"
                           ></el-input>
                         </div>
                       </div>
                       <div class="content-form-wrapper-column">
-                        <div class="ceil-text">国有土地使用证号</div>
+                        <div class="ceil-text">用地选址许可证号</div>
                         <div class="ceil-value">
                           <el-input
-                            v-model="increase_from.certificate_number"
+                            v-model="increase_from.landsite_license"
                             placeholder="请输入"
                           ></el-input>
                         </div>
@@ -160,19 +137,14 @@
                     </div>
                     <div class="content-form-wrapper">
                       <div class="content-form-wrapper-column">
-                        <div class="ceil-text">勘察单位</div>
-                        <div class="ceil-value">
-                          <el-input
-                            v-model="increase_from.pros_unit"
-                            placeholder="请输入"
-                          ></el-input>
-                        </div>
+                        <div class="ceil-text"></div>
+                        <div class="ceil-value"></div>
                       </div>
                       <div class="content-form-wrapper-column">
-                        <div class="ceil-text">施工许可证号</div>
+                        <div class="ceil-text">地形图号</div>
                         <div class="ceil-value">
                           <el-input
-                            v-model="increase_from.const_permit_number"
+                            v-model="increase_from.topographic_map"
                             placeholder="请输入"
                           ></el-input>
                         </div>
@@ -197,15 +169,6 @@
                   </div>
                 </div>
               </div>
-              <div class="" v-if="false">
-                <el-form-item label="备注" prop="remark">
-                  <el-input
-                    type="textarea"
-                    v-model="increase_from.remark"
-                    placeholder="请输入"
-                  ></el-input>
-                </el-form-item>
-              </div>
             </div>
           </div>
           <!-- 档案状况 -->
@@ -217,38 +180,8 @@
               <file-status></file-status>
             </div>
           </div>
-          <!-- 归档信息：竣工，入库 -->
-          <div class="content-the-archive increase-content--item" v-if="tag == 1">
-            <div class="content-title-btn" @click="fun_show_shrink('archive_information')">
-              <sz-show-shrink :show_shrink="show_shrink.archive_information" title="归档信息" />
-            </div>
-            <div
-              class="content--form"
-              :style="{ display: show_shrink_dispaly.archive_information }"
-            >
-              <div class="content-form-item-box">
-                <div class="global-content-form-item">
-                  <div class="content-form-wrapper">
-                    <div class="content-form-wrapper-column">
-                      <div class="ceil-text">项目档号</div>
-                      <div class="ceil-value">
-                        <el-input
-                          v-model="increase_from.project_no"
-                          placeholder="请输入"
-                        ></el-input>
-                      </div>
-                    </div>
-                    <div class="content-form-wrapper-column">
-                      <div class="ceil-text"></div>
-                      <div class="ceil-value"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
           <!-- 归档信息:管理 -->
-          <div class="content-the-archive increase-content--item" v-if="tag == 2">
+          <div class="content-the-archive increase-content--item">
             <div class="content-title-btn" @click="fun_show_shrink('archive_information2')">
               <sz-show-shrink :show_shrink="show_shrink.archive_information" title="归档信息" />
             </div>
@@ -260,7 +193,7 @@
                 <div class="global-content-form-item">
                   <div class="content-form-wrapper">
                     <div class="content-form-wrapper-column">
-                      <div class="ceil-text">项目档号</div>
+                      <div class="ceil-text">工程档号</div>
                       <div class="ceil-value">
                         <el-input
                           v-model="increase_from.project_no"
@@ -320,92 +253,21 @@
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- 业务信息：竣工，入库 -->
-          <div class="content-business-info increase-content--item" v-if="tag == 1">
-            <div class="content-title-btn" @click="fun_show_shrink('business_info')">
-              <sz-show-shrink :show_shrink="show_shrink.business_info" title="业务信息" />
-            </div>
-            <div class="content--form" :style="{ display: show_shrink_dispaly.business_info }">
-              <div class="content-form-item-box">
-                <div class="global-content-form-item">
                   <div class="content-form-wrapper">
                     <div class="content-form-wrapper-column">
-                      <div class="ceil-text">项目序号</div>
+                      <div class="ceil-text">归档人</div>
                       <div class="ceil-value">
                         <el-input
-                          v-model="increase_from.project_number"
+                          v-model="increase_from.archive_people"
                           placeholder="请输入"
                         ></el-input>
                       </div>
                     </div>
                     <div class="content-form-wrapper-column">
-                      <div class="ceil-text">进馆日期</div>
+                      <div class="ceil-text">归档日期</div>
                       <div class="ceil-value">
                         <el-date-picker
-                          v-model="increase_from.hen_date"
-                          type="datetime"
-                          format="yyyy-MM-dd HH:mm:ss"
-                          value-format="yyyy-MM-dd HH:mm:ss"
-                          :clearable="false"
-                        >
-                        </el-date-picker>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="content-form-wrapper">
-                    <div class="content-form-wrapper-column">
-                      <div class="ceil-text">移交单位</div>
-                      <div class="ceil-value">
-                        <el-input
-                          v-model="increase_from.handed_ove_unit"
-                          placeholder="请输入"
-                        ></el-input>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="content-form-wrapper">
-                    <div class="content-form-wrapper-column">
-                      <div class="ceil-text">录入人</div>
-                      <div class="ceil-value">
-                        <el-input
-                          v-model="increase_from.enter_pepole"
-                          placeholder="请输入"
-                        ></el-input>
-                      </div>
-                    </div>
-                    <div class="content-form-wrapper-column">
-                      <div class="ceil-text">录入时间</div>
-                      <div class="ceil-value">
-                        <el-date-picker
-                          v-model="increase_from.enter_time"
-                          type="datetime"
-                          format="yyyy-MM-dd HH:mm:ss"
-                          value-format="yyyy-MM-dd HH:mm:ss"
-                          :clearable="false"
-                        >
-                        </el-date-picker>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="content-form-wrapper" :style="disp" >
-                    <div class="content-form-wrapper-column">
-                      <div class="ceil-text">修改人</div>
-                      <div class="ceil-value">
-                        <el-input
-                          v-model="increase_from.upd_people"
-                          placeholder="请输入"
-                        ></el-input>
-                      </div>
-                    </div>
-                    <div class="content-form-wrapper-column">
-                      <div class="ceil-text">修改时间</div>
-                      <div class="ceil-value">
-                        <el-date-picker
-                          v-model="increase_from.upd_data"
+                          v-model="increase_from.filing_date"
                           type="datetime"
                           format="yyyy-MM-dd HH:mm:ss"
                           value-format="yyyy-MM-dd HH:mm:ss"
@@ -420,7 +282,7 @@
             </div>
           </div>
           <!-- 业务信息:管理 -->
-          <div class="content-business-info increase-content--item" v-if="tag == 2">
+          <div class="content-business-info increase-content--item">
             <div class="content-title-btn" @click="fun_show_shrink('business_info')">
               <sz-show-shrink :show_shrink="show_shrink.business_info" title="业务信息" />
             </div>
@@ -448,6 +310,40 @@
                           :clearable="false"
                         >
                         </el-date-picker>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="content-form-wrapper">
+                    <div class="content-form-wrapper-column">
+                      <div class="ceil-text">保管期限</div>
+                      <div class="ceil-value">
+                        <el-select v-model="increase_from.the_duration" placeholder="请选择">
+                          <el-option
+                            v-for="item in project_type_list"
+                            :key="item.prop"
+                            :label="item.label"
+                            :value="item.prop"
+                          >
+                          </el-option>
+                        </el-select>
+                      </div>
+                    </div>
+                    <div class="content-form-wrapper-column">
+                      <div class="ceil-text">密级</div>
+                      <div class="ceil-value">
+                        <el-select
+                          v-model="increase_from.classification"
+                          placeholder="请选择"
+                          @change="fun_project_type_change"
+                        >
+                          <el-option
+                            v-for="item in project_type_list"
+                            :key="item.prop"
+                            :label="item.label"
+                            :value="item.prop"
+                          >
+                          </el-option>
+                        </el-select>
                       </div>
                     </div>
                   </div>
@@ -510,7 +406,7 @@
 </template>
 
 <script>
-import FileStatus from '@/views/menu/file-bgf-menu/components-table-a/fileStatus.vue'
+import FileStatus from '@/views/menu/file-bgf-menu/components-table-a/fileStatusB.vue'
 import mixinAsideShowTrue from '@/views/menu/mixins/aside-show-true'
 import {
   onMounted,
@@ -522,13 +418,12 @@ import {
 } from '@vue/composition-api'
 import log from '@/libs/util.log'
 export default {
-  props: ['title', 'tag','disp'],
+  props: ['title'],
   name: 'accept-onfirmed',
   mixins: [mixinAsideShowTrue],
   components: {
     FileStatus,
   },
-  
   setup(prop, context) {
     let contextData = reactive({
       name: '接受确认',
@@ -561,36 +456,32 @@ export default {
         archive_information2: 'block',
       },
       increase_from: {
-        project_name: '', // 项目名称
-        project_adress: '', // 项目地点
+        project_name: '', // 工程名称
+        project_adress: '', // 工程地点
         construct_unit: '', // 建设单位
-        project_type: '', // 项目类型
-        d_construct_unit: '', // 代建单位
+        unitsusing_land: '', //用地单位
         project_appr_number: '', // 立项批准文号
         project_appr_unit: '', // 立项批准单位
         plan_permis_number: '', // 规划许可证号
-        design_unit: '', // 设计单位
+        expropriation_unit: '', //被征单位
         plan_permit_number: '', // 用地规划许可证号
-        super_unit: '', // 监理单位
-        certificate_number: '', // 国有土地使用证号
-        pros_unit: '', // 勘察单位
-        const_permit_number: '', // 施工许可证号
+        approval_unit: '', //规划批准单位
+        landsite_license: '', //用地选址许可证号
+        topographic_map: '', //地形图号
         remark: '', // 备注
-        project_number: '', // 项目序号
-        hen_date: '', // 进馆日期
-        handed_ove_unit: '', // 移交单位
-        enter_pepole: '', // 录入人
-        enter_time: '', // 录入时间
-        test_field: '', // 测试字段显示
-        upd_people: '', //修改人
-        upd_data: '', //修改时间
-        handed_unit: '', //移交单位
-        hen_date2: '', //进馆日期
-        enter_one: '', //录入人
-        entry_time: '', //录入时间
+        project_no: '', //工程档号
         classification_outline1: '', //分类大纲1
         classification_outline2: '', //分类大纲2
         classification_outline3: '', //分类大纲3
+        archive_people: '', //归档人
+        filing_date: '', //归档日期
+        handed_unit: '', //移交单位
+        hen_date2: '', //进馆日期
+        the_duration: '', //保管期限
+        classification: '', //密级
+        enter_one: '', //录入人
+        entry_time: '', //录入时间
+        test_field: '', // 测试字段显示
       },
       increase_rules: {
         project_name: [
@@ -639,7 +530,6 @@ export default {
       console.log(project_type)
       contextData.project_type_more_info = project_type == 'other_gene_class' ? false : true
     }
-    const fun_label_position = () => {}
     const fun_general_query = () => {
       console.log('chax')
     }
@@ -657,7 +547,6 @@ export default {
     }
     return {
       fun_project_type_change,
-      fun_label_position,
       contextData,
       ...toRefs(contextData),
       fun_value_change,

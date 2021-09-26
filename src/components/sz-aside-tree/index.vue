@@ -1,13 +1,21 @@
 <template>
   <div id="sz-aside-tree">
-    <div v-if="flexibletag" class="tree-aside" :style="increase_style_aside">
-      <div class="head">
-        <div class="list">项目列表</div>
-        <el-button @click="fun_aside_flexible">伸缩</el-button>
+    <div v-if="flexibletag" :style="aside_tree_obj.style">
+      <div class="tree-aside" :style="increase_style_aside">
+        <div class="head">
+          <div class="list">项目列表</div>
+          <i
+            aria-hidden="true"
+            class="fa fa-iconfont guilian-icon"
+            @click="fun_aside_flexible"
+            style="height: 50px; line-height: 50px; text-align: center; margin-right: 10px"
+          ></i>
+        </div>
+        <div class="link-top"></div>
+        <el-tree :data="data" :props="defaultProps" @node-click="fun_handleNodeClick"></el-tree>
       </div>
-      <div class="link-top"></div>
-      <el-tree :data="data" :props="defaultProps" @node-click="fun_handleNodeClick"></el-tree>
     </div>
+
     <div
       class="hidden-tree-aside"
       :style="increase_style_aside"
@@ -30,6 +38,7 @@ import {
 import log from '@/libs/util.log'
 export default {
   mixins: [mixinAsideShowTrue],
+  props: ['aside_tree_obj'],
   setup(prop, context) {
     let contextData = reactive({
       flexibletag: true,
@@ -37,63 +46,7 @@ export default {
         height: document.body.clientHeight - 200 + 'px',
         overflowY: 'scroll',
       },
-      data: [
-        {
-          label: '一级 1',
-          children: [
-            {
-              label: '二级 1-1',
-              children: [
-                {
-                  label: '三级 1-1-1',
-                },
-              ],
-            },
-          ],
-        },
-        {
-          label: '一级 2',
-          children: [
-            {
-              label: '二级 2-1',
-              children: [
-                {
-                  label: '三级 2-1-1',
-                },
-              ],
-            },
-            {
-              label: '二级 2-2',
-              children: [
-                {
-                  label: '三级 2-2-1',
-                },
-              ],
-            },
-          ],
-        },
-        {
-          label: '一级 3',
-          children: [
-            {
-              label: '二级 3-1',
-              children: [
-                {
-                  label: '三级 3-1-1',
-                },
-              ],
-            },
-            {
-              label: '二级 3-2',
-              children: [
-                {
-                  label: '三级 3-2-1',
-                },
-              ],
-            },
-          ],
-        },
-      ],
+      data: [],
       defaultProps: {
         children: 'children',
         label: 'label',
@@ -108,6 +61,10 @@ export default {
       window.removeEventListener('resize', onResize)
     })
 
+    watchEffect(() => {
+      contextData.data = prop.aside_tree_obj.tree_list
+    })
+
     const onResize = () => {
       contextData.increase_style_aside = {
         height: document.body.clientHeight - 200 + 'px',
@@ -118,14 +75,30 @@ export default {
       contextData.flexibletag = !contextData.flexibletag
     }
     const fun_handleNodeClick = (val) => {
-      console.log(val)
-      
+      var regA = new RegExp('一级')
+      var regB = new RegExp('二级')
+      var regC = new RegExp('三级')
+
+      // 一级表格，二级表格，三级表格
+      if (val.label.match(regA)) {
+        context.emit('tableSelcet', '1')
+        console.log('一级表格')
+      } else if (val.label.match(regB)) {
+        context.emit('tableSelcet', '2')
+        console.log('二级表格')
+      } else if (val.label.match(regC)) {
+        context.emit('tableSelcet', '3')
+        console.log('三级表格')
+      } else {
+        context.emit('tableSelcet', '4')
+        console.log('四级表格')
+      }
     }
     return {
       contextData,
       ...toRefs(contextData),
       fun_aside_flexible,
-      fun_handleNodeClick
+      fun_handleNodeClick,
     }
   },
 }
@@ -154,7 +127,7 @@ export default {
   .link-top {
     // width: 300px;
     height: 2px;
-    background: #DCDFE6;
+    background: #dcdfe6;
   }
 }
 .hidden-tree-aside {

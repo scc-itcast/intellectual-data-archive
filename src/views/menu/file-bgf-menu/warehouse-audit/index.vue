@@ -17,16 +17,72 @@
           <sz-button title="查询" type="primary" @click="fun_general_query"></sz-button>
           <sz-button class="global--ml20" title="高级查询" @click="fun_advanced_query"></sz-button>
           <sz-button class="global--ml20" title="保存" @click="fun_save"></sz-button>
-          <sz-button class="global--ml20" title="通过" @click="fun_through"></sz-button>
-          <sz-button class="global--ml20" title="不通过" @click="fun_unthrough"></sz-button>
+          <div
+            style="display: flex"
+            v-if="contextData.selectId === '1' || contextData.selectId === '2'"
+          >
+            <sz-button
+              class="global--ml20"
+              title="分配总登记号"
+              @click="fun_distribution_number"
+            ></sz-button>
+            <sz-button class="global--ml20" title="盒管理" @click="fun_case_management"></sz-button>
+            <sz-button class="global--ml20" title="通过" @click="fun_through"></sz-button>
+            <sz-button class="global--ml20" title="不通过" @click="fun_unthrough"></sz-button>
+          </div>
+
+          <div style="display: flex" v-if="contextData.selectId === '2'">
+            <sz-button class="global--ml20" title="添加案卷" @click="fun_add_files"></sz-button>
+            <sz-button
+              class="global--ml20"
+              title="分配总登记号"
+              @click="fun_distribution_number"
+            ></sz-button>
+            <sz-button
+              class="global--ml20"
+              title="清除总登记号"
+              @click="fun_removal_number"
+            ></sz-button>
+            <sz-button class="global--ml20" title="盒管理" @click="fun_case_management"></sz-button>
+          </div>
+          <div style="display: flex" v-if="contextData.selectId === '3'">
+            <sz-button class="global--ml20" title="删除" @click="fun_del"></sz-button>
+            <sz-button class="global--ml20" title="添加案卷" @click="fun_add_files"></sz-button>
+            <sz-button class="global--ml20" title="复制案卷" @click="fun_copy_files"></sz-button>
+            <sz-button class="global--ml20" title="添加文件" @click="fun_add_document"></sz-button>
+            <sz-button
+              class="global--ml20"
+              title="批量添加文件"
+              @click="fun_add_documents"
+            ></sz-button>
+          </div>
+          <div style="display: flex" v-if="contextData.selectId === '4'">
+            <sz-button class="global--ml20" title="删除" @click="fun_del"></sz-button>
+            <sz-button class="global--ml20" title="添加文件" @click="fun_add_document"></sz-button>
+            <sz-button
+              class="global--ml20"
+              title="批量添加文件"
+              @click="fun_add_documens"
+            ></sz-button>
+            <sz-button class="global--ml20" title="刷新" @click="fun_save"></sz-button>
+          </div>
         </div>
       </div>
     </template>
     <div style="display: flex">
-      <div style="width: 300px">
-        <sz-aside-tree> </sz-aside-tree>
+      <sz-aside-tree :aside_tree_obj="aside_tree_obj" @tableSelcet="fun_selectId"> </sz-aside-tree>
+      <tableA v-if="contextData.selectId === '1'" title="房屋建筑工程项目级著录单" tag="1"></tableA>
+      <tableB v-if="contextData.selectId === '2'" title="房屋建筑工程单位工程级著录单"></tableB>
+      <tableC v-if="contextData.selectId === '3'" title="工程(项目)案卷级著录单"></tableC>
+      <tableD v-if="contextData.selectId === '4'" title="工程(项目)文件级通用著录单"></tableD>
+      <div v-if="contextData.selectId === '5'" class="table-list--box">
+        <sz-table
+          :config="tableList"
+          @fun_db_click="fun_db_click"
+          @fun_child_db_click="fun_child_db_click"
+          @fun_expand_change="fun_expand_change"
+        ></sz-table>
       </div>
-      <commonc title="房屋建筑工程项目级著录单" tag="1"></commonc>
     </div>
     <div v-if="advanced_query_obj_show">
       <sz-advanced-query
@@ -38,14 +94,21 @@
 </template>
 
 <script>
-import commonc from '@/views/menu/file-bgf-menu/components-table-a/table.vue'
+import tableA from '@/views/menu/file-bgf-menu/components-table-a/table.vue'
+import tableB from './tables/second-table.vue'
+import tableC from '@/views/menu/file-bgf-menu/components-table-a/table_C.vue'
+import tableD from '@/views/menu/file-bgf-menu/components-table-a/table_D.vue'
+
 import mixinAsideShowTrue from '@/views/menu/mixins/aside-show-true'
 import { onMounted, computed, reactive, watchEffect, toRefs } from '@vue/composition-api'
 export default {
   name: 'warehouse-audit',
   mixins: [mixinAsideShowTrue],
   components: {
-    commonc,
+    tableA,
+    tableB,
+    tableC,
+    tableD,
   },
   setup(prop, context) {
     let tableList = reactive({
@@ -128,6 +191,75 @@ export default {
         query_field_list: [],
       },
       advanced_query_obj_show: false,
+      aside_tree_obj: {
+        tree_list: [
+          {
+            label: '一级 1',
+            children: [
+              {
+                label: '二级 1-1',
+                children: [
+                  {
+                    label: '三级 1-1-1',
+                    children: [
+                      {
+                        label: '四级 1-1-1-1',
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            label: '一级 2',
+            children: [
+              {
+                label: '二级 2-1',
+                children: [
+                  {
+                    label: '三级 2-1-1',
+                  },
+                ],
+              },
+              {
+                label: '二级 2-2',
+                children: [
+                  {
+                    label: '三级 2-2-1',
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            label: '一级 3',
+            children: [
+              {
+                label: '二级 3-1',
+                children: [
+                  {
+                    label: '三级 3-1-1',
+                  },
+                ],
+              },
+              {
+                label: '二级 3-2',
+                children: [
+                  {
+                    label: '三级 3-2-1',
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+        style: {
+          width: '300px',
+        },
+      },
+      selectId: '1',
+      delete_current_row: null,
     })
 
     onMounted(async () => {
@@ -148,6 +280,55 @@ export default {
     const fun_save = () => {}
     const fun_through = () => {}
     const fun_unthrough = () => {}
+    const fun_selectId = (val) => {
+      contextData.selectId = val
+      console.log('接收selectId:', contextData.selectId)
+    }
+    const fun_add_files = () => {
+      // 添加案卷-同三级表格
+      contextData.selectId = '3'
+    }
+    const fun_distribution_number = () => {}
+    const fun_removal_number = () => {}
+    const fun_case_management = () => {
+      // 盒管理table
+      contextData.selectId = '5'
+    }
+    const fun_del = () => {}
+    const fun_copy_files = () => {}
+    const fun_add_document = () => {}
+    const fun_add_documents = () => {}
+    const fun_modify_project = (row) => {
+      context.root.$router.push({
+        path: '/business-manage/project-regist/modify-project',
+        query: {
+          id: row.id,
+        },
+      })
+    }
+
+    const fun_db_click = (row) => {
+      fun_modify_project(row)
+    }
+    const fun_modify_engine = (row) => {
+      const pid = contextData.expand_current_row.id
+      const type = contextData.expand_current_row.type
+      context.root.$router.push({
+        path: '/business-manage/project-regist/modify-engine',
+        query: {
+          pid,
+          id: row.id,
+          type,
+        },
+      })
+    }
+
+    const fun_child_db_click = (row) => {
+      fun_modify_engine(row)
+    }
+        const fun_expand_change = row => {
+      contextData.expand_current_row = row
+    }
     return {
       contextData,
       ...toRefs(contextData),
@@ -160,6 +341,20 @@ export default {
       fun_save,
       fun_through,
       fun_unthrough,
+      fun_selectId,
+      fun_add_files,
+      fun_distribution_number,
+      fun_removal_number,
+      fun_case_management,
+      fun_del,
+      fun_copy_files,
+      fun_add_document,
+      fun_add_documents,
+      fun_db_click,
+      fun_modify_project,
+      fun_child_db_click,
+      fun_modify_engine,
+      fun_expand_change
     }
   },
 }

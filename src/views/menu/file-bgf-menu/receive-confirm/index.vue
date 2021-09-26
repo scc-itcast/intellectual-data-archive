@@ -21,10 +21,9 @@
       </div>
     </template>
     <div style="display: flex">
-      <div style="width: 300px">
-        <sz-aside-tree> </sz-aside-tree>
-      </div>
-      <commonc title="房屋建筑工程项目级著录单"></commonc>
+      <sz-aside-tree :aside_tree_obj="aside_tree_obj" @tableSelcet="fun_selectId" />
+      <tableA v-if="contextData.selectId === '1'" title="房屋建筑工程项目级著录单"  tag="1"> </tableA>
+      <tableB v-if="contextData.selectId === '2'" title="房屋建筑工程单位工程级著录单"></tableB>
     </div>
     <div v-if="advanced_query_obj_show">
       <sz-advanced-query
@@ -36,7 +35,9 @@
 </template>
 
 <script>
-import commonc from '@/views/menu/file-bgf-menu/components-table-a/table.vue'
+import tableA from '@/views/menu/file-bgf-menu/components-table-a/table.vue'
+import tableB from '@/views/menu/file-bgf-menu/components-table-a/table_B.vue'
+
 import mixinAsideShowTrue from '@/views/menu/mixins/aside-show-true'
 import {
   onMounted,
@@ -50,7 +51,8 @@ export default {
   name: 'receive-confirm',
   mixins: [mixinAsideShowTrue],
   components: {
-    commonc,
+    tableA,
+    tableB,
   },
   setup(prop, context) {
     let tableList = reactive({
@@ -117,7 +119,6 @@ export default {
         },
       ],
     })
-
     let contextData = reactive({
       name: '接收确认',
       breadcrumb: [
@@ -133,11 +134,40 @@ export default {
         query_field_list: [],
       },
       advanced_query_obj_show: false,
+      aside_tree_obj: {
+        tree_list: [
+          {
+            label: '一级 1',
+            children: [
+              {
+                label: '二级 1-1',
+                
+              },
+            ],
+          },
+          {
+            label: '一级 2',
+            children: [
+              {
+                label: '二级 2-1',
+                
+              },
+              {
+                label: '二级 2-2',
+               
+              },
+            ],
+          },
+        ],
+        style: {
+          width: '300px',
+        },
+      },
+      selectId:'1'
     })
     onMounted(async () => {
       // 调用方法, 方法里调用接口
     })
-
     onBeforeUnmount(() => {})
     const fun_value_change = () => {}
     const fun_general_query = () => {}
@@ -146,7 +176,10 @@ export default {
       contextData.advanced_query_obj.advanced_query_dialog = true
       contextData.advanced_query_obj_show = true
     }
-
+    const fun_selectId = (val) => {
+      contextData.selectId = val
+      console.log('接收selectId',contextData.selectId);
+    }
     const fun_advanced_query_close = () => {
       contextData.advanced_query_obj.advanced_query_dialog = false
       contextData.advanced_query_obj_show = false
@@ -160,6 +193,7 @@ export default {
       fun_general_query,
       fun_advanced_query,
       fun_advanced_query_close,
+      fun_selectId
     }
   },
 }
