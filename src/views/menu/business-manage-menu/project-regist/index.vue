@@ -278,7 +278,8 @@ export default {
       context.root.$router.push({
         path: '/business-manage/project-regist/modify-project',
         query: {
-          id: row.id
+          id: row.id,
+          type: row.project_type
         }
       })
     }

@@ -8,12 +8,19 @@ export default {
     }
   },
   // 侧边栏默认配置
+  tree: {
+    view_tree_list_toggle: {
+      list_view: true,
+      tree_view: false
+    },
+  },
+  // 侧边栏默认配置
   menu: {
     asideCollapse: false,
     asideTransition: true,
     asideShow: false,
     tabsShow: false,
-    toggleAside: false,
+    toggleAside: false
   },
   // 在读取持久化数据失败时默认页面
   page: {

@@ -364,13 +364,13 @@ export default {
         ]
       },
       show_shrink: {
-        basic_info: true,
+        basic_info: false,
         advice_notice: false,
         pre_accep_pro: false,
         custom_info: false
       },
       show_shrink_dispaly: {
-        basic_info: 'none',
+        basic_info: 'block',
         advice_notice: 'block',
         pre_accep_pro: 'block',
         custom_info: 'block'

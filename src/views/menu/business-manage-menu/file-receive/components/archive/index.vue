@@ -311,13 +311,9 @@ import {
   watchEffect,
   toRefs
 } from '@vue/composition-api'
-import FileStatus from '@/views/menu/business-manage-menu/file-receive/components/fileStatus.vue'
 export default {
   name: 'increase-project',
   mixins: [mixinAsideShowTrue],
-  components: {
-    FileStatus
-  },
   setup(prop, context) {
     let id = 1000
     let contextData = reactive({

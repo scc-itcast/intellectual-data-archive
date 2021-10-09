@@ -13,6 +13,7 @@
       row-class-name="table_th_class"
       header-row-class-name="table_th_header_class"
       @row-dblclick="fun_db_click"
+      @selection-change="fun_selection_change"
     >
       <el-table-column v-if="table_config.expand_input" type="expand" width="21.6">
         <template slot-scope="scope">
@@ -112,7 +113,7 @@
           </el-row>
         </template>
       </el-table-column>
-      <el-table-column v-if="table_config.checkbox" type="selection" width="20"> </el-table-column>
+      <el-table-column v-if="table_config.checkbox" type="selection" width="40"> </el-table-column>
       <el-table-column v-if="table_config.number" label="序号" type="index" width="80">
       </el-table-column>
       <template v-for="item in contextData.table_config.thead">
@@ -480,6 +481,10 @@ export default {
       context.emit('fun_child_db_click', row)
     }
 
+    const fun_selection_change = val => {
+      context.emit('fun_selection_change', val)
+    }
+
     return {
       contextData,
       ...toRefs(contextData),
@@ -490,7 +495,8 @@ export default {
       fun_expand_change,
       fun_db_click,
       fun_child_db_click,
-      fun_child_table_data
+      fun_child_table_data,
+      fun_selection_change
     }
   },
   beforeMount() {

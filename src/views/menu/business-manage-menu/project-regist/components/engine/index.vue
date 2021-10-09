@@ -584,7 +584,7 @@
             <sz-show-shrink :show_shrink="show_shrink.file_status" title="档案状况" />
           </div>
           <div class="content--form" :style="{ display: show_shrink_dispaly.file_status }">
-            <file-status></file-status>
+            <sz-file-status></sz-file-status>
           </div>
         </div>
         <div class="content-business-info increase-content--item">
@@ -708,13 +708,9 @@ import {
   watchEffect,
   toRefs
 } from '@vue/composition-api'
-import FileStatus from '@/views/menu/business-manage-menu/project-regist/components/fileStatus.vue'
 export default {
   name: 'increase-engine',
   mixins: [mixinAsideShowTrue],
-  components: {
-    FileStatus
-  },
   setup(prop, context) {
     let contextData = reactive({
       name: '添加工程信息',

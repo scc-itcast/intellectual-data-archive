@@ -1,5 +1,6 @@
 import { uniqueId } from 'lodash'
-import { menuAsideArray, menuHeaderList } from './setting'
+import store from '@/store/index'
+const { menuAsideArray, menuHeaderList }  = store.state.d2admin.menu
 
 /**
  * @description 给菜单数据补充上 path 字段

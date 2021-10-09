@@ -135,7 +135,7 @@
                       <sz-button
                         class="global--ml20"
                         title="取消关联"
-                        @click="fun_label_position"
+                        @click="fun_cancel_associated"
                       ></sz-button>
                     </div>
                   </div>
@@ -272,13 +272,9 @@ import {
   watchEffect,
   toRefs
 } from '@vue/composition-api'
-import FileStatus from '@/views/menu/business-manage-menu/project-regist/components/fileStatus.vue'
 export default {
   name: 'increase-project',
   mixins: [mixinAsideShowTrue],
-  components: {
-    FileStatus
-  },
   setup(prop, context) {
     let contextData = reactive({
       name: '添加项目信息',
@@ -368,6 +364,8 @@ export default {
 
     const fun_label_position = () => {}
 
+    const fun_cancel_associated = () => {}
+
     const fun_create_project = () => {}
 
     return {
@@ -377,6 +375,7 @@ export default {
       fun_save_submit,
       fun_show_shrink,
       fun_label_position,
+      fun_cancel_associated,
       fun_create_project
     }
   }

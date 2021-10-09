@@ -18,7 +18,7 @@
       </template>
       <div class="look-project-dialog--body" :style="look_project_style">
         <div class="look-project-body--box">
-          <div class="look-project-body--title">报送责任书</div>
+          <div class="look-project-body--title global--weight">报送责任书</div>
           <div class="look-project-body--content">
             <div class="content-form-item-box">
               <div class="global-content-form-item-look">

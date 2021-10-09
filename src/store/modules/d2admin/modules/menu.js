@@ -1,13 +1,16 @@
 // 设置文件
 import setting from '@/setting.js'
+import { menuAsideArray, menuHeaderList } from '@/menu/setting'
 
 export default {
   namespaced: true,
   state: {
     // 顶栏菜单
     header: [],
+    menuAsideArray,
     // 侧栏菜单
     aside: [],
+    menuHeaderList,
     // 侧边栏收缩
     asideCollapse: setting.menu.asideCollapse,
     // 侧边栏折叠动画

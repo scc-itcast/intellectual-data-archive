@@ -1,0 +1,32 @@
+.increase--box {
+  padding: 10px 20px;
+  font-size: 16px;
+  .increase--title {
+    .increase-title--text {
+      text-align: center;
+      line-height: 46px;
+    }
+  }
+  .increase-content--box {
+    margin-top: 27px;
+    .increase-content--item {
+      .content-title-btn {
+        margin-bottom: 27px;
+        cursor: pointer;
+      }
+      .content-width-percent {
+        width: 88.7%;
+      }
+      .content--form {
+        transition: all 1s;
+        margin-bottom: 27px;
+        .content-from-column-height {
+          .position_left,
+          .position_right {
+            height: 274px;
+          }
+        }
+      }
+    }
+  }
+}

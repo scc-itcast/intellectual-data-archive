@@ -35,8 +35,16 @@
   margin-left: 30px;
 }
 
+.global--mr10 {
+  margin-right: 10px;
+}
+
 .global--mr20 {
   margin-right: 20px;
+}
+
+.global--mb10 {
+  margin-bottom: 10px;
 }
 
 .global-button--margin {
@@ -44,19 +52,63 @@
 }
 
 /**
-* margin
+* padding
 **/
 
+.global--plr10 {
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.global--plr20 {
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.global--plr30 {
+  padding: 0 30px;
+  box-sizing: border-box;
+}
+
 .global--plr40 {
-  margin: 0 40px;
+  padding: 0 40px;
+  box-sizing: border-box;
 }
 
 .global--plr60 {
-  margin: 0 60px;
+  padding: 0 60px;
+  box-sizing: border-box;
 }
 
 .global--plr115 {
   padding: 0 115px;
+  box-sizing: border-box;
+}
+
+.global--p20 {
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.global--p30 {
+  padding: 30px;
+  box-sizing: border-box;
+}
+
+/**
+* font-weight
+**/
+
+.global--weight {
+  font-weight: 700;
+}
+
+/**
+* color
+**/
+
+.global--color-text-main {
+  color: $color-text-main;
 }
 
 /**
@@ -165,6 +217,13 @@
   align-items: flex-end;
 }
 
+.global-column-between-start--flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
 /**
 * height
 **/
@@ -188,6 +247,34 @@
   content: '*';
   color: $color-danger;
   margin-left: 3px;
+}
+
+/**
+* 查询的样式
+**/
+
+.query--box {
+  .query-list--box {
+    > div {
+      margin-left: 30px;
+    }
+  }
+}
+
+/**
+* table上面按钮样式
+**/
+
+.table-conditions--box {
+  padding: 0 30px;
+}
+
+/**
+* table样式
+**/
+
+.table-list--box {
+  margin-top: 22px;
 }
 
 /**
@@ -237,6 +324,16 @@
       }
       .ceil-value {
         flex: 1;
+        justify-content: flex-start;
+      }
+      .ceil-value-item {
+        justify-content: space-between;
+        > div {
+          background-color: $color-bg-2;
+          border: 1px solid $color-border-1;
+          height: 40px;
+          width: 12%;
+        }
       }
     }
     .content-form-wrapper-column-emty {
@@ -351,17 +448,7 @@
         align-items: center;
         justify-content: space-between;
         padding-right: 8px;
-        .custom-tree-node--title {
-          flex: 1;
-          display: flex;
-          align-items: center;
-          .custom-tree-node--label {
-            margin-left: 13px;
-            width: -moz-calc(100% - 30px);
-            width: -webkit-calc(100% - 30px);
-            width: calc(100% - 30px);
-          }
-        }
+
         .custom-tree-node--item {
           min-width: 600px;
           max-width: 1000px;
@@ -386,7 +473,6 @@
           }
         }
         .custom-tree-node--operat {
-          // width: 200px;
           flex: 1;
         }
       }
@@ -396,4 +482,20 @@
       height: 40px;
     }
   }
+}
+.custom-tree-node--title {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  .custom-tree-node--label {
+    margin-left: 13px;
+    width: -moz-calc(100% - 30px);
+    width: -webkit-calc(100% - 30px);
+    width: calc(100% - 30px);
+  }
+}
+
+
+.global-increase--box {
+  overflow-y: scroll;
 }

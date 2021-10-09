@@ -6,7 +6,7 @@
     </div>
     <div class="content--btn">
       <template v-if="increase">
-        <div @click.stop="fun_increase_click" class="content-btn--increase global--mr20">增加</div>
+        <div @click.stop="fun_increase_click" class="content-btn--increase global--mr20">{{btn_text || '增加'}}</div>
       </template>
       <template>
         <div v-if="show_shrink" class="content-btn--item">展开</div>
@@ -18,7 +18,7 @@
 <script>
 import { onMounted, computed, reactive, watchEffect, toRefs } from '@vue/composition-api'
 export default {
-  props: ['title', 'show_shrink', 'increase'],
+  props: ['title', 'show_shrink', 'increase', 'btn_text'],
   setup(prop, context) {
     const fun_increase_click = () => {
       context.emit('fun_increase_click')

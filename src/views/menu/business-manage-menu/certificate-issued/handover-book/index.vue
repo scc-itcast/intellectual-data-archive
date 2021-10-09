@@ -89,6 +89,7 @@ export default {
       number: true,
       expand: true,
       expand_handover: true,
+      table_height: 375,
       url: '',
       data: {
         pageIndex: 1,

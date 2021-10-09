@@ -43,16 +43,34 @@ export default {
       meta: { ...meta, title: '库存档案修改-项目管理' }
     },
     {
+      path: 'inven-file-modi/pro-manage/modify-project',
+      name: 'file-bgf-inven-file-modi-pro-manage-modify-project',
+      component: _import('menu/file-bgf-menu/inven-file-modi/pro-manage/modify-project/index.vue'),
+      meta: { ...meta, title: '库存档案修改-项目管理-编辑' }
+    },
+    {
       path: 'inven-file-modi/eng-manage',
       name: 'file-bgf-inven-file-modi-eng-manage',
       component: _import('menu/file-bgf-menu/inven-file-modi/eng-manage/index.vue'),
       meta: { ...meta, title: '库存档案修改-工程管理' }
     },
     {
+      path: 'inven-file-modi/eng-manage/modify-engine',
+      name: 'file-bgf-inven-file-modi-eng-manage-modify-engine',
+      component: _import('menu/file-bgf-menu/inven-file-modi/eng-manage/modify-engine/index.vue'),
+      meta: { ...meta, title: '库存档案修改-工程管理-编辑' }
+    },
+    {
       path: 'inven-file-modi/book-manage',
       name: 'file-bgf-inven-file-modi-book-manage',
       component: _import('menu/file-bgf-menu/inven-file-modi/book-manage/index.vue'),
       meta: { ...meta, title: '库存档案修改-案卷管理' }
+    },
+    {
+      path: 'inven-file-modi/book-manage/modify-book',
+      name: 'file-bgf-inven-file-modi-book-manage-modify-book',
+      component: _import('menu/file-bgf-menu/inven-file-modi/book-manage/modify-book/index.vue'),
+      meta: { ...meta, title: '库存档案修改-案卷管理-编辑' }
     },
     {
       path: 'data-adjust',
@@ -73,10 +91,34 @@ export default {
       meta: { ...meta, title: '档案盒管理' }
     },
     {
+      path: 'file-box-manage/increase-files-box',
+      name: 'file-bgf-file-box-manage-increase-files-box',
+      component: _import('menu/file-bgf-menu/file-box-manage/increase-files-box/index.vue'),
+      meta: { ...meta, title: '档案盒管理-新增' }
+    },
+    {
+      path: 'file-box-manage/modify-files-box',
+      name: 'file-bgf-file-box-manage-modify-files-box',
+      component: _import('menu/file-bgf-menu/file-box-manage/modify-files-box/index.vue'),
+      meta: { ...meta, title: '档案盒管理-修改' }
+    },
+    {
       path: 'cd-manage',
       name: 'file-bgf-cd-manage',
       component: _import('menu/file-bgf-menu/cd-manage/index.vue'),
       meta: { ...meta, title: '光盘管理' }
     },
+    {
+      path: 'cd-manage/increase-cd-regist',
+      name: 'file-bgf-cd-manage-increase-cd-regist',
+      component: _import('menu/file-bgf-menu/cd-manage/increase-cd-regist/index.vue'),
+      meta: { ...meta, title: '光盘管理-添加' }
+    },
+    {
+      path: 'cd-manage/modify-cd-regist',
+      name: 'file-bgf-cd-manage-modify-cd-regist',
+      component: _import('menu/file-bgf-menu/cd-manage/modify-cd-regist/index.vue'),
+      meta: { ...meta, title: '光盘管理-修改' }
+    }
   ]
 }
