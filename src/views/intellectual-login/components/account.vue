@@ -83,6 +83,7 @@ export default {
           // 登录
           // 注意 这里的演示没有传验证码
           // 具体需要传递的数据请自行修改代码
+          this.$router.replace(this.$route.query.redirect || '/')
           this.login({
             login: this.formLogin.login,
             password: this.formLogin.password

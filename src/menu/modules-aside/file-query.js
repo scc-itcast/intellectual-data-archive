@@ -10,7 +10,7 @@ export default {
       children: [
         { path: '/file-query/tradition-query/pro-query', title: '项目查询' },
         { path: '/file-query/tradition-query/eng-query', title: '工程查询' },
-        { path: '/file-query/tradition-query/book-query', title: '案卷查询' },
+        { path: '/file-query/tradition-query/case-query', title: '案卷查询' },
         { path: '/file-query/tradition-query/file-query', title: '文件查询' }
       ]
     },

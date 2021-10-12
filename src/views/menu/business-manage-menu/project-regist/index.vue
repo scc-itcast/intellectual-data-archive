@@ -100,6 +100,7 @@ export default {
       // checkbox: true,
       number: true,
       expand: true,
+      pagination_children: true,
       url: '',
       data: {
         pageIndex: 1,

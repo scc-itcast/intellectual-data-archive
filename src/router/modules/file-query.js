@@ -25,9 +25,9 @@ export default {
       meta: { ...meta, title: '传统查询-工程查询' }
     },
     {
-      path: 'tradition-query/book-query',
-      name: 'file-query-tradition-query-book-query',
-      component: _import('menu/file-query-menu/tradition-query/book-query/index.vue'),
+      path: 'tradition-query/case-query',
+      name: 'file-query-tradition-query-case-query',
+      component: _import('menu/file-query-menu/tradition-query/case-query/index.vue'),
       meta: { ...meta, title: '传统查询-案卷查询' }
     },
     {

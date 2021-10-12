@@ -20,22 +20,22 @@
         <el-tabs v-model="active_name" @tab-click="fun_tab_click">
           <el-tab-pane label="项目信息" name="project_info">
             <div class="look-project-dialog--body global--plr115" :style="look_project_style">
-              <project-info></project-info>
+              <sz-project-look />
             </div>
           </el-tab-pane>
           <el-tab-pane label="工程信息" name="engine_info">
             <div class="look-project-dialog--body global--plr115" :style="look_project_style">
-              <engine-info></engine-info>
+              <sz-engine-look />
             </div>
           </el-tab-pane>
           <el-tab-pane label="案卷信息" name="case_file_info">
             <div class="look-project-dialog--body global--plr115" :style="look_project_style">
-              <case-file-info></case-file-info>
+              <sz-case-file-look />
             </div>
           </el-tab-pane>
           <el-tab-pane label="文件信息" name="file_generic_info">
             <div class="look-project-dialog--body global--plr115" :style="look_project_style">
-              <file-generic-info></file-generic-info>
+              <sz-file-generic-look />
             </div>
           </el-tab-pane>
         </el-tabs>

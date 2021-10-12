@@ -40,7 +40,7 @@
               class="el-tree--highlight-current"
               :data="tree_list"
               node-key="id"
-              :default-expand-all="false"
+              :default-expand-all="default_expand_all"
               :expand-on-click-node="true"
               :props="defaultProps"
               @node-click="fun_node_click"
@@ -131,12 +131,14 @@ export default {
         label: 'label'
       },
       default_expanded_key: [],
+      default_expand_all: false,
       select_item: '',
       page_index: 0,
       prev_disabled: true,
       next_disabled: true,
       touchtime: new Date().getTime()
     })
+
     onMounted(async () => {
       // 调用方法, 方法里调用接口
       window.addEventListener('resize', onResize)
@@ -145,6 +147,13 @@ export default {
     onBeforeUnmount(() => {
       window.removeEventListener('resize', onResize)
     })
+
+    const onResize = () => {
+      contextData.increase_style_aside = {
+        height: document.body.clientHeight - 222 + 'px',
+        overflowY: 'auto'
+      }
+    }
 
     watchEffect(() => {
       contextData.tree_list = prop.aside_tree_obj.tree_list
@@ -158,13 +167,6 @@ export default {
       contextData.select_item = prop.aside_tree_obj.select_item
       contextData.page_index = prop.aside_tree_obj.page_index
     })
-
-    const onResize = () => {
-      contextData.increase_style_aside = {
-        height: document.body.clientHeight - 222 + 'px',
-        overflowY: 'auto'
-      }
-    }
 
     const fun_aside_toggle = () => {
       contextData.aside_toggle = !contextData.aside_toggle
@@ -180,6 +182,9 @@ export default {
     }
 
     const fun_increase_icon = node => {
+      if (prop.aside_tree_obj.tree_type === 'gis_map') {
+        return 'guilian-icon'
+      }
       const flag = node.data.children?.length > 0
       return flag ? 'wenjianjiaweigongxiang' : 'wenjian'
     }
@@ -188,6 +193,13 @@ export default {
       context.refs.tree_ref.setCurrentKey(node.id)
       contextData.default_expanded_key = []
       contextData.default_expanded_key.push(node.id)
+    }
+
+    const fun_expand_all = bool => {
+      var nodes = context.refs.tree_ref.store.nodesMap
+      for (var i in nodes) {
+        nodes[i].expanded = bool
+      }
     }
 
     const fun_select_list = val => {
@@ -215,6 +227,7 @@ export default {
       fun_mouseenter,
       fun_mouseleave,
       fun_default_expanded_key,
+      fun_expand_all,
       fun_select_list,
       fun_page_change
     }

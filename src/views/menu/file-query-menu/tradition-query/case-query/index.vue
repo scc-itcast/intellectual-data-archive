@@ -97,9 +97,9 @@
 <script>
 import mixinAsideShowTrue from '@/views/menu/mixins/aside-show-true'
 import { onMounted, computed, reactive, watchEffect, toRefs } from '@vue/composition-api'
-import LookProject from '@/views/menu/file-query-menu/tradition-query/eng-query/components/look_project.vue'
+import LookProject from '@/views/menu/file-query-menu/tradition-query/case-query/components/look_project.vue'
 export default {
-  name: 'eng-query',
+  name: 'case-query',
   components: {
     LookProject
   },
@@ -129,22 +129,26 @@ export default {
         //     return `<span style="color: #1C9399">${row[prop]}</span>`
         //   }
         // },
-        { label: '工程档号', prop: 'eng_file_num', checked: true, width: '200' },
-        { label: '工程名称', prop: 'engin_name', checked: true, disabled: true, width: '200' },
-        { label: '工程地点', prop: 'engin_adress', checked: true, width: '200' },
-        { label: '工程类型', prop: 'project_type', checked: true, width: '200' },
-        { label: '工程状态', prop: 'engin_status', checked: true, width: '100' },
-        { label: '录入人', prop: 'enter_pepole', checked: false, width: '100' },
+        { label: '总登记号', prop: 'total_registration', checked: true, width: '80' },
+        { label: '案卷题名', prop: 'books_title', checked: true, width: '200' },
+        { label: '档号', prop: 'file_num', checked: true, width: '100' },
+        { label: '存放地址', prop: 'store_address', checked: true, width: '100' },
+        { label: '保管期限', prop: 'safe_duration', checked: true, width: '80' },
+        { label: '密级', prop: 'security_class', checked: true, width: '80' },
+        { label: '起始时间', prop: 'prepare_date_first', checked: true, width: '150' },
+        { label: '终止时间', prop: 'prepare_date_second', checked: true, width: '150' },
+        { label: '编制单位', prop: 'compile_unit', checked: true, width: '100' },
+        { label: '借阅状态', prop: 'borrow_status', checked: false, width: '80' },
+        { label: '旧档号', prop: 'old_no', checked: false, width: '80' },
+        { label: '责任者', prop: 'res_people', checked: false, width: '80' },
+        { label: '立卷人', prop: 'establish_person', checked: false, width: '80' },
+        { label: '立卷日期', prop: 'establish_date', checked: false, width: '150' },
+        { label: '审核人', prop: 'reviewer', checked: false, width: '80' },
+        { label: '审核日期', prop: 'reviewer_date', checked: false, width: '80' },
+        { label: '主题词', prop: 'subject_headings', checked: false, width: '150' },
+        { label: '录入人', prop: 'enter_pepole', checked: false, width: '80' },
         { label: '录入时间', prop: 'enter_time', checked: false, width: '150' },
-        { label: '建设单位', prop: 'construct_unit', checked: false, width: '200' },
-        { label: '工程序号', prop: 'project_number', checked: false, width: '200' },
-        { label: '进馆日期', prop: 'hen_date', checked: false, width: '200' },
-        { label: '移交单位', prop: 'handed_ove_unit', checked: false, width: '200' },
-        { label: '保管期限', prop: 'safe_duration', checked: false, width: '200' },
-        { label: '密级', prop: 'security_class', checked: false, width: '200' },
-        { label: '归档人', prop: 'archive_people', checked: false, width: '200' },
-        { label: '归档日期', prop: 'archive_date', checked: false, width: '200' },
-        { label: '备注', prop: 'remark', checked: false, width: '200' },
+        { label: '备注', prop: 'remark', checked: true, width: '80' },
         {
           label: '操作',
           prop: 'operation',
@@ -165,15 +169,16 @@ export default {
     })
 
     let contextData = reactive({
-      name: '工程查询',
+      name: '案卷查询',
       breadcrumb: [
         { path: '/file-query', title: '档案查询' },
-        { path: '/file-query/tradition-query/eng-query', title: '传统查询' },
-        { path: '/file-query/tradition-query/eng-query', title: '工程查询' }
+        { path: '/file-query/tradition-query/case-query', title: '传统查询' },
+        { path: '/file-query/tradition-query/case-query', title: '案卷查询' }
       ],
       queryList: {
-        project_name: { title: '工程名称', value: '' },
-        construct_unit: { title: '建设单位', value: '' }
+        books_title: { title: '案卷题名', value: '' },
+        file_num: { title: '档号', value: '' },
+        total_registration: { title: '总登记号', value: '' }
       },
       button_list: {
         // print_cover: { title: '打印封面', value: '' },
@@ -202,6 +207,7 @@ export default {
       delete_current_row: null,
       multiple_selection: []
     })
+    
     onMounted(async () => {
       // 调用方法, 方法里调用接口
     })

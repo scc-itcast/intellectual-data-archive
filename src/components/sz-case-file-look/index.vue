@@ -22,19 +22,56 @@
               <div class="global-content-form-item-look">
                 <div class="content-form-wrapper">
                   <div class="content-form-wrapper-column">
-                    <div class="ceil-text">所属案卷</div>
+                    <div class="ceil-text">档号</div>
                     <div class="ceil-value">
-                      {{ increase_from.belong_book }}
+                      {{ increase_from.file_num }}
+                    </div>
+                  </div>
+                  <div class="content-form-wrapper-column">
+                    <div class="ceil-text">总登记号</div>
+                    <div class="ceil-value">
+                      {{ increase_from.total_registration }}
                     </div>
                   </div>
                 </div>
                 <div class="content-form-wrapper">
                   <div class="content-form-wrapper-column">
-                    <div class="ceil-text">文件档号</div>
+                    <div class="ceil-text">旧档号</div>
                     <div class="ceil-value">
-                      {{ increase_from.document_no }}
+                      {{ increase_from.old_no }}
                     </div>
                   </div>
+                  <div class="content-form-wrapper-column">
+                    <div class="ceil-text">存放地址</div>
+                    <div class="ceil-value global-between-center--flex ceil-value-item">
+                      <span>{{ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' }}</span>
+                      <span>库</span>
+                      <span>{{ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' }}</span>
+                      <span>列</span>
+                      <span>{{ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' }}</span>
+                      <span>节(柜)</span>
+                      <span>{{ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' }}</span>
+                      <span>层</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="content-form-wrapper">
+                  <div class="content-form-wrapper-column">
+                    <div class="ceil-text">所属工程</div>
+                    <div class="ceil-value">
+                      {{ increase_from.subordinate_project }}
+                    </div>
+                  </div>
+                </div>
+                <div class="content-form-wrapper">
+                  <div class="content-form-wrapper-column">
+                    <div class="ceil-text asterisk_before">案卷题名</div>
+                    <div class="ceil-value">
+                      {{ increase_from.books_title }}
+                    </div>
+                  </div>
+                </div>
+                <div class="content-form-wrapper">
                   <div class="content-form-wrapper-column">
                     <div class="ceil-text">主题词</div>
                     <div class="ceil-value">
@@ -44,9 +81,9 @@
                 </div>
                 <div class="content-form-wrapper">
                   <div class="content-form-wrapper-column">
-                    <div class="ceil-text asterisk_before">文件题名</div>
+                    <div class="ceil-text">分类大纲</div>
                     <div class="ceil-value">
-                      {{ increase_from.document_title }}
+                      {{ increase_from.class_outline }}
                     </div>
                   </div>
                 </div>
@@ -58,9 +95,9 @@
                     </div>
                   </div>
                   <div class="content-form-wrapper-column">
-                    <div class="ceil-text">文图号</div>
+                    <div class="ceil-text">编制单位</div>
                     <div class="ceil-value">
-                      {{ increase_from.article_draw }}
+                      {{ increase_from.compile_unit }}
                     </div>
                   </div>
                 </div>
@@ -80,57 +117,57 @@
                 </div>
                 <div class="content-form-wrapper">
                   <div class="content-form-wrapper-column">
-                    <div class="ceil-text">起始日期</div>
+                    <div class="ceil-text">编制日期</div>
                     <div class="ceil-value">
-                      {{ increase_from.start_date }}
+                      {{ increase_from.prepare_date_first }}
                     </div>
                   </div>
                   <div class="content-form-wrapper-column">
-                    <div class="ceil-text">终止日期</div>
+                    <div class="ceil-text">至</div>
                     <div class="ceil-value">
-                      {{ increase_from.end_date }}
-                    </div>
-                  </div>
-                </div>
-                <div class="content-form-wrapper">
-                  <div class="content-form-wrapper-column">
-                    <div class="ceil-text asterisk_before">载体类型</div>
-                    <div class="ceil-value">
-                      {{ increase_from.carr_type }}
-                    </div>
-                  </div>
-                  <div class="content-form-wrapper-column">
-                    <div class="ceil-text asterisk_before">数量</div>
-                    <div class="ceil-value">
-                      {{ increase_from.number }}
+                      {{ increase_from.prepare_date_second }}
                     </div>
                   </div>
                 </div>
                 <div class="content-form-wrapper">
                   <div class="content-form-wrapper-column">
-                    <div class="ceil-text">规格</div>
+                    <div class="ceil-text">立卷人</div>
                     <div class="ceil-value">
-                      {{ increase_from.specific }}
+                      {{ increase_from.engin_adress }}
                     </div>
                   </div>
                   <div class="content-form-wrapper-column">
-                    <div class="ceil-text">提要</div>
+                    <div class="ceil-text">立卷日期</div>
                     <div class="ceil-value">
-                      {{ increase_from.feed_summary }}
+                      {{ increase_from.archive_date }}
                     </div>
                   </div>
                 </div>
                 <div class="content-form-wrapper">
                   <div class="content-form-wrapper-column">
-                    <div class="ceil-text">文种</div>
+                    <div class="ceil-text">审核人</div>
                     <div class="ceil-value">
-                      {{ increase_from.record_type }}
+                      {{ increase_from.engin_adress }}
                     </div>
                   </div>
                   <div class="content-form-wrapper-column">
-                    <div class="ceil-text">稿本</div>
+                    <div class="ceil-text">审核日期</div>
                     <div class="ceil-value">
-                      {{ increase_from.manuscript }}
+                      {{ increase_from.archive_date }}
+                    </div>
+                  </div>
+                </div>
+                <div class="content-form-wrapper">
+                  <div class="content-form-wrapper-column">
+                    <div class="ceil-text">归档人</div>
+                    <div class="ceil-value">
+                      {{ increase_from.engin_adress }}
+                    </div>
+                  </div>
+                  <div class="content-form-wrapper-column">
+                    <div class="ceil-text">归档时间</div>
+                    <div class="ceil-value">
+                      {{ increase_from.archive_date }}
                     </div>
                   </div>
                 </div>
@@ -175,11 +212,11 @@
           </div>
         </div>
         <div class="content-file-status increase-content--item">
-          <div class="content-title-btn" @click="fun_show_shrink('electric_file')">
-            <sz-show-shrink :show_shrink="show_shrink.electric_file" title="电子文件" />
+          <div class="content-title-btn" @click="fun_show_shrink('file_status')">
+            <sz-show-shrink :show_shrink="show_shrink.file_status" title="档案状况" />
           </div>
-          <div class="content--form" :style="{ display: show_shrink_dispaly.electric_file }">
-            <sz-table class="table-padding-left30" :config="table_electric_file_list"></sz-table>
+          <div class="content--form" :style="{ display: show_shrink_dispaly.file_status }">
+            <sz-case-file-status file_status_obj="null" />
           </div>
         </div>
         <div class="content-custom-info increase-content--item">
@@ -225,55 +262,38 @@ import {
 export default {
   name: 'increase-project',
   mixins: [mixinAsideShowTrue],
+  props: ['tree_item'],
   setup(prop, context) {
-    let table_electric_file_list = reactive({
-      search_form: false,
-      isRequest: false,
-      pagination: false,
-      // checkbox: true,
-      number: true,
-      table_height: 676,
-      url: '',
-      data: {
-        pageIndex: 1,
-        PageSize: 10,
-        startTime: '2021-01-01 00:00:00'
-      },
-      thead: [
-        { label: '文件格式', prop: 'file_format', checked: true, width: '200' },
-        { label: '文件大小（MB）', prop: 'file_size', checked: true, width: '200' },
-        { label: '文件状态', prop: 'file_status', checked: true, width: '200' }
-      ]
-    })
-
     let contextData = reactive({
-      name: '工程(项目)文件级通用著录单',
-      title: '工程(项目)文件级通用著录单',
+      name: '工程(项目)案卷级著录单',
+      title: '工程(项目)案卷级著录单',
       increase_style: {
         height: document.body.clientHeight - 242 + 'px'
       },
       increase_from: {
-        belong_book: '02', //所属案卷
-        document_no: '', //文件档号
+        file_num: '', // 档号
+        total_registration: '', //总登记号
+        old_no: '', //旧档号
+        store_address: '', //存放地址
+        subordinate_project: '', //所属工程
+        books_title: '', //案卷题名
         subject_headings: '', //主题词
-        document_title: '', //文件题名
+        class_outline: '', //分类大纲
         res_people: '', //责任者
-        article_draw: '', //文图号
+        compile_unit: '', //编制单位
         safe_duration: '', //保管期限
         security_class: '', //密级
-        start_date: '', //起始日期
-        end_date: '', //终止日期
-        carr_type: '', //载体类型
-        number: '', //数量
-        specific: '', //规格
-        feed_summary: '', //提要
-        record_type: '', //文种
-        manuscript: '', //稿本
-        remark: '', //附注
-        enter_pepole: '', //录入人
-        enter_time: '', //录入时间
+        prepare_date_first: '', //起始编制日期
+        prepare_date_second: '', //结束编制日期
         establish_person: '', //立卷人
         establish_date: '', //立卷日期
+        reviewer: '', //审核人
+        reviewer_date: '', //审核日期
+        archive_people: '', //归档人
+        archive_date: '', //归档时间
+        remark: '', //备注
+        enter_pepole: '', //录入人
+        enter_time: '', //录入时间
         test_field: '', //测试字段显示
         modify_pepole: '杨那', // 修改人
         modify_time: '2021.02.27  21:34:12' // 修改时间
@@ -286,14 +306,14 @@ export default {
       },
       show_shrink: {
         basic_info: false,
-        electric_file: false,
+        file_status: true,
         archive_info: false,
         business_info: false,
         custom_info: false
       },
       show_shrink_dispaly: {
         basic_info: 'block',
-        electric_file: 'block',
+        file_status: 'none',
         archive_info: 'block',
         business_info: 'block',
         custom_info: 'block'
@@ -310,22 +330,6 @@ export default {
         { label: '短期', prop: 1 },
         { label: '长期', prop: 2 },
         { label: '永久', prop: 3 }
-      ],
-      carr_type_list: [
-        { label: '文字(张)', prop: '文字(张)' },
-        { label: '图纸(张)', prop: '图纸(张)' },
-        { label: '底图(张)', prop: '底图(张)' },
-        { label: '照片(张)', prop: '照片(张)' },
-        { label: '底片(张)', prop: '底片(张)' },
-        { label: '载体测试', prop: '载体测试' },
-        { label: '录音带(盒)', prop: '录音带(盒)' },
-        { label: '录像带(盒)', prop: '录像带(盒)' },
-        { label: '光盘(盘)', prop: '光盘(盘)' },
-        { label: '计算机磁盘(盘)', prop: '计算机磁盘(盘)' },
-        { label: '计算机磁带(盘)', prop: '计算机磁带(盘)' },
-        { label: '缩微片(盘)', prop: '缩微片(盘)' },
-        { label: '缩微片(张)', prop: '缩微片(张)' },
-        { label: '其它', prop: '其它' }
       ],
       class_outline_list: [
         {
@@ -356,7 +360,7 @@ export default {
         label: 'label',
         value: 'prop'
       },
-      engine_unit_title: '工程(项目)文件级通用著录单',
+      engine_unit_title: '工程(项目)案卷级著录单',
       engine_unit_id: '',
       page_config: {
         id: '',
@@ -367,9 +371,12 @@ export default {
         page_height: 242
       }
     })
-
     onMounted(async () => {
       // 调用方法, 方法里调用接口
+    })
+        
+    watchEffect(() => {
+      console.log(prop.tree_item);
     })
 
     const fun_show_shrink = val => {
@@ -383,8 +390,6 @@ export default {
     return {
       contextData,
       ...toRefs(contextData),
-      table_electric_file_list,
-      ...toRefs(table_electric_file_list),
       fun_show_shrink,
       fun_cascader_change
     }

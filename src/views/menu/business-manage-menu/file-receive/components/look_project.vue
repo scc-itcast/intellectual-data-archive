@@ -20,12 +20,12 @@
         <el-tabs v-model="active_name" @tab-click="fun_tab_click">
           <el-tab-pane label="项目信息" name="project_info">
             <div class="look-project-dialog--body global--plr115" :style="look_project_style">
-              <project-info></project-info>
+              <sz-project-look />
             </div>
           </el-tab-pane>
           <el-tab-pane label="工程信息" name="engine_info">
             <div class="look-project-dialog--body global--plr115" :style="look_project_style">
-              <engine-info></engine-info>
+              <sz-engine-look />
             </div>
           </el-tab-pane>
           <el-tab-pane label="档案接收信息" name="receive_info">

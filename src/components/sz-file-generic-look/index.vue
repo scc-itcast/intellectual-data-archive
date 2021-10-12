@@ -225,6 +225,7 @@ import {
 export default {
   name: 'increase-project',
   mixins: [mixinAsideShowTrue],
+  props: ['tree_item'],
   setup(prop, context) {
     let table_electric_file_list = reactive({
       search_form: false,
@@ -371,7 +372,11 @@ export default {
     onMounted(async () => {
       // 调用方法, 方法里调用接口
     })
-
+        
+    watchEffect(() => {
+      console.log(prop.tree_item);
+    })
+    
     const fun_show_shrink = val => {
       contextData.show_shrink[val] = !contextData.show_shrink[val]
       let flag = contextData.show_shrink[val]

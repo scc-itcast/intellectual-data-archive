@@ -1,5 +1,5 @@
 <template>
-  <div id="sz-advanced-query">
+  <div id="sz-advanced-query" class="sz-advanced-query">
     <el-dialog
       :title="advanced_query_title"
       :visible.sync="advanced_query_dialog"

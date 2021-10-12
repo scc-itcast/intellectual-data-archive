@@ -15,6 +15,7 @@
       @row-dblclick="fun_db_click"
       @selection-change="fun_selection_change"
     >
+      <!-- 整改意见列表展开 -->
       <el-table-column v-if="table_config.expand_input" type="expand" width="21.6">
         <template slot-scope="scope">
           <template v-for="item in contextData.table_config.thead">
@@ -29,6 +30,20 @@
                   resize="none"
                 ></el-input>
               </div>
+            </div>
+          </template>
+        </template>
+      </el-table-column>
+      <!-- 项目,工程,案卷,文件,利用记录等信息列表展开 -->
+      <el-table-column v-if="table_config.expand_info_look" type="expand" width="21.6">
+        <template slot-scope="scope">
+          <template>
+            <div style="margin: 10px 60px;">
+              <!-- <sz-project-look /> -->
+              <component
+                :is="table_config.component_info_look"
+                :tree_item="child_table_data[0]"
+              ></component>
             </div>
           </template>
         </template>
@@ -95,7 +110,7 @@
               />
             </template>
           </el-table>
-          <el-row class="padding-top-10" v-if="!table_config.expand_handover">
+          <el-row class="padding-top-10" v-if="table_config.pagination_children">
             <el-col :span="24">
               <el-pagination
                 v-if="table_config.pagination"
@@ -218,6 +233,12 @@
  * @author ....
 //  */
 // const  = api;
+import ProjectInfo from '@/components/sz-project-look/index.vue'
+import EngineInfo from '@/components/sz-engine-look/index.vue'
+import CaseFileInfo from '@/components/sz-case-file-look/index.vue'
+import FileGenericInfo from '@/components/sz-file-generic-look/index.vue'
+import AudioVideo from '@/components/sz-audio-video-look/index.vue'
+import UseRecords from '@/components/sz-use-records-look/index.vue'
 import util from '@/libs/util.js'
 import {
   onMounted,
@@ -230,6 +251,14 @@ import {
 } from '@vue/composition-api'
 export default {
   name: 'TableComponent',
+  components: {
+    ProjectInfo,
+    EngineInfo,
+    CaseFileInfo,
+    FileGenericInfo,
+    AudioVideo,
+    UseRecords
+  },
   props: ['config'],
   setup(prop, context) {
     let contextData = reactive({
@@ -343,7 +372,12 @@ export default {
         number: false,
         // 是否显示展开行功能
         expand: false,
+        // 整改意见列表展开
         expand_input: false,
+        // 项目,工程,案卷,文件,利用记录等信息列表展开
+        expand_info_look: false,
+        // 展开切换不同组件
+        component_info_look: 'ProjectInfo',
         // 移交书
         expand_handover: false,
         // 请求列表的接口路径 默认 '/getattr/0'
@@ -355,6 +389,8 @@ export default {
         data: {},
         // 是否开启分页
         pagination: true,
+        // 子table是否开启分页
+        pagination_children: false,
         // 是否拥有筛选条件
         search_form: true,
         // form
@@ -453,7 +489,7 @@ export default {
       // console.log('expandedRows', expandedRows)
       // console.log('row', row)
       let flag = contextData.table_config.expand_handover
-      if(flag) return false
+      if (flag) return false
       if (expandedRows.length) {
         contextData.expands = []
         if (row) {

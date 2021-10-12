@@ -19,26 +19,18 @@
           </div>
           <div class="content--form" :style="{ display: show_shrink_dispaly.basic_info }">
             <div class="content-form-item-box">
-              <div class="global-content-form-item">
+              <div class="global-content-form-item-look">
                 <div class="content-form-wrapper">
                   <div class="content-form-wrapper-column">
                     <div class="ceil-text">档号</div>
                     <div class="ceil-value">
-                      <el-input
-                        :disabled="true"
-                        v-model="increase_from.file_num"
-                        placeholder="请输入"
-                      ></el-input>
+                      {{ increase_from.file_num }}
                     </div>
                   </div>
                   <div class="content-form-wrapper-column">
                     <div class="ceil-text">总登记号</div>
                     <div class="ceil-value">
-                      <el-input
-                        :disabled="true"
-                        v-model="increase_from.total_registration"
-                        placeholder="请输入"
-                      ></el-input>
+                      {{ increase_from.total_registration }}
                     </div>
                   </div>
                 </div>
@@ -46,23 +38,19 @@
                   <div class="content-form-wrapper-column">
                     <div class="ceil-text">旧档号</div>
                     <div class="ceil-value">
-                      <el-input
-                        :disabled="true"
-                        v-model="increase_from.old_no"
-                        placeholder="请输入"
-                      ></el-input>
+                      {{ increase_from.old_no }}
                     </div>
                   </div>
                   <div class="content-form-wrapper-column">
                     <div class="ceil-text">存放地址</div>
                     <div class="ceil-value global-between-center--flex ceil-value-item">
-                      <div></div>
+                      <span>{{ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' }}</span>
                       <span>库</span>
-                      <div></div>
+                      <span>{{ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' }}</span>
                       <span>列</span>
-                      <div></div>
+                      <span>{{ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' }}</span>
                       <span>节(柜)</span>
-                      <div></div>
+                      <span>{{ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' }}</span>
                       <span>层</span>
                     </div>
                   </div>
@@ -79,7 +67,7 @@
                   <div class="content-form-wrapper-column">
                     <div class="ceil-text asterisk_before">案卷题名</div>
                     <div class="ceil-value">
-                      <el-input v-model="increase_from.books_title" placeholder="请输入"></el-input>
+                      {{ increase_from.books_title }}
                     </div>
                   </div>
                 </div>
@@ -87,10 +75,7 @@
                   <div class="content-form-wrapper-column">
                     <div class="ceil-text">主题词</div>
                     <div class="ceil-value">
-                      <el-input
-                        v-model="increase_from.subject_headings"
-                        placeholder="请输入"
-                      ></el-input>
+                      {{ increase_from.subject_headings }}
                     </div>
                   </div>
                 </div>
@@ -98,13 +83,7 @@
                   <div class="content-form-wrapper-column">
                     <div class="ceil-text">分类大纲</div>
                     <div class="ceil-value">
-                      <el-cascader
-                        :disabled="true"
-                        v-model="increase_from.class_outline"
-                        :options="class_outline_list"
-                        :props="props"
-                        @change="fun_cascader_change"
-                      ></el-cascader>
+                      {{ increase_from.class_outline }}
                     </div>
                   </div>
                 </div>
@@ -112,16 +91,13 @@
                   <div class="content-form-wrapper-column">
                     <div class="ceil-text">责任者</div>
                     <div class="ceil-value">
-                      <el-input v-model="increase_from.res_people" placeholder="请输入"></el-input>
+                      {{ increase_from.res_people }}
                     </div>
                   </div>
                   <div class="content-form-wrapper-column">
                     <div class="ceil-text">编制单位</div>
                     <div class="ceil-value">
-                      <el-input
-                        v-model="increase_from.compile_unit"
-                        placeholder="请输入"
-                      ></el-input>
+                      {{ increase_from.compile_unit }}
                     </div>
                   </div>
                 </div>
@@ -129,29 +105,13 @@
                   <div class="content-form-wrapper-column">
                     <div class="ceil-text">保管期限</div>
                     <div class="ceil-value">
-                      <el-select v-model="increase_from.safe_duration" placeholder="请选择">
-                        <el-option
-                          v-for="item in safe_duration_list"
-                          :key="item.prop"
-                          :label="item.label"
-                          :value="item.prop"
-                        >
-                        </el-option>
-                      </el-select>
+                      {{ increase_from.safe_duration }}
                     </div>
                   </div>
                   <div class="content-form-wrapper-column">
                     <div class="ceil-text">密级</div>
                     <div class="ceil-value">
-                      <el-select v-model="increase_from.security_class" placeholder="请选择">
-                        <el-option
-                          v-for="item in security_class_list"
-                          :key="item.prop"
-                          :label="item.label"
-                          :value="item.prop"
-                        >
-                        </el-option>
-                      </el-select>
+                      {{ increase_from.security_class }}
                     </div>
                   </div>
                 </div>
@@ -159,29 +119,13 @@
                   <div class="content-form-wrapper-column">
                     <div class="ceil-text">编制日期</div>
                     <div class="ceil-value">
-                      <el-date-picker
-                        :disabled="true"
-                        v-model="increase_from.prepare_date_first"
-                        type="datetime"
-                        format="yyyy-MM-dd HH:mm:ss"
-                        value-format="yyyy-MM-dd HH:mm:ss"
-                        :clearable="false"
-                      >
-                      </el-date-picker>
+                      {{ increase_from.prepare_date_first }}
                     </div>
                   </div>
                   <div class="content-form-wrapper-column">
                     <div class="ceil-text">至</div>
                     <div class="ceil-value">
-                      <el-date-picker
-                        :disabled="true"
-                        v-model="increase_from.prepare_date_second"
-                        type="datetime"
-                        format="yyyy-MM-dd HH:mm:ss"
-                        value-format="yyyy-MM-dd HH:mm:ss"
-                        :clearable="false"
-                      >
-                      </el-date-picker>
+                      {{ increase_from.prepare_date_second }}
                     </div>
                   </div>
                 </div>
@@ -189,23 +133,13 @@
                   <div class="content-form-wrapper-column">
                     <div class="ceil-text">立卷人</div>
                     <div class="ceil-value">
-                      <el-input
-                        v-model="increase_from.engin_adress"
-                        placeholder="请输入"
-                      ></el-input>
+                      {{ increase_from.engin_adress }}
                     </div>
                   </div>
                   <div class="content-form-wrapper-column">
                     <div class="ceil-text">立卷日期</div>
                     <div class="ceil-value">
-                      <el-date-picker
-                        v-model="increase_from.archive_date"
-                        type="datetime"
-                        format="yyyy-MM-dd HH:mm:ss"
-                        value-format="yyyy-MM-dd HH:mm:ss"
-                        :clearable="false"
-                      >
-                      </el-date-picker>
+                      {{ increase_from.archive_date }}
                     </div>
                   </div>
                 </div>
@@ -213,23 +147,13 @@
                   <div class="content-form-wrapper-column">
                     <div class="ceil-text">审核人</div>
                     <div class="ceil-value">
-                      <el-input
-                        v-model="increase_from.engin_adress"
-                        placeholder="请输入"
-                      ></el-input>
+                      {{ increase_from.engin_adress }}
                     </div>
                   </div>
                   <div class="content-form-wrapper-column">
                     <div class="ceil-text">审核日期</div>
                     <div class="ceil-value">
-                      <el-date-picker
-                        v-model="increase_from.archive_date"
-                        type="datetime"
-                        format="yyyy-MM-dd HH:mm:ss"
-                        value-format="yyyy-MM-dd HH:mm:ss"
-                        :clearable="false"
-                      >
-                      </el-date-picker>
+                      {{ increase_from.archive_date }}
                     </div>
                   </div>
                 </div>
@@ -237,39 +161,21 @@
                   <div class="content-form-wrapper-column">
                     <div class="ceil-text">归档人</div>
                     <div class="ceil-value">
-                      <el-input
-                        :disabled="true"
-                        v-model="increase_from.engin_adress"
-                        placeholder="请输入"
-                      ></el-input>
+                      {{ increase_from.engin_adress }}
                     </div>
                   </div>
                   <div class="content-form-wrapper-column">
                     <div class="ceil-text">归档时间</div>
                     <div class="ceil-value">
-                      <el-date-picker
-                        :disabled="true"
-                        v-model="increase_from.archive_date"
-                        type="datetime"
-                        format="yyyy-MM-dd HH:mm:ss"
-                        value-format="yyyy-MM-dd HH:mm:ss"
-                        :clearable="false"
-                      >
-                      </el-date-picker>
+                      {{ increase_from.archive_date }}
                     </div>
                   </div>
                 </div>
                 <div class="content-form-wrapper">
-                  <div class="content-form-wrapper-column global-column-remark">
+                  <div class="content-form-wrapper-column">
                     <div class="ceil-text">备注</div>
                     <div class="ceil-value">
-                      <el-input
-                        type="textarea"
-                        v-model="increase_from.remark"
-                        placeholder="请输入"
-                        rows="4"
-                        resize="none"
-                      ></el-input>
+                      {{ increase_from.remark }}
                     </div>
                   </div>
                 </div>
@@ -277,25 +183,13 @@
                   <div class="content-form-wrapper-column">
                     <div class="ceil-text">录入人</div>
                     <div class="ceil-value">
-                      <el-input
-                        :disabled="true"
-                        v-model="increase_from.engin_adress"
-                        placeholder="请输入"
-                      ></el-input>
+                      {{ increase_from.engin_adress }}
                     </div>
                   </div>
                   <div class="content-form-wrapper-column">
                     <div class="ceil-text">录入时间</div>
                     <div class="ceil-value">
-                      <el-date-picker
-                        :disabled="true"
-                        v-model="increase_from.archive_date"
-                        type="datetime"
-                        format="yyyy-MM-dd HH:mm:ss"
-                        value-format="yyyy-MM-dd HH:mm:ss"
-                        :clearable="false"
-                      >
-                      </el-date-picker>
+                      {{ increase_from.archive_date }}
                     </div>
                   </div>
                 </div>
@@ -303,25 +197,13 @@
                   <div class="content-form-wrapper-column">
                     <div class="ceil-text">修改人</div>
                     <div class="ceil-value">
-                      <el-input
-                        :disabled="true"
-                        v-model="increase_from.modify_pepole"
-                        placeholder="请输入"
-                      ></el-input>
+                      {{ increase_from.modify_pepole }}
                     </div>
                   </div>
                   <div class="content-form-wrapper-column">
                     <div class="ceil-text">修改时间</div>
                     <div class="ceil-value">
-                      <el-date-picker
-                        :disabled="true"
-                        v-model="increase_from.modify_time"
-                        type="datetime"
-                        format="yyyy-MM-dd HH:mm:ss"
-                        value-format="yyyy-MM-dd HH:mm:ss"
-                        :clearable="false"
-                      >
-                      </el-date-picker>
+                      {{ increase_from.modify_time }}
                     </div>
                   </div>
                 </div>
@@ -343,18 +225,18 @@
           </div>
           <div class="content--form" :style="{ display: show_shrink_dispaly.custom_info }">
             <div class="content-form-item-box">
-              <div class="global-content-form-item">
+              <div class="global-content-form-item-look">
                 <div class="content-form-wrapper">
                   <div class="content-form-wrapper-column">
                     <div class="ceil-text">bz</div>
                     <div class="ceil-value">
-                      <el-input v-model="increase_from.enter_time" placeholder="请输入"></el-input>
+                      {{ increase_from.enter_time }}
                     </div>
                   </div>
                   <div class="content-form-wrapper-column">
                     <div class="ceil-text">LX</div>
                     <div class="ceil-value">
-                      <el-input v-model="increase_from.enter_time" placeholder="请输入"></el-input>
+                      {{ increase_from.enter_time }}
                     </div>
                   </div>
                 </div>

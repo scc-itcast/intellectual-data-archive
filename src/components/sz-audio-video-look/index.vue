@@ -1,5 +1,10 @@
 <template>
   <div class="increase--box">
+    <div class="increase--title">
+      <div class="">
+        <div class="increase-title--text global--weight">{{ title }}</div>
+      </div>
+    </div>
     <div class="increase-content--box">
       <el-form
         :model="increase_from"
@@ -9,90 +14,63 @@
         class="increase-content--form"
       >
         <div class="content-basic-info increase-content--item">
-          <div class="content--form">
+          <div class="content-title-btn" @click="fun_show_shrink('basic_info')">
+            <sz-show-shrink :show_shrink="show_shrink.basic_info" title="基本信息" />
+          </div>
+          <div class="content--form" :style="{ display: show_shrink_dispaly.basic_info }">
             <div class="content-form-item-box">
               <div class="global-content-form-item-look">
                 <div class="content-form-wrapper">
                   <div class="content-form-wrapper-column">
-                    <div class="ceil-text">项目名称</div>
+                    <div class="ceil-text">组名称</div>
                     <div class="ceil-value">
-                      {{ increase_from.receive_date }}
-                    </div>
-                  </div>
-                  <div class="content-form-wrapper-column">
-                    <div class="ceil-text">档案接收人</div>
-                    <div class="ceil-value">
-                      {{ increase_from.file_receiver }}
+                      {{ increase_from.group_name }}
                     </div>
                   </div>
                 </div>
                 <div class="content-form-wrapper">
                   <div class="content-form-wrapper-column">
-                    <div class="ceil-text">卷数</div>
+                    <div class="ceil-text">组地点</div>
                     <div class="ceil-value">
-                      {{ increase_from.volume }}
-                    </div>
-                  </div>
-                  <div class="content-form-wrapper-column">
-                    <div class="ceil-text">审核工作日</div>
-                    <div class="ceil-value">
-                      {{ increase_from.audit_day }}
+                      {{ increase_from.group_address }}
                     </div>
                   </div>
                 </div>
                 <div class="content-form-wrapper">
                   <div class="content-form-wrapper-column">
-                    <div class="ceil-text">报送文字材料(张)</div>
+                    <div class="ceil-text">关键字</div>
                     <div class="ceil-value">
-                      {{ increase_from.submit_word_z }}
-                    </div>
-                  </div>
-                  <div class="content-form-wrapper-column">
-                    <div class="ceil-text">报送图纸材料(张)</div>
-                    <div class="ceil-value">
-                      {{ increase_from.sub_draw_z }}
+                      {{ increase_from.keyword }}
                     </div>
                   </div>
                 </div>
                 <div class="content-form-wrapper">
                   <div class="content-form-wrapper-column">
-                    <div class="ceil-text">报送文字材料(卷)</div>
+                    <div class="ceil-text">起始拍摄时间</div>
                     <div class="ceil-value">
-                      {{ increase_from.submit_word_v }}
+                      {{ increase_from.start_shoot_time }}
                     </div>
                   </div>
                   <div class="content-form-wrapper-column">
-                    <div class="ceil-text">报送图纸材料(卷)</div>
+                    <div class="ceil-text">终止拍摄时间</div>
                     <div class="ceil-value">
-                      {{ increase_from.sub_draw_v }}
-                    </div>
-                  </div>
-                </div>
-                <div class="content-form-wrapper">
-                  <div class="content-form-wrapper-column">
-                    <div class="ceil-text">报送照片材料(张)</div>
-                    <div class="ceil-value">
-                      {{ increase_from.sub_photo_z }}
-                    </div>
-                  </div>
-                  <div class="content-form-wrapper-column">
-                    <div class="ceil-text">报送录像带材料(盘)</div>
-                    <div class="ceil-value">
-                      {{ increase_from.report_video_p }}
+                      {{ increase_from.end_shoot_time }}
                     </div>
                   </div>
                 </div>
                 <div class="content-form-wrapper">
                   <div class="content-form-wrapper-column">
-                    <div class="ceil-text">送审人</div>
+                    <div class="ceil-text">组描述</div>
                     <div class="ceil-value">
-                      {{ increase_from.peview_people }}
+                      {{ increase_from.group_descript }}
                     </div>
                   </div>
+                </div>
+                <div class="content-form-wrapper">
                   <div class="content-form-wrapper-column">
-                    <div class="ceil-text">联系电话</div>
+                    <div class="ceil-text">分类大纲</div>
                     <div class="ceil-value">
-                      {{ increase_from.contact_phone }}
+                      {{ increase_from.class_outline }}
                     </div>
                   </div>
                 </div>
@@ -101,6 +79,20 @@
                     <div class="ceil-text">备注</div>
                     <div class="ceil-value">
                       {{ increase_from.remark }}
+                    </div>
+                  </div>
+                </div>
+                <div class="content-form-wrapper">
+                  <div class="content-form-wrapper-column">
+                    <div class="ceil-text">录入人</div>
+                    <div class="ceil-value">
+                      {{ increase_from.engin_adress }}
+                    </div>
+                  </div>
+                  <div class="content-form-wrapper-column">
+                    <div class="ceil-text">录入时间</div>
+                    <div class="ceil-value">
+                      {{ increase_from.archive_date }}
                     </div>
                   </div>
                 </div>
@@ -126,61 +118,77 @@ import {
 export default {
   name: 'increase-project',
   mixins: [mixinAsideShowTrue],
+  props: ['tree_item'],
   setup(prop, context) {
     let contextData = reactive({
-      name: '添加项目信息',
-      title: '项目级著录单',
+      name: '声像组著录单',
+      title: '声像组著录单',
+      increase_style: {
+        height: document.body.clientHeight - 242 + 'px'
+      },
       increase_from: {
-        receive_date: '', // 接收日期
-        file_receiver: '', // 档案接收人
-        volume: '', // 卷数
-        audit_day: '', // 审核工作日
-        submit_word_z: '', // 报送文字材料（张）
-        sub_draw_z: '', // 报送图纸材料（张）
-        submit_word_v: '', // 报送文字材料（卷）
-        sub_draw_v: '', // 报送图纸材料（卷）
-        sub_photo_z: '', // 报送照片材料（张）
-        report_video_p: '', // 报送录像带材料（盘）
-        peview_people: '', // 送审人
-        contact_phone: '', // 联系电话
-        remark: '' // 备注
+        group_name: '', // 组名称
+        group_address: '', //组地点
+        keyword: '', //关键字
+        start_shoot_time: '', //起始拍摄时间
+        end_shoot_time: '', //终止拍摄时间
+        group_descript: '', //组描述
+        remark: '', //备注
+        enter_pepole: '', //录入人
+        enter_time: '' //录入时间
       },
       increase_rules: {
-        project_name: [
-          { required: true, message: '请输入项目名称', trigger: 'blur' }
-          // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
-        ],
-        project_type: [
-          { required: true, message: '请输入项目类型', trigger: 'blur' }
+        engin_name: [
+          { required: true, message: '请输入工程名称', trigger: 'blur' }
           // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
         ]
       },
-      project_type_more_info: true
+      show_shrink: {
+        basic_info: false,
+        file_status: true,
+        archive_info: false,
+        business_info: false,
+        custom_info: false
+      },
+      show_shrink_dispaly: {
+        basic_info: 'block',
+        file_status: 'none',
+        archive_info: 'block',
+        business_info: 'block',
+        custom_info: 'block'
+      },
+      engine_unit_title: '声像组著录单',
+      engine_unit_id: '',
+      page_config: {
+        id: '',
+        type: '',
+        modify: false,
+        go_btn: false,
+        archive_info: true,
+        page_height: 242
+      }
     })
     onMounted(async () => {
       // 调用方法, 方法里调用接口
     })
 
-    const fun_save_submit = () => {
-      context.root.$notify({
-        title: '项目信息添加成功',
-        message: '即将跳转到上级',
-        iconClass: 'iconfont iconfont guilian',
-        position: 'bottom-right',
-        duration: 2000
-      })
+    watchEffect(() => {
+      console.log(prop.tree_item)
+    })
+
+    const fun_show_shrink = val => {
+      contextData.show_shrink[val] = !contextData.show_shrink[val]
+      let flag = contextData.show_shrink[val]
+      contextData.show_shrink_dispaly[val] = flag ? 'none' : 'block'
     }
 
-    const fun_label_position = () => {}
-
-    const fun_create_project = () => {}
+    const fun_cascader_change = () => {}
 
     return {
       contextData,
       ...toRefs(contextData),
-      fun_save_submit,
-      fun_label_position,
-      fun_create_project
+      fun_show_shrink,
+      fun_cascader_change
     }
   }
 }
