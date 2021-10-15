@@ -69,11 +69,11 @@ export default {
     display: flex;
     line-height: 40px;
     .input--title {
-      margin-right: 20px;
+      margin-right: 10px;
     }
     .input--box {
       width: 220px;
-      margin-right: 20px;
+      margin-right: 15px;
     }
   }
 }

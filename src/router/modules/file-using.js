@@ -19,6 +19,18 @@ export default {
       meta: { ...meta, title: '利用登记' }
     },
     {
+      path: 'use-regist/increase-regist',
+      name: 'file-using-use-regist-increase-regist',
+      component: _import('menu/file-using-menu/use-regist/increase-regist/index.vue'),
+      meta: { ...meta, title: '利用登记-添加利用登记信息' }
+    },
+    {
+      path: 'use-regist/modify-regist',
+      name: 'file-using-use-regist-modify-regist',
+      component: _import('menu/file-using-menu/use-regist/modify-regist/index.vue'),
+      meta: { ...meta, title: '利用登记-修改利用登记信息' }
+    },
+    {
       path: 'use-return',
       name: 'file-using-use-return',
       component: _import('menu/file-using-menu/use-return/index.vue'),

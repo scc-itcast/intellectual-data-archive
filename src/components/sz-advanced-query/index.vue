@@ -1,5 +1,5 @@
 <template>
-  <div id="sz-advanced-query" class="sz-advanced-query">
+  <div id="sz-advanced-query" class="sz-advanced-query sz-advanced-query-checkout">
     <el-dialog
       :title="advanced_query_title"
       :visible.sync="advanced_query_dialog"
@@ -141,6 +141,7 @@ export default {
         { label: '录入人', prop: 'enter_pepole' },
         { label: '录入时间', prop: 'enter_time' }
       ],
+      query_field: '',
       query_way: '',
       query_way_list: [
         { label: '包含', prop: 1 },
@@ -176,6 +177,10 @@ export default {
       contextData.project_query_disabled = project_query_disabled
       contextData.type_query_value = type_query_value
       contextData.advanced_query_dialog = true
+      const list = Object.keys(query_field_list)
+      const query_field = query_field_list[list[0]].prop
+      contextData.query_field = query_field
+      contextData.table_data[0].query_field = query_field
     })
 
     const fun_advanced_query_close = () => {
@@ -188,11 +193,14 @@ export default {
 
     const fun_state_change = obj => {
       const { current_key, current_index, current_prop } = obj
-      console.log(current_prop)
+      // console.log(current_prop)
       contextData.table_data[current_index][current_key] = current_prop
-      if (current_key == 'query_params') {
+      const length = contextData.table_data.length
+      const query_params = contextData.table_data[length - 1].query_params
+   
+      if (current_key == 'query_params' && query_params) {
         contextData.table_data.push({
-          query_field: 'project_name',
+          query_field: contextData.query_field,
           query_way: 1,
           query_params: '',
           connect_condition: 1

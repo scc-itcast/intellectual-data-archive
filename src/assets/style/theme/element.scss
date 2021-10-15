@@ -195,13 +195,13 @@
   color: $color-primary-disabled !important;
 }
 
-#sz-advanced-query .el-checkbox,
-#sz-advanced-query .el-checkbox__input,
-#sz-advanced-query .el-checkbox__inner {
+.sz-advanced-query-checkout .el-checkbox,
+.sz-advanced-query-checkout .el-checkbox__input,
+.sz-advanced-query-checkout .el-checkbox__inner {
   width: 18px !important;
   height: 18px !important;
 }
-#sz-advanced-query .el-checkbox__inner::after {
+.sz-advanced-query-checkout .el-checkbox__inner::after {
   height: 11px;
   left: 7px;
 }
@@ -304,6 +304,7 @@
   padding: 0!important;
 }
 
+.file-generic-table .el-button,
 #sz-tree-table .el-button,
 #sz-advanced-query .delete-button--active.el-button,
 #sz-table .el-button {

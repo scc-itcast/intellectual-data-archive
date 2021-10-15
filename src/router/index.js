@@ -48,6 +48,7 @@ router.beforeEach(async (to, from, next) => {
     const token = util.cookies.get('access_token') || 'token'
     if (token && token !== 'undefined') {
       next()
+      util.tool.getAuthRouter()
     } else {
       // 没有登录的时候跳转到登录界面
       // 携带上登陆成功之后需要跳转的页面完整路径

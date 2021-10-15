@@ -42,6 +42,7 @@ export default {
       /**
        * @description 注销
        */
+      const redirect = window.location.hash.split('#')[1].slice(1)
       async function logout() {
         // 删除cookie
         // util.cookies.remove('token')
@@ -51,7 +52,12 @@ export default {
         // 清空 vuex 用户信息
         await dispatch('d2admin/user/set', {}, { root: true })
         // 跳转路由
-        router.push({ name: 'login' })
+        router.push({
+          name: 'login',
+          query: {
+            redirect: redirect
+          }
+        })
       }
       // 判断是否需要确认
       if (confirm) {

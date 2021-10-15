@@ -9,7 +9,7 @@ import store from '@/store/index'
 
 // 菜单和路由设置
 import router from './router'
-import { menuHeader, menuAside } from '@/menu'
+import { mapState } from 'vuex'
 import { frameInRoutes } from '@/router/routes'
 
 import VueCompositionAPI from '@vue/composition-api'
@@ -33,9 +33,9 @@ new Vue({
     // 处理路由 得到每一级的路由设置
     this.$store.commit('d2admin/page/init', frameInRoutes)
     // 设置顶栏菜单
-    this.$store.commit('d2admin/menu/headerSet', menuHeader)
-    // 初始化菜单搜索功能
-    this.$store.commit('d2admin/search/init', menuHeader)
+    this.$store.commit('d2admin/menu/headerSet', this.menuHeaderList)
+    // // 初始化菜单搜索功能
+    this.$store.commit('d2admin/search/init', this.menuHeaderList)
   },
   mounted () {
     // 展示系统信息
@@ -47,12 +47,18 @@ new Vue({
     // 初始化全屏监听
     this.$store.dispatch('d2admin/fullscreen/listen')
   },
+  computed: {
+    ...mapState('d2admin/menu_setting', [
+      'menuAsideArray',
+      'menuHeaderList',
+    ])
+  },
   watch: {
     // 检测路由变化切换侧边栏内容
     '$route.matched': {
       handler (matched) {
         if (matched.length > 0) {
-          const _side = menuAside.filter(menu => menu.path === matched[0].path)
+          const _side = this.menuAsideArray.filter(menu => menu.path === matched[0].path)
           this.$store.commit('d2admin/menu/asideSet', _side.length > 0 ? _side[0].children : [])
         }
       },

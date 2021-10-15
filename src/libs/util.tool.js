@@ -2,7 +2,8 @@
  * @description 封装的方法工具函数
  **/
 const tool = {}
-
+import store from '@/store'
+import util from '@/libs/util'
 /**
  * @description 封装的方法工具函数
  **/
@@ -84,6 +85,12 @@ tool.fun_now_format_date = function() {
   var strSeconds = date.getSeconds()
   var currentdate = date.getFullYear() + seperator1 + add0(month) + seperator1 + add0(strDate) + ' ' + add0(strHours) + seperator2 + add0(strMinutes) + seperator2 + add0(strSeconds)
   return currentdate
+}
+
+tool.getAuthRouter = async function() {
+  const user_type = util.cookies.get('user_type')
+  const roles = user_type && (user_type.split(',') || [])
+  await store.dispatch("d2admin/menu_setting/generateRoutes", roles);
 }
 
 export default tool

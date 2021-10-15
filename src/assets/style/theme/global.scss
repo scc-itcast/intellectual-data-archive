@@ -47,6 +47,10 @@
   margin-bottom: 10px;
 }
 
+.global--mb20 {
+  margin-bottom: 20px;
+}
+
 .global-button--margin {
   margin: 0 16px;
 }
@@ -255,8 +259,9 @@
 
 .query--box {
   .query-list--box {
+    margin-left: 20px;
     > div {
-      margin-left: 30px;
+      margin-left: 10px;
     }
   }
 }

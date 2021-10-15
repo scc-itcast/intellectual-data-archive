@@ -470,7 +470,7 @@ export default {
     const fun_select_list = val => {}
 
     const fun_case_manage_tree = val => {
-      contextData.case_manage_item = JSON.parse(JSON.stringify(val))
+      // contextData.case_manage_item = JSON.parse(JSON.stringify(val))
     }
 
     const fun_tree_click = (index, val) => {
