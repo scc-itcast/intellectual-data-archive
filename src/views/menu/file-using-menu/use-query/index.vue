@@ -38,16 +38,10 @@
       <div class="table-conditions--box">
         <div class="table-conditions--box-layar global-between-center--flex">
           <div class="table-conditions--left global--flex">
-            <sz-button
+            <!-- <sz-button
               title="添加利用登记"
               type="warning"
               @click="fun_create_project"
-              size="medium"
-            ></sz-button>
-            <!-- <sz-button
-              class="global--ml20"
-              title="导出"
-              @click="fun_export_project"
               size="medium"
             ></sz-button> -->
           </div>
@@ -100,7 +94,13 @@
       <div v-if="look_project_obj_show">
         <look-project
           :look_project_obj="look_project_obj"
-          @fun_regist_project_close="fun_regist_project_close"
+          @fun_look_project_close="fun_look_project_close"
+        />
+      </div>
+      <div v-if="record_project_obj_show">
+        <return-record
+          :record_project_obj="record_project_obj"
+          @fun_record_project_close="fun_record_project_close"
         />
       </div>
     </template>
@@ -111,10 +111,12 @@
 import mixinAsideShowTrue from '@/views/menu/mixins/aside-show-true'
 import { onMounted, computed, reactive, watchEffect, toRefs } from '@vue/composition-api'
 import LookProject from '@/views/menu/file-using-menu/use-query/components/look_project.vue'
+import ReturnRecord from '@/views/menu/file-using-menu/use-query/components/return_record.vue'
 export default {
   name: 'use-query',
   components: {
-    LookProject
+    LookProject,
+    ReturnRecord
   },
   mixins: [mixinAsideShowTrue],
   setup(prop, context) {
@@ -149,15 +151,27 @@ export default {
           label: '操作',
           prop: 'operation',
           checked: true,
-          width: '80',
+          width: '200',
           type: 'operation',
           disabled: true,
           buttonGroup: [
             {
-              label: '登记',
+              label: '查看',
               type: 'text',
               event: 'button',
-              handler: data => fun_regist_project(data)
+              handler: data => fun_look_project(data)
+            },
+            {
+              label: '打印',
+              type: 'text',
+              event: 'button',
+              handler: data => fun_print_project(data)
+            },
+            {
+              label: '查看归还记录',
+              type: 'text',
+              event: 'button',
+              handler: data => fun_record_project(data)
             }
           ]
         }
@@ -203,6 +217,11 @@ export default {
         row: null
       },
       look_project_obj_show: false,
+      record_project_obj: {
+        record_project_dialog: false,
+        row: null
+      },
+      record_project_obj_show: false,
       delete_current_row: null,
       complete_current_row: null
     })
@@ -249,16 +268,30 @@ export default {
 
     const fun_export_project = () => {}
 
-    const fun_regist_project = row => {
+    const fun_look_project = row => {
       contextData.look_project_obj.look_project_dialog = true
       contextData.look_project_obj.row = JSON.parse(JSON.stringify(row))
       contextData.look_project_obj_show = true
     }
 
-    const fun_regist_project_close = val => {
+    const fun_look_project_close = val => {
       console.log(val)
       contextData.look_project_obj.look_project_dialog = false
       contextData.look_project_obj_show = false
+    }
+
+    const fun_print_project = () => {}
+
+    const fun_record_project = row => {
+      contextData.record_project_obj.record_project_dialog = true
+      contextData.record_project_obj.row = JSON.parse(JSON.stringify(row))
+      contextData.record_project_obj_show = true
+    }
+
+    const fun_record_project_close = val => {
+      console.log(val)
+      contextData.record_project_obj.record_project_dialog = false
+      contextData.record_project_obj_show = false
     }
 
     return {
@@ -272,8 +305,11 @@ export default {
       fun_advanced_query_close,
       fun_export_project,
       fun_create_project,
-      fun_regist_project,
-      fun_regist_project_close,
+      fun_look_project,
+      fun_look_project_close,
+      fun_print_project,
+      fun_record_project,
+      fun_record_project_close,
       fun_table_handle,
       fun_checkbox_change,
       fun_db_click

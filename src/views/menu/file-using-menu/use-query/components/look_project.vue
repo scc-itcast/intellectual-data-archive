@@ -1,5 +1,5 @@
 <template>
-  <div id="sz-advanced-query" class="look_project">
+  <div id="sz-advanced-query" class="look_project tabs-none">
     <el-dialog
       :title="advanced_query_title"
       :visible.sync="look_project_dialog"
@@ -9,7 +9,7 @@
       custom-class="advanced-query--dialog"
       :close-on-click-modal="false"
       :close-on-press-escape="false"
-      @close="fun_regist_project_close"
+      @close="fun_look_project_close"
     >
       <template slot="title">
         <div class="look-project-dialog--zoom" @click="fun_look_project_zoom">
@@ -18,85 +18,70 @@
       </template>
       <div class="look-project-dialog--body" :style="look_project_style">
         <div class="look-project-body--box">
-          <div class="global-look-project-body--title">归还人信息登记</div>
-          <div class="look-project-body--content">
-            <div class="content-form-item-box">
-              <div class="global-content-form-item">
-                <div class="content-form-wrapper">
-                  <div class="content-form-wrapper-column">
-                    <div class="ceil-text asterisk_before">归还人</div>
-                    <div class="ceil-value">
-                      <el-input
-                        v-model="increase_from.restitutor"
-                        placeholder="请输入"
-                      ></el-input>
+          <el-form
+            :model="increase_from"
+            :rules="increase_rules"
+            ref="increase_ref"
+            label-width="100px"
+            class="increase-content--form"
+          >
+            <div class="content-basic-info increase-content--item">
+              <div class="content-title-btn" @click="fun_show_shrink('basic_info')">
+                <sz-show-shrink :show_shrink="show_shrink.basic_info" title="基本信息" />
+              </div>
+              <div class="content--form" :style="{ display: show_shrink_dispaly.basic_info }">
+                <div class="content-form-item-box">
+                  <div class="global-content-form-item-look">
+                    <div class="content-form-wrapper">
+                      <div class="content-form-wrapper-column">
+                        <div class="ceil-text">组名称</div>
+                        <div class="ceil-value">
+                          {{ increase_from.group_name }}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="content-form-wrapper">
+                      <div class="content-form-wrapper-column">
+                        <div class="ceil-text">备注</div>
+                        <div class="ceil-value">
+                          {{ increase_from.remark }}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="content-form-wrapper">
+                      <div class="content-form-wrapper-column">
+                        <div class="ceil-text">录入人</div>
+                        <div class="ceil-value">
+                          {{ increase_from.engin_adress }}
+                        </div>
+                      </div>
+                      <div class="content-form-wrapper-column">
+                        <div class="ceil-text">录入时间</div>
+                        <div class="ceil-value">
+                          {{ increase_from.archive_date }}
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div class="content-form-wrapper-column">
-                    <div class="ceil-text">归还人电话</div>
-                    <div class="ceil-value">
-                      <el-input
-                        v-model="increase_from.restitutor_people"
-                        placeholder="请输入"
-                      ></el-input>
-                    </div>
-                  </div>
-                </div>
-                <div class="content-form-wrapper">
-                  <div class="content-form-wrapper-column">
-                    <div class="ceil-text">归还人单位</div>
-                    <div class="ceil-value">
-                      <el-input
-                        v-model="increase_from.restitutor_unit"
-                        placeholder="请输入"
-                      ></el-input>
-                    </div>
-                  </div>
-                  <div class="content-form-wrapper-column">
-                    <div class="ceil-text">接待人</div>
-                    <div class="ceil-value">
-                      <el-input v-model="increase_from.receiver" placeholder="请输入"></el-input>
-                    </div>
-                  </div>
-                </div>
-                <div class="content-form-wrapper">
-                  <div class="content-form-wrapper-column global-column-remark">
-                    <div class="ceil-text">利用效果</div>
-                    <div class="ceil-value">
-                      <el-input
-                        type="textarea"
-                        v-model="increase_from.use_effect"
-                        placeholder="请输入"
-                        rows="4"
-                        resize="none"
-                      ></el-input>
-                    </div>
+                  <div class="content-from--tabs">
+                    <el-tabs v-model="active_name" @tab-click="fun_tab_click">
+                      <el-tab-pane label="案卷信息" name="case_file_info">
+                        <sz-table :config="case_file_info_list"></sz-table>
+                      </el-tab-pane>
+                      <el-tab-pane label="未录入信息" name="no_entry_info">
+                        <sz-table :config="no_entry_info_list"></sz-table>
+                      </el-tab-pane>
+                    </el-tabs>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="content-tabs-item-box">
-              <el-tabs v-model="active_name" @tab-click="fun_tab_click">
-                <el-tab-pane label="案卷信息" name="case_file_info">
-                  <sz-table
-                    :config="case_file_info_list"
-                    @fun_selection_change="fun_case_selection_change"
-                  ></sz-table>
-                </el-tab-pane>
-                <el-tab-pane label="未录入信息" name="no_entry_info">
-                  <sz-table
-                    :config="no_entry_info_list"
-                    @fun_selection_change="fun_no_entry_selection_change"
-                  ></sz-table>
-                </el-tab-pane>
-              </el-tabs>
-            </div>
-          </div>
+          </el-form>
         </div>
       </div>
-      <template slot="footer">
+      <!-- <template slot="footer">
         <div class="advanced-query--box">
-          <sz-button title="取消" @click="fun_regist_project_close"></sz-button>
+          <sz-button title="取消" @click="fun_look_project_close"></sz-button>
           <sz-button
             class="global--ml20"
             title="归还"
@@ -104,7 +89,7 @@
             @click="fun_look_project_submit"
           ></sz-button>
         </div>
-      </template>
+      </template> -->
     </el-dialog>
   </div>
 </template>
@@ -117,15 +102,21 @@ export default {
       search_form: false,
       isRequest: false,
       pagination: false,
-      checkbox: true,
+      // checkbox: true,
       number: true,
-      expand: false,
+      expand: true,
       url: '',
       data: {
         pageIndex: 1,
         PageSize: 10,
         startTime: '2021-01-01 00:00:00'
       },
+      children_thead: [
+        { label: '文件题名', prop: 'document_title', checked: true, disabled: true, width: '200' },
+        { label: '文件数量', prop: 'document_number', checked: true, width: '80' },
+        { label: '载体类型', prop: 'carr_type', checked: true, width: '100' },
+        { label: '借/查阅页次', prop: 'borrow_look_times', checked: true, width: '100' }
+      ],
       thead: [
         { label: '总登记号', prop: 'total_registration', checked: true, width: '80' },
         { label: '案卷题名', prop: 'books_title', checked: true, width: '200' },
@@ -141,7 +132,7 @@ export default {
       search_form: false,
       isRequest: false,
       pagination: false,
-      checkbox: true,
+      // checkbox: true,
       number: true,
       expand: false,
       url: '',
@@ -166,10 +157,30 @@ export default {
       data_row: null,
       increase_from: {
         restitutor: '', // 归还人
-        restitutor_people: '', // 归还人电话
+        restitutor_phone: '', // 归还人电话
         restitutor_unit: '', // 归还人单位
         receiver: '', // 接待人
         use_effect: '' // 利用效果
+      },
+      increase_rules: {
+        engin_name: [
+          { required: true, message: '请输入工程名称', trigger: 'blur' }
+          // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+        ]
+      },
+      show_shrink: {
+        basic_info: false,
+        file_status: true,
+        archive_info: false,
+        business_info: false,
+        custom_info: false
+      },
+      show_shrink_dispaly: {
+        basic_info: 'block',
+        file_status: 'none',
+        archive_info: 'block',
+        business_info: 'block',
+        custom_info: 'block'
       },
       fullscreen: false,
       look_project_style: {},
@@ -191,12 +202,12 @@ export default {
       }
     }
 
-    const fun_regist_project_close = () => {
-      context.emit('fun_regist_project_close')
+    const fun_look_project_close = () => {
+      context.emit('fun_look_project_close')
     }
 
     const fun_look_project_submit = () => {
-      context.emit('fun_regist_project_close', '归还')
+      context.emit('fun_look_project_close', '归还')
     }
 
     const fun_tab_click = (tab, event) => {
@@ -211,6 +222,12 @@ export default {
       console.log(val)
     }
 
+    const fun_show_shrink = val => {
+      contextData.show_shrink[val] = !contextData.show_shrink[val]
+      let flag = contextData.show_shrink[val]
+      contextData.show_shrink_dispaly[val] = flag ? 'none' : 'block'
+    }
+
     return {
       contextData,
       ...toRefs(contextData),
@@ -218,8 +235,9 @@ export default {
       ...toRefs(case_file_info_list),
       no_entry_info_list,
       ...toRefs(no_entry_info_list),
+      fun_show_shrink,
       fun_look_project_zoom,
-      fun_regist_project_close,
+      fun_look_project_close,
       fun_look_project_submit,
       fun_tab_click,
       fun_case_selection_change,
@@ -244,6 +262,31 @@ export default {
     color: $color-text-main;
     .look-project-body--content {
       font-size: 14px;
+    }
+    margin-top: 7px;
+    .increase-content--item {
+      .content-title-btn {
+        margin-bottom: 27px;
+        cursor: pointer;
+      }
+      .content-width-percent {
+        width: 88.7%;
+      }
+      .content--form {
+        transition: all 1s;
+        margin-bottom: 27px;
+        .content-from-column-height {
+          .position_left,
+          .position_right {
+            height: 204px;
+          }
+        }
+        .content-from--tabs {
+          border: 1px solid $color-line-1;
+          border-top: 0;
+          padding: 0 0 10px 0;
+        }
+      }
     }
   }
 }

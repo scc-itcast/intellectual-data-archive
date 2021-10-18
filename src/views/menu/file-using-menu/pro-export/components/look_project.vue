@@ -73,42 +73,6 @@
               <sz-table :config="file_generic_info_list"></sz-table>
             </div>
           </el-tab-pane>
-          <el-tab-pane label="声像组信息" name="audio_video_group_info">
-            <div class="look-project-dialog-body--table">
-              <div class="look-project-dialog-body--search">
-                <el-input
-                  placeholder="请输入内容"
-                  v-model="audio_video_group_input"
-                  class="input-with-select"
-                >
-                  <el-button
-                    slot="append"
-                    icon="el-icon-search"
-                    @click="fun_audio_video_click"
-                  ></el-button>
-                </el-input>
-              </div>
-              <sz-table :config="audio_video_group_info_list"></sz-table>
-            </div>
-          </el-tab-pane>
-          <el-tab-pane label="声像文件信息" name="audio_video_file_info">
-            <div class="look-project-dialog-body--table">
-              <div class="look-project-dialog-body--search">
-                <el-input
-                  placeholder="请输入内容"
-                  v-model="audio_video_file_input"
-                  class="input-with-select"
-                >
-                  <el-button
-                    slot="append"
-                    icon="el-icon-search"
-                    @click="fun_audio_video_file_click"
-                  ></el-button>
-                </el-input>
-              </div>
-              <div>预览</div>
-            </div>
-          </el-tab-pane>
         </el-tabs>
       </div>
       <template slot="footer"> </template>
@@ -203,7 +167,7 @@ export default {
           label: '操作',
           prop: 'operation',
           checked: true,
-          width: '200',
+          width: '80',
           type: 'operation',
           disabled: true,
           buttonGroup: [
@@ -218,29 +182,6 @@ export default {
       ]
     })
 
-    let audio_video_group_info_list = reactive({
-      search_form: false,
-      isRequest: false,
-      pagination: true,
-      // checkbox: true,
-      number: false,
-      expand_info_look: true,
-      component_info_look: 'AudioVideo',
-      table_height: 472,
-      url: '',
-      data: {
-        pageIndex: 1,
-        PageSize: 10,
-        startTime: '2021-01-01 00:00:00'
-      },
-      thead: [
-        { label: '组名称', prop: 'group_name', checked: true, width: '200' },
-        { label: '组地点', prop: 'group_address', checked: true, width: '200' },
-        { label: '录入人', prop: 'enter_pepole', checked: true, width: '100' },
-        { label: '录入时间', prop: 'enter_time', checked: true, width: '200' }
-      ]
-    })
-
     let contextData = reactive({
       advanced_query_title: '',
       look_project_dialog: false,
@@ -248,8 +189,6 @@ export default {
       engine_input: '',
       case_file_input: '',
       file_generic_input: '',
-      audio_video_group_input: '',
-      audio_video_file_input: '',
       fullscreen: false,
       look_project_style: {},
       active_name: 'project_info',
@@ -271,7 +210,6 @@ export default {
       engine_info_list.table_height = 472
       case_file_info_list.table_height = 472
       file_generic_info_list.table_height = 472
-      audio_video_group_info_list.table_height = 472
       if (contextData.fullscreen) {
         contextData.look_project_style = {
           height: document.body.clientHeight - 109 - 46 + 10 + 'px'
@@ -279,7 +217,6 @@ export default {
         engine_info_list.table_height = document.body.clientHeight - 600
         case_file_info_list.table_height = document.body.clientHeight - 600
         file_generic_info_list.table_height = document.body.clientHeight - 600
-        audio_video_group_info_list.table_height = document.body.clientHeight - 600
       }
     }
 
@@ -294,7 +231,7 @@ export default {
     const fun_tab_click = (tab, event) => {
       // console.log(tab, event)
     }
-    
+
     const fun_engine_click = () => {}
 
     const fun_case_file_click = () => {}
@@ -325,8 +262,6 @@ export default {
       ...toRefs(case_file_info_list),
       file_generic_info_list,
       ...toRefs(file_generic_info_list),
-      audio_video_group_info_list,
-      ...toRefs(audio_video_group_info_list),
       fun_look_project_zoom,
       fun_look_project_close,
       fun_look_project_submit,

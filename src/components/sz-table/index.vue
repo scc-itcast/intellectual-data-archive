@@ -239,6 +239,7 @@ import CaseFileInfo from '@/components/sz-case-file-look/index.vue'
 import FileGenericInfo from '@/components/sz-file-generic-look/index.vue'
 import AudioVideo from '@/components/sz-audio-video-look/index.vue'
 import UseRecords from '@/components/sz-use-records-look/index.vue'
+import ReturnRecord from '@/components/sz-return-record/index.vue'
 import util from '@/libs/util.js'
 import {
   onMounted,
@@ -257,7 +258,8 @@ export default {
     CaseFileInfo,
     FileGenericInfo,
     AudioVideo,
-    UseRecords
+    UseRecords,
+    ReturnRecord
   },
   props: ['config'],
   setup(prop, context) {

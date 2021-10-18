@@ -22,16 +22,10 @@
       <div class="table-conditions--box">
         <div class="table-conditions--box-layar global-between-center--flex">
           <div class="table-conditions--left global--flex">
-            <sz-button
+            <!-- <sz-button
               title="添加利用登记"
               type="warning"
               @click="fun_create_project"
-              size="medium"
-            ></sz-button>
-            <!-- <sz-button
-              class="global--ml20"
-              title="导出"
-              @click="fun_export_project"
               size="medium"
             ></sz-button> -->
           </div>

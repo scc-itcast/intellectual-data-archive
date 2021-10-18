@@ -36,7 +36,7 @@
                     <div class="ceil-text">归还人电话</div>
                     <div class="ceil-value">
                       <el-input
-                        v-model="increase_from.restitutor_people"
+                        v-model="increase_from.restitutor_phone"
                         placeholder="请输入"
                       ></el-input>
                     </div>
@@ -166,7 +166,7 @@ export default {
       data_row: null,
       increase_from: {
         restitutor: '', // 归还人
-        restitutor_people: '', // 归还人电话
+        restitutor_phone: '', // 归还人电话
         restitutor_unit: '', // 归还人单位
         receiver: '', // 接待人
         use_effect: '' // 利用效果

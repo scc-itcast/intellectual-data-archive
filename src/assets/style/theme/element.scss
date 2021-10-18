@@ -21,7 +21,7 @@
   top: 60px !important;
   width: 148px;
   right: 20px;
-  // overflow: hidden;
+  overflow: hidden;
 }
 .el-dropdown-menu--small .el-dropdown-menu__item,
 .el-dropdown-menu__item {
@@ -57,7 +57,7 @@
 //   display: none;
 // }
 .el-message-box--center {
-  padding-bottom: 0;
+  padding-bottom: 0!important;
 }
 .el-message-box__content {
   padding: 0 15px;
@@ -411,7 +411,7 @@
 }
 
 /**
-* el-tabs
+* el-cascader
 **/
 
 .el-cascader {
@@ -421,10 +421,13 @@
 /**
 * el-tabs
 **/
-
 .el-tabs__item.is-active,
 .el-tabs__item:hover {
-  color: $color-primary;
+  color: $color-primary!important;
+}
+
+.el-tabs__active-bar{
+  background-color: $color-primary!important;
 }
 
 .el-tabs__active-bar {
