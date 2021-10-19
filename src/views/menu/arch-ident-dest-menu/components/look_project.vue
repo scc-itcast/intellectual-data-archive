@@ -18,7 +18,7 @@
       </template>
       <div class="look-project-dialog--body" :style="look_project_style">
         <div class="look-project-body--box">
-          <div class="look-project-body--title global--weight">报送责任书</div>
+          <div class="look-project-body--title global--weight">鉴定登记单</div>
           <div class="increase-content--box">
             <el-form
               :model="increase_from"
@@ -36,96 +36,59 @@
                     <div class="global-content-form-item-look">
                       <div class="content-form-wrapper">
                         <div class="content-form-wrapper-column">
-                          <div class="ceil-text">盒名称</div>
+                          <div class="ceil-text">鉴定申请人</div>
                           <div class="ceil-value">
-                            {{ increase_from.box_name }}
+                            {{ increase_from.ident_apply_people }}
+                          </div>
+                        </div>
+                        <div class="content-form-wrapper-column">
+                          <div class="ceil-text">鉴定申请时间</div>
+                          <div class="ceil-value">
+                            {{ increase_from.ident_apply_time }}
                           </div>
                         </div>
                       </div>
                       <div class="content-form-wrapper">
                         <div class="content-form-wrapper-column">
-                          <div class="ceil-text">盒档号</div>
+                          <div class="ceil-text">鉴定参与人员</div>
                           <div class="ceil-value">
-                            {{ increase_from.box_no }}
-                          </div>
-                        </div>
-                        <div class="content-form-wrapper-column">
-                          <div class="ceil-text">盒编号</div>
-                          <div class="ceil-value">
-                            {{ increase_from.box_num }}
+                            {{ increase_from.ident_part_people }}
                           </div>
                         </div>
                       </div>
                       <div class="content-form-wrapper">
                         <div class="content-form-wrapper-column">
-                          <div class="ceil-text">编制单位</div>
+                          <div class="ceil-text">鉴定事由</div>
                           <div class="ceil-value">
-                            {{ increase_from.pro_site }}
-                          </div>
-                        </div>
-                        <div class="content-form-wrapper-column">
-                          <div class="ceil-text">盒整理人</div>
-                          <div class="ceil-value">
-                            {{ increase_from.box_tidy_p }}
+                            {{ increase_from.ident_reason }}
                           </div>
                         </div>
                       </div>
                       <div class="content-form-wrapper">
                         <div class="content-form-wrapper-column">
-                          <div class="ceil-text">保管期限</div>
+                          <div class="ceil-text">鉴定审核意见</div>
                           <div class="ceil-value">
-                            {{ increase_from.safe_duration }}
-                          </div>
-                        </div>
-                        <div class="content-form-wrapper-column">
-                          <div class="ceil-text">密级</div>
-                          <div class="ceil-value">
-                            {{ increase_from.security_class }}
+                            {{ increase_from.ident_audit_opin }}
                           </div>
                         </div>
                       </div>
                       <div class="content-form-wrapper">
                         <div class="content-form-wrapper-column">
-                          <div class="ceil-text">存放地址</div>
+                          <div class="ceil-text">鉴定审核结论</div>
                           <div class="ceil-value">
-                            {{ increase_from.store_address }}
-                          </div>
-                        </div>
-                        <div class="content-form-wrapper-column">
-                          <div class="ceil-text">所属单元格</div>
-                          <div class="ceil-value">
-                            {{ increase_from.own_cell }}
+                            {{ increase_from.ident_audit_conc }}
                           </div>
                         </div>
                       </div>
                       <div class="content-form-wrapper">
                         <div class="content-form-wrapper-column">
-                          <div class="ceil-text">背脊宽度</div>
+                          <div class="ceil-text">备注</div>
                           <div class="ceil-value">
-                            {{ increase_from.spine_width }}
-                          </div>
-                        </div>
-                        <div class="content-form-wrapper-column">
-                          <div class="ceil-text">盒内案卷数</div>
-                          <div class="ceil-value">
-                            {{ increase_from.files_box_num }}
+                            {{ increase_from.remark }}
                           </div>
                         </div>
                       </div>
-                      <div class="content-form-wrapper">
-                        <div class="content-form-wrapper-column">
-                          <div class="ceil-text">编制日期</div>
-                          <div class="ceil-value">
-                            {{ increase_from.prepare_date_first }}
-                          </div>
-                        </div>
-                        <div class="content-form-wrapper-column">
-                          <div class="ceil-text">至</div>
-                          <div class="ceil-value">
-                            {{ increase_from.prepare_date_second }}
-                          </div>
-                        </div>
-                      </div>
+
                       <div class="content-form-wrapper">
                         <div class="content-form-wrapper-column">
                           <div class="ceil-text">录入人</div>
@@ -136,7 +99,21 @@
                         <div class="content-form-wrapper-column">
                           <div class="ceil-text">录入时间</div>
                           <div class="ceil-value">
-                            {{ increase_from.certificate_date }}
+                            {{ increase_from.enter_time }}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="content-form-wrapper">
+                        <div class="content-form-wrapper-column">
+                          <div class="ceil-text">修改人</div>
+                          <div class="ceil-value">
+                            {{ increase_from.modify_pepole }}
+                          </div>
+                        </div>
+                        <div class="content-form-wrapper-column">
+                          <div class="ceil-text">修改时间</div>
+                          <div class="ceil-value">
+                            {{ increase_from.modify_time }}
                           </div>
                         </div>
                       </div>
@@ -146,10 +123,10 @@
               </div>
               <div class="content-file-status increase-content--item">
                 <div class="content-title-btn" @click="fun_show_shrink('pre_files_pro')">
-                  <sz-show-shrink :show_shrink="show_shrink.pre_files_pro" title="案卷列表" />
+                  <sz-show-shrink :show_shrink="show_shrink.pre_files_pro" title="鉴定案卷列表" />
                 </div>
                 <div class="content--form" :style="{ display: show_shrink_dispaly.pre_files_pro }">
-                  <sz-table class="table-padding-left30" :config="table_files_list"></sz-table>
+                  <sz-table :config="table_files_list"></sz-table>
                 </div>
               </div>
             </el-form>
@@ -181,7 +158,10 @@ export default {
       pagination: false,
       // checkbox: true,
       number: true,
-      table_height: 676,
+      expand: false,
+      expand_info_look: true,
+      component_info_look: 'IdentBook',
+      table_height: 506,
       url: '',
       data: {
         pageIndex: 1,
@@ -189,8 +169,15 @@ export default {
         startTime: '2021-01-01 00:00:00'
       },
       thead: [
-        { label: '案卷题名', prop: 'books_title', checked: true, width: '200' },
-        { label: '案卷档号', prop: 'books_no', checked: true, width: '200' }
+        { label: '总登记号', prop: 'total_registration', checked: true, width: '80' },
+        { label: '案卷题名', prop: 'books_title', checked: true, width: '120' },
+        { label: '归档时间', prop: 'archive_date', checked: true, width: '80' },
+        { label: '鉴定通过', prop: 'ident_pass', checked: true, width: '80' },
+        { label: '保管期限', prop: 'safe_duration', checked: true, width: '80' },
+        { label: '密级', prop: 'security_class', checked: true, width: '80' },
+        { label: '新保管期限', prop: 'new_safe_duration', checked: true, width: '90' },
+        { label: '新密级', prop: 'new_security_class', checked: true, width: '80' },
+        { label: '是否销毁', prop: 'arch_dest', checked: true, width: '80' }
       ]
     })
 
@@ -199,21 +186,17 @@ export default {
       look_project_dialog: false,
       data_row: null,
       increase_from: {
-        box_name: '', // 盒名称
-        box_no: '', // 盒档号
-        box_num: '', // 盒编号
-        compile_unit: '', //编制单位
-        box_tidy_p: '', // 盒整理人
-        safe_duration: '', //保管期限
-        security_class: '', //密级
-        store_address: '', //存放地址
-        own_cell: '', // 所属单元格
-        spine_width: '', // 背脊宽度
-        files_box_num: '', // 盒内案卷数
-        prepare_date_first: '', //编制日期 开始日期
-        prepare_date_second: '', //至 结束日期
+        ident_apply_people: '', // 鉴定申请人
+        ident_apply_time: '', // 鉴定申请时间
+        ident_part_people: '', // 鉴定参与人员
+        ident_reason: '', // 鉴定事由
+        ident_audit_opin: '', // 鉴定审核意见
+        ident_audit_conc: '', // 鉴定审核结论
+        remark: '', // 备注
         enter_pepole: '', //录入人
-        enter_time: '' //录入时间
+        enter_time: '', //录入时间
+        modify_pepole: '杨那', // 修改人
+        modify_time: '2021.02.27  21:34:12' // 修改时间
       },
       increase_rules: {
         project_name: [

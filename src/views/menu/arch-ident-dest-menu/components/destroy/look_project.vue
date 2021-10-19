@@ -18,7 +18,7 @@
       </template>
       <div class="look-project-dialog--body" :style="look_project_style">
         <div class="look-project-body--box">
-          <div class="look-project-body--title global--weight">报送责任书</div>
+          <div class="look-project-body--title global--weight">销毁登记单</div>
           <div class="increase-content--box">
             <el-form
               :model="increase_from"
@@ -36,93 +36,47 @@
                     <div class="global-content-form-item-look">
                       <div class="content-form-wrapper">
                         <div class="content-form-wrapper-column">
-                          <div class="ceil-text">盒名称</div>
+                          <div class="ceil-text">销毁人</div>
                           <div class="ceil-value">
-                            {{ increase_from.box_name }}
+                            {{ increase_from.destroy_people }}
+                          </div>
+                        </div>
+                        <div class="content-form-wrapper-column">
+                          <div class="ceil-text">销毁日期</div>
+                          <div class="ceil-value">
+                            {{ increase_from.destroy_time }}
                           </div>
                         </div>
                       </div>
                       <div class="content-form-wrapper">
                         <div class="content-form-wrapper-column">
-                          <div class="ceil-text">盒档号</div>
+                          <div class="ceil-text">销毁监督人员</div>
                           <div class="ceil-value">
-                            {{ increase_from.box_no }}
-                          </div>
-                        </div>
-                        <div class="content-form-wrapper-column">
-                          <div class="ceil-text">盒编号</div>
-                          <div class="ceil-value">
-                            {{ increase_from.box_num }}
+                            {{ increase_from.destroy_super_people }}
                           </div>
                         </div>
                       </div>
                       <div class="content-form-wrapper">
                         <div class="content-form-wrapper-column">
-                          <div class="ceil-text">编制单位</div>
+                          <div class="ceil-text">销毁事由</div>
                           <div class="ceil-value">
-                            {{ increase_from.pro_site }}
-                          </div>
-                        </div>
-                        <div class="content-form-wrapper-column">
-                          <div class="ceil-text">盒整理人</div>
-                          <div class="ceil-value">
-                            {{ increase_from.box_tidy_p }}
+                            {{ increase_from.destroy_reason }}
                           </div>
                         </div>
                       </div>
                       <div class="content-form-wrapper">
                         <div class="content-form-wrapper-column">
-                          <div class="ceil-text">保管期限</div>
+                          <div class="ceil-text">销毁结果</div>
                           <div class="ceil-value">
-                            {{ increase_from.safe_duration }}
-                          </div>
-                        </div>
-                        <div class="content-form-wrapper-column">
-                          <div class="ceil-text">密级</div>
-                          <div class="ceil-value">
-                            {{ increase_from.security_class }}
+                            {{ increase_from.destroy_results }}
                           </div>
                         </div>
                       </div>
                       <div class="content-form-wrapper">
                         <div class="content-form-wrapper-column">
-                          <div class="ceil-text">存放地址</div>
+                          <div class="ceil-text">备注</div>
                           <div class="ceil-value">
-                            {{ increase_from.store_address }}
-                          </div>
-                        </div>
-                        <div class="content-form-wrapper-column">
-                          <div class="ceil-text">所属单元格</div>
-                          <div class="ceil-value">
-                            {{ increase_from.own_cell }}
-                          </div>
-                        </div>
-                      </div>
-                      <div class="content-form-wrapper">
-                        <div class="content-form-wrapper-column">
-                          <div class="ceil-text">背脊宽度</div>
-                          <div class="ceil-value">
-                            {{ increase_from.spine_width }}
-                          </div>
-                        </div>
-                        <div class="content-form-wrapper-column">
-                          <div class="ceil-text">盒内案卷数</div>
-                          <div class="ceil-value">
-                            {{ increase_from.files_box_num }}
-                          </div>
-                        </div>
-                      </div>
-                      <div class="content-form-wrapper">
-                        <div class="content-form-wrapper-column">
-                          <div class="ceil-text">编制日期</div>
-                          <div class="ceil-value">
-                            {{ increase_from.prepare_date_first }}
-                          </div>
-                        </div>
-                        <div class="content-form-wrapper-column">
-                          <div class="ceil-text">至</div>
-                          <div class="ceil-value">
-                            {{ increase_from.prepare_date_second }}
+                            {{ increase_from.remark }}
                           </div>
                         </div>
                       </div>
@@ -136,7 +90,21 @@
                         <div class="content-form-wrapper-column">
                           <div class="ceil-text">录入时间</div>
                           <div class="ceil-value">
-                            {{ increase_from.certificate_date }}
+                            {{ increase_from.enter_time }}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="content-form-wrapper">
+                        <div class="content-form-wrapper-column">
+                          <div class="ceil-text">修改人</div>
+                          <div class="ceil-value">
+                            {{ increase_from.modify_pepole }}
+                          </div>
+                        </div>
+                        <div class="content-form-wrapper-column">
+                          <div class="ceil-text">修改时间</div>
+                          <div class="ceil-value">
+                            {{ increase_from.modify_time }}
                           </div>
                         </div>
                       </div>
@@ -146,10 +114,10 @@
               </div>
               <div class="content-file-status increase-content--item">
                 <div class="content-title-btn" @click="fun_show_shrink('pre_files_pro')">
-                  <sz-show-shrink :show_shrink="show_shrink.pre_files_pro" title="案卷列表" />
+                  <sz-show-shrink :show_shrink="show_shrink.pre_files_pro" title="鉴定案卷列表" />
                 </div>
                 <div class="content--form" :style="{ display: show_shrink_dispaly.pre_files_pro }">
-                  <sz-table class="table-padding-left30" :config="table_files_list"></sz-table>
+                  <sz-table :config="table_files_list"></sz-table>
                 </div>
               </div>
             </el-form>
@@ -181,7 +149,8 @@ export default {
       pagination: false,
       // checkbox: true,
       number: true,
-      table_height: 676,
+      expand: false,
+      table_height: 506,
       url: '',
       data: {
         pageIndex: 1,
@@ -189,8 +158,14 @@ export default {
         startTime: '2021-01-01 00:00:00'
       },
       thead: [
-        { label: '案卷题名', prop: 'books_title', checked: true, width: '200' },
-        { label: '案卷档号', prop: 'books_no', checked: true, width: '200' }
+        { label: '总登记号', prop: 'total_registration', checked: true, width: '80' },
+        { label: '案卷题名', prop: 'books_title', checked: true, width: '100' },
+        { label: '案卷档号', prop: 'books_no', checked: true, width: '100' },
+        { label: '存放位置', prop: 'stor_location', checked: true, width: '100' },
+        { label: '归档时间', prop: 'archive_date', checked: true, width: '100' },
+        { label: '文字材料(张)', prop: 'sub_word_z', checked: true, width: '100' },
+        { label: '图纸材料(张)', prop: 'sub_draw_v', checked: true, width: '100' },
+        { label: '其他材料数量', prop: 'other_materi_num', checked: true, width: '110' }
       ]
     })
 
@@ -199,21 +174,16 @@ export default {
       look_project_dialog: false,
       data_row: null,
       increase_from: {
-        box_name: '', // 盒名称
-        box_no: '', // 盒档号
-        box_num: '', // 盒编号
-        compile_unit: '', //编制单位
-        box_tidy_p: '', // 盒整理人
-        safe_duration: '', //保管期限
-        security_class: '', //密级
-        store_address: '', //存放地址
-        own_cell: '', // 所属单元格
-        spine_width: '', // 背脊宽度
-        files_box_num: '', // 盒内案卷数
-        prepare_date_first: '', //编制日期 开始日期
-        prepare_date_second: '', //至 结束日期
+        destroy_people: '', // 销毁人
+        destroy_time: '', // 销毁日期
+        destroy_super_people: '', // 销毁监督人员
+        destroy_reason: '', // 销毁事由
+        destroy_results: '', // 销毁结果
+        remark: '', // 备注
         enter_pepole: '', //录入人
-        enter_time: '' //录入时间
+        enter_time: '', //录入时间
+        modify_pepole: '杨那', // 修改人
+        modify_time: '2021.02.27  21:34:12' // 修改时间
       },
       increase_rules: {
         project_name: [

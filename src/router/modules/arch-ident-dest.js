@@ -19,6 +19,18 @@ export default {
       meta: { ...meta, title: '档案鉴定登记' }
     },
     {
+      path: 'arch-ident-regist/increase-regist',
+      name: 'arch-ident-dest-arch-ident-regist-increase-regist',
+      component: _import('menu/arch-ident-dest-menu/arch-ident-regist/increase-regist/index.vue'),
+      meta: { ...meta, title: '档案鉴定登记-添加鉴定登记信息' }
+    },
+    {
+      path: 'arch-ident-regist/modify-regist',
+      name: 'arch-ident-dest-arch-ident-regist-modify-regist',
+      component: _import('menu/arch-ident-dest-menu/arch-ident-regist/modify-regist/index.vue'),
+      meta: { ...meta, title: '档案鉴定登记-修改鉴定登记信息' }
+    },
+    {
       path: 'arch-ident-audit',
       name: 'arch-ident-dest-arch-ident-audit',
       component: _import('menu/arch-ident-dest-menu/arch-ident-audit/index.vue'),
@@ -29,6 +41,12 @@ export default {
       name: 'arch-ident-dest-arch-dest',
       component: _import('menu/arch-ident-dest-menu/arch-dest/index.vue'),
       meta: { ...meta, title: '档案销毁' }
+    },
+    {
+      path: 'arch-dest/increase-regist',
+      name: 'arch-ident-dest-arch-dest-increase-regist',
+      component: _import('menu/arch-ident-dest-menu/arch-dest/increase-regist/index.vue'),
+      meta: { ...meta, title: '档案销毁-添加销毁登记' }
     },
     {
       path: 'arch-restore',

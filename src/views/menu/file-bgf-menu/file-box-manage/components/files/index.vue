@@ -249,8 +249,8 @@ export default {
         startTime: '2021-01-01 00:00:00'
       },
       thead: [
-        { label: '案卷题名', prop: 'project_name', checked: true, width: '200' },
-        { label: '案卷档号', prop: 'project_adress', checked: true, width: '200' },
+        { label: '案卷题名', prop: 'books_title', checked: true, width: '200' },
+        { label: '案卷档号', prop: 'books_no', checked: true, width: '200' },
         {
           label: '操作',
           prop: 'operation',

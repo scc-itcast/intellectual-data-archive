@@ -240,6 +240,7 @@ import FileGenericInfo from '@/components/sz-file-generic-look/index.vue'
 import AudioVideo from '@/components/sz-audio-video-look/index.vue'
 import UseRecords from '@/components/sz-use-records-look/index.vue'
 import ReturnRecord from '@/components/sz-return-record/index.vue'
+import IdentBook from '@/components/sz-ident-book/index.vue'
 import util from '@/libs/util.js'
 import {
   onMounted,
@@ -259,7 +260,8 @@ export default {
     FileGenericInfo,
     AudioVideo,
     UseRecords,
-    ReturnRecord
+    ReturnRecord,
+    IdentBook
   },
   props: ['config'],
   setup(prop, context) {

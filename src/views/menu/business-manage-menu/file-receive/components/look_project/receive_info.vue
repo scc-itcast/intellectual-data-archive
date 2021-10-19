@@ -44,7 +44,7 @@
                   <div class="content-form-wrapper-column">
                     <div class="ceil-text">报送文字材料(张)</div>
                     <div class="ceil-value">
-                      {{ increase_from.submit_word_z }}
+                      {{ increase_from.sub_word_z }}
                     </div>
                   </div>
                   <div class="content-form-wrapper-column">
@@ -58,7 +58,7 @@
                   <div class="content-form-wrapper-column">
                     <div class="ceil-text">报送文字材料(卷)</div>
                     <div class="ceil-value">
-                      {{ increase_from.submit_word_v }}
+                      {{ increase_from.sub_word_v }}
                     </div>
                   </div>
                   <div class="content-form-wrapper-column">
@@ -135,9 +135,9 @@ export default {
         file_receiver: '', // 档案接收人
         volume: '', // 卷数
         audit_day: '', // 审核工作日
-        submit_word_z: '', // 报送文字材料（张）
+        sub_word_z: '', // 报送文字材料（张）
         sub_draw_z: '', // 报送图纸材料（张）
-        submit_word_v: '', // 报送文字材料（卷）
+        sub_word_v: '', // 报送文字材料（卷）
         sub_draw_v: '', // 报送图纸材料（卷）
         sub_photo_z: '', // 报送照片材料（张）
         report_video_p: '', // 报送录像带材料（盘）

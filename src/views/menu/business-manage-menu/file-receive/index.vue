@@ -128,8 +128,8 @@ export default {
         { label: '报送图纸材料(卷)', prop: 'sub_draw_v', checked: false, width: '200' },
         { label: '报送照片材料(张)', prop: 'sub_photo_z', checked: false, width: '200' },
         { label: '报送录像带材料(盘)', prop: 'report_video_p', checked: false, width: '200' },
-        { label: '报送文字材料(张)', prop: 'submit_word_z', checked: false, width: '200' },
-        { label: '报送文字材料(卷)', prop: 'submit_word_v', checked: false, width: '200' },
+        { label: '报送文字材料(张)', prop: 'sub_word_z', checked: false, width: '200' },
+        { label: '报送文字材料(卷)', prop: 'sub_word_v', checked: false, width: '200' },
         { label: '卷数', prop: 'volume', checked: false, width: '200' },
         { label: '备注', prop: 'remark', checked: false, width: '200' },
         {

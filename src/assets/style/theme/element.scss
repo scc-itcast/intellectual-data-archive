@@ -401,8 +401,9 @@
   // border: none;
 }
 
+.el-select-dropdown__item.selected,
 #sz-advanced-query-item .el-select-dropdown__item.selected {
-  color: $color-primary;
+  color: $color-primary!important;
 }
 
 #sz-advanced-query-item .el-select-dropdown__item.hover,

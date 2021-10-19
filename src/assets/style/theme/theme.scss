@@ -74,7 +74,7 @@
     // 顶栏菜单空间不足时显示的滚动控件
     .d2-theme-header-menu {
       .d2-theme-header-menu__prev, .d2-theme-header-menu__next {
-        color: $theme-header-item-color;
+        color: $color-text-5;
         background: $theme-header-item-background-color;
         &:hover {
           color: $theme-header-item-color-hover;
