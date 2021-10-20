@@ -127,6 +127,7 @@ export default {
       // checkbox: true,
       number: true,
       // expand: true,
+      table_height: 462,
       url: '',
       data: {
         pageIndex: 1,

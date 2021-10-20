@@ -1,15 +1,31 @@
 <template>
   <d2-container type="card" better-scroll :breadcrumb="breadcrumb">
     <template slot="header">
-      <div class="query--box global--flex">
+      <div class="query--box global--flex global--mb10">
         <div class="query-list--box global--flex">
           <div v-for="(item, index) in queryList" :key="index">
-            <sz-text-input
-              :queryObject="item"
-              :index="index"
-              className="primary"
-              @fun_value_change="fun_value_change"
-            ></sz-text-input>
+            <template v-if="index !== 'ident_num'">
+              <sz-text-input
+                :queryObject="item"
+                :index="index"
+                className="primary"
+                @fun_value_change="fun_value_change"
+              ></sz-text-input>
+            </template>
+          </div>
+        </div>
+      </div>
+      <div class="query--box global--flex" style="margin-left: -40px">
+        <div class="query-list--box global--flex">
+          <div v-for="(item, index) in queryList" :key="index">
+            <template v-if="index === 'ident_num'">
+              <sz-text-input
+                :queryObject="item"
+                :index="index"
+                className="primary"
+                @fun_value_change="fun_value_change"
+              ></sz-text-input>
+            </template>
           </div>
         </div>
         <div class="query-btn--box global--flex">
@@ -103,6 +119,7 @@ export default {
       // checkbox: true,
       number: true,
       // expand: true,
+      table_height: 462,
       url: '',
       data: {
         pageIndex: 1,
