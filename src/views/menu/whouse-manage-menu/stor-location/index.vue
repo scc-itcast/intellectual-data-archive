@@ -46,6 +46,7 @@ export default {
       // checkbox: true,
       number: true,
       // expand: true,
+      table_height: 378,
       url: '',
       data: {
         pageIndex: 1,
@@ -179,14 +180,6 @@ export default {
     }
 
     const fun_db_click = row => {}
-
-    context.root.$notify({
-      title: '提示信息',
-      message: '导出成功',
-      iconClass: 'iconfont guilian', // 自定义图标的类名。若设置了 type，则 iconClass 会被覆盖
-      position: 'bottom-right', // 自定义弹出位置
-      duration: 2000 // 显示时间, 毫秒。设为 0 则不会自动关闭
-    })
 
     const fun_start_position = row => {}
 

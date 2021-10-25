@@ -282,6 +282,12 @@
   margin-top: 22px;
 }
 
+.auvi-table-list--box {
+  padding-top: 22px;
+  padding-bottom: 22px;
+}
+
+
 /**
 * 自动封装表单
 **/
@@ -502,5 +508,5 @@
 
 
 .global-increase--box {
-  overflow-y: scroll;
+  overflow-y: auto;
 }

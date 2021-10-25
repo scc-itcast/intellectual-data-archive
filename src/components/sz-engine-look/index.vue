@@ -421,6 +421,26 @@
                     </div>
                   </div>
                 </div>
+                <div v-if="page_config.show_audio_video" class="content-form-wrapper">
+                  <div class="content-form-wrapper-column">
+                    <div class="ceil-text asterisk_before">声像分类</div>
+                    <div class="ceil-value">
+                      {{ increase_from.audio_video_class }}
+                    </div>
+                  </div>
+                  <div class="content-form-wrapper-column">
+                    <div class="ceil-text"></div>
+                    <div class="ceil-value"></div>
+                  </div>
+                </div>
+                <div v-if="page_config.show_audio_video" class="content-form-wrapper">
+                  <div class="content-form-wrapper-column global-column-remark">
+                    <div class="ceil-text">声像备注</div>
+                    <div class="ceil-value">
+                      {{ increase_from.audio_video_remark }}
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -612,6 +632,8 @@ export default {
         design_unit: '', // 设计单位
         pros_unit: '', // 勘察单位
         remark: '', // 备注
+        audio_video_class: '', // 声像分类
+        audio_video_remark: '', // 声像备注
         eng_file_num: '', // 工程档号
         eng_file_num: '', // 工程档号
         class_outline: '', // 分类大纲
@@ -696,15 +718,27 @@ export default {
         园林绿化工程: 'brmg'
       },
       engine_unit_title: '单位工程级著录单',
-      engine_unit_id: ''
+      engine_unit_id: '',
+      page_config: {
+        id: '',
+        type: '',
+        modify: false,
+        go_btn: false,
+        archive_info: true,
+        archive_status: true,
+        business_info: true,
+        custom_info: true,
+        page_height: 242,
+        show_audio_video: false
+      }
     })
     onMounted(async () => {
       // 调用方法, 方法里调用接口
       // engine_unit_type_show()
     })
-    
+
     watchEffect(() => {
-      console.log(prop.tree_item);
+      console.log(prop.tree_item)
     })
 
     const engine_unit_type_show = () => {

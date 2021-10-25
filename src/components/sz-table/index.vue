@@ -209,6 +209,27 @@
         </template>
       </template>
     </el-table>
+    <div v-if="table_config.table_total" class="table-total">
+      <div class="table-total--content">
+        <div style="flex: 0.1;"></div>
+        <template v-for="item in contextData.table_config.thead">
+          <template v-if="item.prop === 'time'">
+            <div class="table-total--item" :key="item.prop">
+              合计
+            </div>
+          </template>
+          <template v-else-if="item.prop === 'class'">
+            <div class="table-total--item" :key="item.prop">
+            </div>
+          </template>
+          <template v-else>
+            <div class="table-total--item" :key="item.prop">
+              {{ table_total_data[item.prop] }}
+            </div>
+          </template>
+        </template>
+      </div>
+    </div>
     <el-row v-if="table_config.pagination" class="padding-top-30">
       <el-col :span="24">
         <el-pagination
@@ -237,7 +258,7 @@ import ProjectInfo from '@/components/sz-project-look/index.vue'
 import EngineInfo from '@/components/sz-engine-look/index.vue'
 import CaseFileInfo from '@/components/sz-case-file-look/index.vue'
 import FileGenericInfo from '@/components/sz-file-generic-look/index.vue'
-import AudioVideo from '@/components/sz-audio-video-look/index.vue'
+import AudioVideo from '@/components/sz-auvi-group-look/index.vue'
 import UseRecords from '@/components/sz-use-records-look/index.vue'
 import ReturnRecord from '@/components/sz-return-record/index.vue'
 import IdentBook from '@/components/sz-ident-book/index.vue'
@@ -276,6 +297,19 @@ export default {
         //获取当前行id
         // console.log(row)
         return row.id //这里看这一行中需要根据哪个属性值是id
+      },
+      table_total_data: {
+        id: 1,
+        time: 20,
+        class: 20,
+        photos_num: 20,
+        photos_sto_size: 20,
+        video_num: 20,
+        video_sto_size: 20,
+        audio_num: 20,
+        audio_sto_size: 20,
+        total_num: 20,
+        total_sto_size: 20
       },
       // tableData
       table_data: [
@@ -391,6 +425,8 @@ export default {
         url: '',
         // 请求参数
         data: {},
+        // 是否开启表格合计
+        table_total: false,
         // 是否开启分页
         pagination: true,
         // 子table是否开启分页
@@ -439,11 +475,12 @@ export default {
       contextData.table_height = document.body.clientHeight - contextData.table_config.table_height
     }
 
+    // 支持外部调用的方法
     const search = data => {
       const searchData = data
       searchData.pageIndex = 1
       searchData.PageSize = 10
-      contextData.requestData(searchData)
+      requestData(searchData)
     }
 
     const loadData = async () => {
@@ -469,8 +506,18 @@ export default {
         // })
       }
       // contextData.loading_table = false; // loading 关闭
+      const key_list = Object.keys(contextData.table_data[0])
+      let table_total_data = {}
+      contextData.table_data.forEach(item => {
+        key_list.forEach(key => {
+          let total = table_total_data[key] || 0
+          table_total_data[key] = total - 0 + item[key]
+        })
+      })
+      contextData.table_total_data = table_total_data
     }
 
+    // 支持外部调用的方法
     const requestData = (params = '') => {
       if (params) {
         // 处理业务逻辑
@@ -574,6 +621,23 @@ export default {
   padding: 5px 40px;
   .expand-input--text {
     margin-bottom: 10px;
+  }
+}
+.table-total {
+  width: 100%;
+  height: 48px;
+  background: #f5f7fa;
+  color: $color-primary;
+  .table-total--content {
+    display: flex;
+    height: 100%;
+    .table-total--item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      flex: 1;
+    }
   }
 }
 </style>

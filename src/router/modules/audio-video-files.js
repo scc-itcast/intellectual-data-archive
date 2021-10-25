@@ -79,6 +79,18 @@ export default {
       meta: { ...meta, title: '声像档案利用' }
     },
     {
+      path: 'vaarch-util/increase-regist',
+      name: 'audio-video-files-vaarch-util/increase-regist',
+      component: _import('menu/audio-video-files-menu/vaarch-util/increase-regist/index.vue'),
+      meta: { ...meta, title: '声像档案利用-添加查阅信息' }
+    },
+    {
+      path: 'vaarch-util/modify-regist',
+      name: 'audio-video-files-vaarch-util/modify-regist',
+      component: _import('menu/audio-video-files-menu/vaarch-util/modify-regist/index.vue'),
+      meta: { ...meta, title: '声像档案利用-修改查阅信息' }
+    },
+    {
       path: 'file-statis/collect-statis',
       name: 'audio-video-files-file-statis-collect-statis',
       component: _import('menu/audio-video-files-menu/file-statis/collect-statis/index.vue'),

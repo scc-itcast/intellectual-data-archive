@@ -1,5 +1,5 @@
 <template>
-  <div id="sz-text-input">
+  <div id="sz-text-input" v-if="!queryObject.isHide">
     <div :class="className">
       <div class="input--title">{{ queryObject.title }}</div>
       <div class="input--box">

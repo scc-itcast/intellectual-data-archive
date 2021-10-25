@@ -575,11 +575,42 @@
                     </div>
                   </div>
                 </div>
+                <div v-if="page_config.show_audio_video" class="content-form-wrapper">
+                  <div class="content-form-wrapper-column">
+                    <div class="ceil-text asterisk_before">声像分类</div>
+                    <div class="ceil-value">
+                      <el-cascader
+                        v-model="increase_from.audio_video_class"
+                        :options="audio_video_class_list"
+                        :props="props"
+                        @change="fun_cascader_change"
+                      ></el-cascader>
+                    </div>
+                  </div>
+                  <div class="content-form-wrapper-column">
+                    <div class="ceil-text"></div>
+                    <div class="ceil-value"></div>
+                  </div>
+                </div>
+                <div v-if="page_config.show_audio_video" class="content-form-wrapper">
+                  <div class="content-form-wrapper-column global-column-remark">
+                    <div class="ceil-text">声像备注</div>
+                    <div class="ceil-value">
+                      <el-input
+                        type="textarea"
+                        v-model="increase_from.audio_video_remark"
+                        placeholder="请输入"
+                        rows="4"
+                        resize="none"
+                      ></el-input>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="content-file-status increase-content--item">
+        <div v-if="page_config.archive_status" class="content-file-status increase-content--item">
           <div class="content-title-btn" @click="fun_show_shrink('file_status')">
             <sz-show-shrink :show_shrink="show_shrink.file_status" title="档案状况" />
           </div>
@@ -657,7 +688,7 @@
             </div>
           </div>
         </div>
-        <div class="content-business-info increase-content--item">
+        <div v-if="page_config.business_info" class="content-business-info increase-content--item">
           <div class="content-title-btn" @click="fun_show_shrink('business_info')">
             <sz-show-shrink :show_shrink="show_shrink.business_info" title="业务信息" />
           </div>
@@ -786,7 +817,7 @@
             </div>
           </div>
         </div>
-        <div class="content-custom-info increase-content--item">
+        <div v-if="page_config.custom_info" class="content-custom-info increase-content--item">
           <div class="content-title-btn" @click="fun_show_shrink('custom_info')">
             <sz-show-shrink :show_shrink="show_shrink.custom_info" title="自定义字段信息" />
           </div>
@@ -858,6 +889,8 @@ export default {
         design_unit: '', // 设计单位
         pros_unit: '', // 勘察单位
         remark: '', // 备注
+        audio_video_class: '', // 声像分类
+        audio_video_remark: '', // 声像备注
         eng_file_num: '', // 工程档号
         class_outline: '', // 分类大纲
         archive_people: '', // 归档人
@@ -952,6 +985,31 @@ export default {
         },
         { label: 'B/城市勘察类', prop: 'Bc' }
       ],
+      audio_video_class_list: [
+        {
+          label: 'A/综合类',
+          prop: 'A',
+          children: [
+            {
+              label: 'A01/政策法规',
+              prop: 'A01',
+              children: [
+                { label: 'A0101/上级1121', prop: 'A0101' },
+                { label: 'A0201/国家级', prop: 'A0201' }
+              ]
+            },
+            {
+              label: 'A02/会议',
+              prop: 'A02',
+              children: [
+                { label: 'A0201/国家级', prop: 'A0201' },
+                { label: 'A0202/省级', prop: 'A0202' }
+              ]
+            }
+          ]
+        },
+        { label: 'B/城市勘察类', prop: 'Bc' }
+      ],
       props: {
         label: 'label',
         value: 'prop'
@@ -979,7 +1037,11 @@ export default {
         modify: false,
         go_btn: false,
         archive_info: true,
-        page_height: 242
+        archive_status: true,
+        business_info: true,
+        custom_info: true,
+        page_height: 242,
+        show_audio_video: false
       }
     })
     onMounted(async () => {
