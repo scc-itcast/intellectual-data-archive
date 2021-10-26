@@ -425,7 +425,6 @@ export default {
     }
 
     const fun_batch_modify = () => {
-      context.refs.component_operate_ref.fun_batch_modify()
     }
 
     const fun_select_all = () => {

@@ -12,6 +12,9 @@
             ></sz-text-input>
           </div>
         </div>
+        <div class="query-btn--box global--flex">
+          <sz-button title="统计" type="primary" @click="fun_general_query"></sz-button>
+        </div>
       </div>
     </template>
     <template>
@@ -142,6 +145,7 @@ export default {
           title: '',
           value: 2021,
           type: 'select',
+          isDisabled: true,
           list: [],
           isHide: false
         },
@@ -218,37 +222,68 @@ export default {
       },
       legend_list: {
         photos_num: {
-          text: '照片数量'
+          text: '照片数量',
+          line_series_color: 'rgba(124,181,236)',
+          pie_series_color: ['#95CEFF', '#434348', '#90ED7D', '#F7A35C', '#8085E9']
         },
         photos_sto_size: {
-          text: '照片存储大小'
+          text: '照片存储大小',
+          line_series_color: 'rgba(67,67,72)',
+          pie_series_color: ['#F15C80', '#E4D354', '#2B908F', '#F45B5B', '#91E8E1']
         },
         video_num: {
-          text: '视频数量'
+          text: '视频数量',
+          line_series_color: 'rgba(144,237,125)',
+          pie_series_color: ['#8491EA', '#8DBFEF', '#4A4A4E', '#90ED7D', '#F7A35C']
         },
         video_sto_size: {
-          text: '视频存储大小'
+          text: '视频存储大小',
+          line_series_color: 'rgba(247,163,92)',
+          pie_series_color: ['#AFEFE9', '#F16385', '#E8DA6E', '#2B908F', '#F45B5B']
         },
         audio_num: {
-          text: '音频数量'
+          text: '音频数量',
+          line_series_color: 'rgba(128,133,233)',
+          pie_series_color: ['#9EC8F1', '#4F4F53', '#90ED7D', '#F9B175', '#8085E9']
         },
         audio_sto_size: {
-          text: '音频存储大小'
+          text: '音频存储大小',
+          line_series_color: 'rgba(241,92,128)',
+          pie_series_color: ['#F26A8B', '#F37493', '#2B908F', '#F46161', '#91E8E1']
         },
         total_num: {
-          text: '总数量'
+          text: '总数量',
+          line_series_color: 'rgba(228,210,84)',
+          pie_series_color: ['#7CB5EC', '#434348', '#90ED7D', '#F7A35C', '#8085E9']
         },
         total_sto_size: {
-          text: '总存储大小'
+          text: '总存储大小',
+          line_series_color: 'rgba(43,144,143)',
+          pie_series_color: ['#F15C80', '#E4D354', '#2B908F', '#FF7474', '#91E8E1']
         }
       },
       legend_list_index: 'photos_num',
       toggle_echart_type: 'line',
+      line_series_color: '',
+      pie_series_color: [],
+      line_pie_name_data: [],
+      line_pie_value_data: [],
       line_pie_z_index: {
         line: 1,
         pie: 2
       },
-      year_data: ['2017年', '2018年', '2019年', '2020年', '2021年']
+      line_pie_name_data_list: {
+        year_statistics: ['2017年', '2018年', '2019年', '2020年', '2021年'],
+        mouth_statistics: [
+          '2021年2月',
+          '2021年4月',
+          '2021年6月',
+          '2021年7月',
+          '2021年8月',
+          '2021年9月',
+          '2021年10月'
+        ]
+      }
     })
     onMounted(async () => {
       // 调用方法, 方法里调用接口
@@ -281,7 +316,19 @@ export default {
     }
 
     const fun_statistical_methods = value => {
+      contextData.queryList.time_period_statistical_start.isHide = true
+      contextData.queryList.time_period_statistical_end.isHide = true
+      contextData.queryList.year_mouth_statistical.isHide = false
+      contextData.line_pie_name_data = contextData.line_pie_name_data_list[value]
       switch (value) {
+        case 'year_statistics': {
+          contextData.queryList.year_mouth_statistical.isDisabled = true
+          break
+        }
+        case 'mouth_statistics': {
+          contextData.queryList.year_mouth_statistical.isDisabled = false
+          break
+        }
         case 'time_period_statistics': {
           contextData.queryList.year_mouth_statistical.isHide = true
           contextData.queryList.time_period_statistical_start.isHide = false
@@ -289,14 +336,30 @@ export default {
           break
         }
         default: {
-          contextData.queryList.time_period_statistical_start.isHide = true
-          contextData.queryList.time_period_statistical_end.isHide = true
-          contextData.queryList.year_mouth_statistical.isHide = false
         }
       }
     }
 
-    const fun_general_query = () => {}
+    const fun_general_query = () => {
+      const value = contextData.queryList.statistical_methods.value
+      if (value === 'time_period_statistics') {
+        const start_time = contextData.queryList.time_period_statistical_start.value
+        const end_time = contextData.queryList.time_period_statistical_end.value
+        if (!start_time || !end_time) {
+          return context.root.$notify({
+            title: '提示信息',
+            message: '请选择统计时间段!',
+            iconClass: 'iconfont guilian', // 自定义图标的类名。若设置了 type，则 iconClass 会被覆盖
+            position: 'bottom-right', // 自定义弹出位置
+            duration: 2000 // 显示时间, 毫秒。设为 0 则不会自动关闭
+          })
+        }
+        const name_data = `${start_time}-${end_time}`
+        contextData.line_pie_name_data = []
+        contextData.line_pie_name_data.push(name_data)
+      }
+      fun_collect_statis_echart(contextData.toggle_echart_type)
+    }
 
     const fun_advanced_query = () => {
       contextData.advanced_query_obj.query_field_list = JSON.parse(JSON.stringify(tableList.thead))
@@ -326,11 +389,12 @@ export default {
     const fun_db_click = row => {}
 
     const fun_init_echart = () => {
-      let ok = document.querySelector('#collect_statis_echart')
-      if (ok) {
+      let line = document.querySelector('#collect_statis_echart_line')
+      let pie = document.querySelector('#collect_statis_echart_pie')
+      if (line && pie) {
         fun_init_all_info()
       } else {
-        setTimeout(() => {
+        contextData._timer = setTimeout(() => {
           fun_init_echart()
         }, 300)
       }
@@ -343,6 +407,11 @@ export default {
 
     const fun_legend_list = index => {
       contextData.legend_list_index = index
+      contextData.line_series_color = contextData.legend_list[index].line_series_color
+      contextData.pie_series_color = contextData.legend_list[index].pie_series_color
+      // index不同发送不同的接口 获取下面两个数据
+      // contextData.line_pie_value_data
+      fun_collect_statis_echart(contextData.toggle_echart_type)
     }
 
     const fun_toggle_btn_class = index => {
@@ -351,42 +420,46 @@ export default {
     }
 
     const fun_toggle_btn = index => {
+      if (contextData.toggle_echart_type !== index) {
+        fun_collect_statis_echart(index)
+      }
       contextData.toggle_echart_type = index
-      fun_collect_statis_echart('rgba(237, 182, 68)', index)
-      fun_line_pie_z_index()
-      contextData.line_pie_z_index[index] = 2
+      fun_line_pie_z_index(index)
     }
 
-    const fun_line_pie_z_index = () => {
+    const fun_line_pie_z_index = index => {
       Object.keys(contextData.line_pie_z_index).map(item => {
         contextData.line_pie_z_index[item] = 1
       })
+      contextData.line_pie_z_index[index] = 2
     }
 
     const fun_init_all_info = () => {
-      fun_collect_statis_echart('rgba(237, 182, 68)', 'line')
+      contextData.line_series_color = contextData.legend_list.photos_num.line_series_color
+      contextData.pie_series_color = contextData.legend_list.photos_num.pie_series_color
+      fun_line_pie_z_index('line')
+      fun_init_item_data()
+      fun_collect_statis_echart()
     }
 
-    const fun_collect_statis_echart = (series_color, echart_type) => {
-      const date = contextData.year_data
+    const fun_init_item_data = () => {
+      const name_data = contextData.line_pie_name_data_list.year_statistics
+      contextData.line_pie_name_data = name_data
       let data = []
       for (var i = 0; i < 5; i++) {
         data.push(Math.floor(Math.random() * 100 + 100))
       }
-      collect_statis_echart(date, data, series_color, echart_type)
+      contextData.line_pie_value_data = data
     }
 
-    const fun_top_energy_common = () => {
-      const current_hour_time = contextData.current_hour_time
-      let data = []
-      for (var i = 0; i <= current_hour_time; i++) {
-        const math_random = Math.floor(Math.random() * 50 + 80)
-        data.push(math_random)
-      }
-      for (var i = 1; i < 24 - current_hour_time; i++) {
-        data.push(0)
-      }
-      return data
+    const fun_collect_statis_echart = (echart_type = 'line') => {
+      const line_c = contextData.line_series_color
+      const pie_c = contextData.pie_series_color
+      const series_color = echart_type === 'line' ? line_c : pie_c
+      const date = contextData.line_pie_name_data
+      console.log(date)
+      const data = contextData.line_pie_value_data
+      collect_statis_echart(date, data, series_color, echart_type)
     }
 
     return {

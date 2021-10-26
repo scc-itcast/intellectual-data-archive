@@ -17,7 +17,7 @@ function collect_statis_pie_option(xAxis_data, series_data, series_color) {
     return { value: item, name: xAxis_data[index] }
   })
   return {
-    color: '#4179FF',
+    color: series_color,
     tooltip: {
       trigger: 'item',
       axisPointer: {
@@ -30,56 +30,23 @@ function collect_statis_pie_option(xAxis_data, series_data, series_color) {
       formatter: '{a} <br/>{b} : {c} ({d}%)',
       backgroundColor: 'rgba(0,0,0,.5)'
     },
-    grid: {
-      top: '25%',
-      right: '5%',
-      left: '4%',
-      bottom: '15%'
-    },
-    xAxis: [
-      {
-        type: 'category',
-        data: xAxis_data,
-        axisLine: {
-          show: false
-        },
-        axisLabel: {
-          show: false
-        },
-        splitLine: {
-          show: false
-        },
-        axisTick: {
-          show: false
-        }
-      }
-    ],
-    yAxis: [
-      {
-        type: 'value',
-        axisLabel: {
-          show: false
-        },
-        axisTick: {
-          show: false
-        },
-        axisLine: {
-          show: false
-        },
-        splitLine: {
-          show: false
-        }
-      }
-    ],
     series: [
       {
         type: 'pie',
         data: series_data,
-        barWidth: fontSize(0.1)
-        // itemStyle: {
-        //   color: series_color,
-        //   borderRadius: [fontSize(0.3), fontSize(0.3), 0, 0]
-        // }
+        avoidLabelOverlap: false,
+        // emphasis: {
+        //   label: {
+        //     formatter: '',
+        //     show: true,
+        //     fontSize: fontSize(0.4),
+        //     fontWeight: 'bold'
+        //   }
+        // },
+        itemStyle: {
+          borderWidth: fontSize(0.03), //设置border的宽度有多大
+          borderColor: 'transparent'
+        },
       }
     ]
   }
@@ -88,7 +55,6 @@ function collect_statis_pie_option(xAxis_data, series_data, series_color) {
 function collect_statis_line_option(xAxis_data, series_data, series_color) {
   let yAxis_max = Math.max(...series_data) || 1
   return {
-    color: '#4179FF',
     tooltip: {
       trigger: 'axis',
       axisPointer: {

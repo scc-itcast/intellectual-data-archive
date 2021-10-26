@@ -345,6 +345,7 @@
   position: relative;
 }
 
+#sz-auvi-file-preview .el-dialog__headerbtn,
 #sz-advanced-query .el-dialog__headerbtn {
   top: 15px;
   right: 15px;
@@ -363,6 +364,7 @@
   min-height: 340px;
 }
 
+#sz-auvi-file-preview .el-dialog__footer,
 #sz-advanced-query .el-dialog__footer {
   border-top: 1px solid $color-line-2;
   height: 68px;

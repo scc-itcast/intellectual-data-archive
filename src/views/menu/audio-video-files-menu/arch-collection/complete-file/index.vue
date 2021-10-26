@@ -34,27 +34,27 @@
           @fun_page_change="fun_page_change"
         />
       </div>
-      <div style="flex: 1;min-width:0">
-        <div class="tree-item--page">
-          <sz-engine-level
-            ref="component_engine_ref"
-            v-show="tree_item_flag.engine"
-            :tree_item="engine_tree_item"
-          />
-          <sz-auvi-group-level
-            ref="component_group_ref"
-            v-show="tree_item_flag.group"
-            :tree_item="group_tree_item"
-          />
-          <sz-auvi-file-level
-            ref="component_file_ref"
-            v-show="tree_item_flag.file"
-            :tree_item="file_tree_item"
-          />
-          <sz-auvi-operate-level
+      <div class="tree-item--page">
+        <sz-engine-level
+          ref="component_engine_ref"
+          v-show="tree_item_flag.engine"
+          :tree_item="engine_tree_item"
+        />
+        <sz-auvi-group-level
+          ref="component_group_ref"
+          v-show="tree_item_flag.group"
+          :tree_item="group_tree_item"
+        />
+        <sz-auvi-file-level
+          ref="component_file_ref"
+          v-show="tree_item_flag.file"
+          :tree_item="file_tree_item"
+        />
+        <div v-show="tree_item_flag.operation" class="auvi-table-list--box">
+          <sz-auvi-file-table
             ref="component_operate_ref"
-            v-show="tree_item_flag.operation"
-            :tree_item="file_tree_item"
+            :config="tableList"
+            @fun_selection_change="fun_selection_change"
           />
         </div>
       </div>
@@ -84,6 +84,36 @@ export default {
   components: {},
   setup(prop, context) {
     let tableList = reactive({
+      isRequest: false,
+      pagination: false,
+      checkbox: true,
+      table_height: 268,
+      url: '',
+      data: {
+        pageIndex: 1,
+        PageSize: 10,
+        startTime: '2021-01-01 00:00:00'
+      },
+      buttonGroup: [
+        {
+          label: '上传',
+          type: 'text',
+          event: 'button',
+          handler: data => fun_upload_project(data)
+        },
+        {
+          label: '下载',
+          type: 'text',
+          event: 'button',
+          handler: data => fun_download_project(data)
+        },
+        {
+          label: '浏览',
+          type: 'text',
+          event: 'button',
+          handler: data => fun_preview_project(data)
+        }
+      ],
       thead: [
         { label: '工程名称', prop: 'project_name', checked: true, disabled: true, width: '200' },
         { label: '工程地点', prop: 'project_adress', checked: true, width: '200' },
@@ -99,6 +129,7 @@ export default {
         { label: '录入时间', prop: 'enter_time', checked: false, width: '150' }
       ]
     })
+
     let contextData = reactive({
       name: '竣工档案',
       breadcrumb: [
@@ -257,8 +288,6 @@ export default {
       console.log(val)
     }
 
-    const fun_select_list = val => {}
-
     const fun_tree_click = (val, index) => {
       switch (index) {
         case 'engine': {
@@ -413,7 +442,6 @@ export default {
     }
 
     const fun_batch_modify = () => {
-      context.refs.component_operate_ref.fun_batch_modify()
     }
 
     const fun_select_all = () => {
@@ -426,6 +454,10 @@ export default {
 
     const fun_refresh = () => {
       context.refs.component_operate_ref.fun_refresh()
+    }
+    
+    const fun_selection_change = val => {
+      console.log(val)
     }
 
     return {
@@ -440,7 +472,7 @@ export default {
       fun_advanced_query_close,
       fun_tree_item,
       fun_page_change,
-      fun_select_list
+      fun_selection_change
     }
   }
 }
@@ -451,6 +483,7 @@ export default {
   width: 100%;
 }
 .tree-item--page {
+  flex: 1;
   width: 100%;
   height: 100%;
   background-color: $color-bg-4;

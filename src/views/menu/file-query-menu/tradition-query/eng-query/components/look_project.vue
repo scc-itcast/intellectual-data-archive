@@ -97,7 +97,7 @@
                   ></el-button>
                 </el-input>
               </div>
-              <div>预览</div>
+              <sz-auvi-file-table ref="sz_auvi_file_table" :config="audio_video_file_info" />
             </div>
           </el-tab-pane>
         </el-tabs>
@@ -232,6 +232,32 @@ export default {
       ]
     })
 
+    let audio_video_file_info = reactive({
+      isRequest: false,
+      pagination: true,
+      table_height: 420,
+      url: '',
+      data: {
+        pageIndex: 1,
+        PageSize: 10,
+        startTime: '2021-01-01 00:00:00'
+      },
+      buttonGroup: [
+        {
+          label: '浏览',
+          type: 'text',
+          event: 'button',
+          handler: data => fun_preview_project(data)
+        },
+        {
+          label: '删除',
+          type: 'text',
+          event: 'button',
+          handler: data => fun_delete_project(data)
+        }
+      ]
+    })
+
     let contextData = reactive({
       advanced_query_title: '',
       look_project_dialog: false,
@@ -263,6 +289,7 @@ export default {
       case_file_info_list.table_height = 472
       file_generic_info_list.table_height = 472
       audio_video_group_info_list.table_height = 472
+      audio_video_file_info.table_height = 410
       if (contextData.fullscreen) {
         contextData.look_project_style = {
           height: document.body.clientHeight - 109 - 46 + 10 + 'px'
@@ -271,6 +298,7 @@ export default {
         case_file_info_list.table_height = document.body.clientHeight - 600
         file_generic_info_list.table_height = document.body.clientHeight - 600
         audio_video_group_info_list.table_height = document.body.clientHeight - 600
+        audio_video_file_info.table_height = document.body.clientHeight - 600
       }
     }
 
@@ -316,6 +344,8 @@ export default {
       ...toRefs(file_generic_info_list),
       audio_video_group_info_list,
       ...toRefs(audio_video_group_info_list),
+      audio_video_file_info,
+      ...toRefs(audio_video_file_info),
       fun_look_project_zoom,
       fun_look_project_close,
       fun_look_project_submit,

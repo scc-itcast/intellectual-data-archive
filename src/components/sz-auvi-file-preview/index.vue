@@ -178,7 +178,7 @@ export default {
       contextData.preview_project_style = {}
       if (contextData.fullscreen) {
         contextData.preview_project_style = {
-          height: document.body.clientHeight - 109 - 46 + 68 + 'px'
+          height: document.body.clientHeight - 51 + 'px'
         }
       }
     }

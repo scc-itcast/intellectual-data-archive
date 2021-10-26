@@ -18,6 +18,7 @@
           v-model="data_value"
           placeholder="请输入关键字"
           @change="fun_value_change"
+          :disabled="queryObject.isDisabled"
         >
           <el-option
             v-for="item in queryObject.list"

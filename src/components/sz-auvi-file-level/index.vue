@@ -402,7 +402,6 @@
 </template>
 
 <script>
-import mixinAsideShowTrue from '@/views/menu/mixins/aside-show-true'
 import {
   onMounted,
   onBeforeUnmount,
@@ -413,7 +412,6 @@ import {
 } from '@vue/composition-api'
 export default {
   name: 'increase-engine',
-  mixins: [mixinAsideShowTrue],
   props: ['tree_item'],
   setup(prop, context) {
     let contextData = reactive({
